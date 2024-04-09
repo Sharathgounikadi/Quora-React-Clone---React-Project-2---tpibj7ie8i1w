@@ -1,5 +1,6 @@
 import React from 'react'
-
+import cooking from "../assets/Cooking.jpg"
+import music from "../assets/Music.jpg"
 import {
     Card,
     Typography,
@@ -19,51 +20,40 @@ import {
   } from "@heroicons/react/24/solid";
 const SideBar = () => {
     return (
-        <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
-          <div className="mb-2 p-4">
-            <Typography variant="h5" color="blue-gray">
-              Sidebar
-            </Typography>
-          </div>
-          <List>
+        <Card className="ml-20 h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+          <List className='flex justify-center align-middle'>
             <ListItem>
               <ListItemPrefix>
-                <PresentationChartBarIcon className="h-5 w-5" />
+                <img src={cooking} className="h-5 w-5" />
               </ListItemPrefix>
-              Dashboard
+              Cooking
             </ListItem>
             <ListItem>
               <ListItemPrefix>
-                <ShoppingBagIcon className="h-5 w-5" />
+              <img src={music} className="h-5 w-5" />
               </ListItemPrefix>
-              E-Commerce
+              Cooking
             </ListItem>
             <ListItem>
               <ListItemPrefix>
-                <InboxIcon className="h-5 w-5" />
+              <img src={cooking} className="h-5 w-5" />
               </ListItemPrefix>
-              Inbox
+              Cooking
               <ListItemSuffix>
                 <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
               </ListItemSuffix>
             </ListItem>
             <ListItem>
               <ListItemPrefix>
-                <UserCircleIcon className="h-5 w-5" />
+              <img src={cooking} className="h-5 w-5" />
               </ListItemPrefix>
-              Profile
+              Cooking
             </ListItem>
             <ListItem>
               <ListItemPrefix>
-                <Cog6ToothIcon className="h-5 w-5" />
+                <img src={cooking} className="h-5 w-5" />
               </ListItemPrefix>
-              Settings
-            </ListItem>
-            <ListItem>
-              <ListItemPrefix>
-                <PowerIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              Log Out
+              Cooking
             </ListItem>
           </List>
         </Card>

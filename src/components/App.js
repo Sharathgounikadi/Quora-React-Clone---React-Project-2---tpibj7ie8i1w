@@ -1,6 +1,6 @@
 import "../styles/App.css";
 import Header from "./Header";
-import Post from "./Post";
+import Posts from "./Posts";
 import SideBar from "./SideBar";
 
 import SignUp from "./SignUp";
@@ -11,7 +11,7 @@ function App() {
     <Header />
     {/* <SignUp /> */}
     <SideBar />
-    <Post />
+    <Posts />
   </div>;
 }
 
