@@ -1,11 +1,17 @@
 import "../styles/App.css";
-import Navbar from "./Navbar";
+import Header from "./Header";
+import Post from "./Post";
+import SideBar from "./SideBar";
+
 import SignUp from "./SignUp";
 
+
 function App() {
-  return <div >
-    <Navbar />
-    <SignUp/>
+  return <div>
+    <Header />
+    {/* <SignUp /> */}
+    <SideBar />
+    <Post />
   </div>;
 }
 
