@@ -3,16 +3,18 @@ import quora from  '../assets/Quora.jpg';
 import home from  '../assets/Home.jpg';
 import search from  '../assets/Search.jpg';
 import globe from  '../assets/Globe.jpg';
+import edit from  '../assets/Edit.jpg';
+import bell from  '../assets/Bell.jpg';
+import group from  '../assets/Group.jpg';
 import Avatar from 'react-avatar';
 const Navbar = () => {
   return (
     <div className='flex pl-20 pt-4 shadow-md h-14 w-screen'>
     <img src={quora} className='w-24 h-7'/>
     <img src={home} className='w-7 h-7 ml-10'/>
-    <img src={home} className='w-7 h-7 ml-10'/>
-    <img src={home} className='w-7 h-7 ml-10'/>
-    <img src={home} className='w-7 h-7 ml-10'/>
-    <img src={home} className='w-7 h-7 ml-10'/>
+    <img src={edit} className='w-7 h-7 ml-10'/>
+    <img src={group} className='w-7 h-7 ml-10'/>
+    <img src={bell} className='w-7 h-7 ml-10'/>
     <div className='flex border border-spacing-1 h-9 ml-10 w-72 p-1'>
         <img src={search} className='w-3 h-3 mt-2'/>
         <input className='ml-2' placeholder='Search Quora'/>

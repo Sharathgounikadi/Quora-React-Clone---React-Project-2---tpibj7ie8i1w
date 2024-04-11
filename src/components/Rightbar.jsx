@@ -5,7 +5,25 @@ import question from '../assets/Question.jpg'
 import pen from '../assets/Pen.jpg'
 import edit from '../assets/Edit.jpg'
 import image from '../assets/Image.jpg'
+import axios from 'axios';
 const Rightbar = () => {
+
+    const fetchPosts = async () => {
+        try {
+          const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=100', {
+            
+            headers: {
+              'projectID': 'YOUR_PROJECT_ID'
+            }
+          });
+          console.log(response.json())
+          return response.data; // Assuming the response contains post data
+        } catch (error) {
+          console.error('Failed to fetch posts:', error);
+          return []; // Return an empty array in case of error
+        }
+      };
+
     return (
         <div className='p-2 rounded-sm'>
             <div className='bg-white p-2 h-20 border border-spacing-1'>
