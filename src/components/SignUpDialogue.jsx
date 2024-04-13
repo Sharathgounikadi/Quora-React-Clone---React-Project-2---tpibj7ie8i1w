@@ -40,7 +40,8 @@ const SignUpDialogue = () => {
                 appType: "quora",
             };
     
-            const response = await axios.post('https://academics.newtonschool.co/api/v1/user/signup', 
+            const response = await axios.post(
+                'https://academics.newtonschool.co/api/v1/user/signup',
                 JSON.stringify(body),
                 {
                     headers: {
@@ -50,14 +51,23 @@ const SignUpDialogue = () => {
                 }
             );
     
-            // if (response.ok) {
+            if (response.status === 201) {
+                // Use response.data to access the data returned by the API
                 const data = response.data;
-                localStorage.setItem("userInfo",JSON.stringify(data));
-                console.log(data);
-            // }
-        }
-        catch (err) { 
-            console.log(err);
+    
+                // Store user information and token in local storage
+                if (data.status === "success") {
+                    localStorage.setItem("userInfo", JSON.stringify(data.data.user));
+                    localStorage.setItem("token", data.token);
+                    console.log("User information and token stored successfully.");
+                } else {
+                    console.log("API response status is not 'success'");
+                }
+            } else {
+                console.log("API response status is not 200");
+            }
+        } catch (err) {
+            console.error("Error occurred during sign-up:", err);
         }
     };
 

@@ -8,13 +8,12 @@ import pshycology from "../assets/Psycology.jpg"
 const Leftbar = () => {
   return (
     <div className='pl-20 pt-5 text-sm'>
-        <div className='flex mt-5'>
-            <img src={cooking} className='w-4 h-4 rounded-sm' />
-            <h2 className='ml-3 text-gray-500'>Cooking</h2>
+        <div className='flex justify-center align-middle bg-gray-500 w-20 ml-10 '>
+        <span className='bg-black-800 p-1'>+</span><input className='rounded-sm cursor-pointer p-1' placeholder='Create Space'/>
         </div>
         <div className='flex mt-5'>
             <img src={cooking} className='w-4 h-4 rounded-sm' />
-            <h2 className='ml-3 text-gray-500'>Health</h2>
+            <h2 className='ml-3 text-gray-500'>Cooking</h2>
         </div>
         <div className='flex mt-5'>
             <img src={tech} className='w-4 h-4 rounded-sm' />

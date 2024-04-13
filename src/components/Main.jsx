@@ -5,7 +5,7 @@ import Home from './Home'
 const Main = () => {
   return (
     <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <Home />
     </div>
   )

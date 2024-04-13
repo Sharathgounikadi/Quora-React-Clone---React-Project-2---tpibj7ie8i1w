@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Avatar from 'react-avatar';
 import account from '../assets/Account.jpg'
 import question from '../assets/Question.jpg'
@@ -6,23 +6,39 @@ import pen from '../assets/Pen.jpg'
 import edit from '../assets/Edit.jpg'
 import image from '../assets/Image.jpg'
 import axios from 'axios';
+import {useNavigate} from "react-router-dom";
+
 const Rightbar = () => {
+    const navigate=useNavigate();
+    const[posts, setPosts] = useState([]);
 
     const fetchPosts = async () => {
+        const dataUser=localStorage.getItem("token");
+        // console.log(dataUser)
         try {
           const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=100', {
             
             headers: {
-              'projectID': 'YOUR_PROJECT_ID'
+              'projectID': 'tpibj7ie8i1w',
+              'Authorization': `Bearer ${dataUser}`  
             }
           });
-          console.log(response.json())
-          return response.data; // Assuming the response contains post data
+          setPosts(response.data.data)
+          console.log(response.data.data)
+        //   return response.data; 
         } catch (error) {
           console.error('Failed to fetch posts:', error);
-          return []; // Return an empty array in case of error
+          return []; 
         }
       };
+
+      useEffect(()=>{
+        fetchPosts()
+      },[])
+
+      const handlePostOpen=(postId)=>{
+        navigate( `/question/${postId}` )
+      }
 
     return (
         <div className='p-2 rounded-sm'>
@@ -48,15 +64,20 @@ const Rightbar = () => {
                     </div>
                 </div>
             </div>
-            <div className='bg-white mt-2 p-2'>
-                <div className='flex'>
-                    <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
-                    <h1 className='ml-5 font-semibold'>Name</h1>
+            {/* PostCard */}
+        {posts.map((post,index)=>{
+            return(
+                <div className='bg-white mt-2 p-2' key={index} onClick={()=>handlePostOpen(post._id)}>
+                <div className='flex items-center'>
+                    <img  className="w-10 h-10 rounded-full" src={post.channel.image} />
+                    <h1 className='ml-5 font-semibold'>{post.channel.name}</h1>
                 </div>
-                <h1 className='font-semibold mt-3'>Title</h1>
-                <h1 className='mt-2'>This is content</h1>
-                <img src={image} className='mt-3 w-full'/>
-            </div>
+                <h1 className='font-semibold mt-3'>{post.title}</h1>
+                <h1 className='mt-2'>{post.content}</h1>
+                <img src={post.images[0]} className='mt-3 w-full'/>
+            </div>   
+            )
+        })}
         </div>
     )
 }
