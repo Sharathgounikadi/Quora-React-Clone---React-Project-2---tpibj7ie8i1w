@@ -14,7 +14,7 @@ const Rightbar = () => {
         const dataUser=localStorage.getItem("token");
         // console.log(dataUser)
         try {
-          const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=100', {
+          const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=3', {
             
             headers: {
               'projectID': 'tpibj7ie8i1w',
@@ -39,7 +39,7 @@ const Rightbar = () => {
       }
 
     return (
-        <div className='p-2 rounded-sm'>
+        <div className='mt-20 rounded-sm'>
             <div className='bg-white p-2 h-20 border border-spacing-1'>
                 <div className='flex'>
                     <Avatar round size="25" className="mt-0.5 ml-2" name="w" />

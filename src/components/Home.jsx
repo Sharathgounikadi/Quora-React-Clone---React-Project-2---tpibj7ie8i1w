@@ -6,7 +6,7 @@ import Adds from './Adds'
 
 const Home = () => {
   return (
-    <div className='h-full w-screen bg-gray-100 grid grid-cols-6'>
+    <div className='h-full w-full bg-gray-100 grid grid-cols-6'>
         <div>
         <Leftbar/>
         </div>
@@ -14,7 +14,7 @@ const Home = () => {
         <Rightbar/>
         </div>
         <div>
-          <Adds/>
+        <Adds/>
         </div>
     </div>
   )

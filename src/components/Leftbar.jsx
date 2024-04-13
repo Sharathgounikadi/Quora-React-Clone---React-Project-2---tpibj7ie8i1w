@@ -8,7 +8,7 @@ import pshycology from "../assets/Psycology.jpg"
 import CreateSpace from './CreateSpace'
 const Leftbar = () => {
     return (
-        <div className='pl-20 pt-5 text-sm fixed'>
+        <div className='pl-20 mt-20 ml-10 text-sm fixed'>
             <div className='flex mt-2 bg-gray-200 pl-1 pr-2 pt-1 pb-1'>
                 <div className='rounded-sm p-1 bg-gray cursor-pointer'>+</div>
                 <button className='ml-1 cursor-pointer'><CreateSpace /></button>

@@ -14,7 +14,7 @@ import AskDialog from './AskDialog';
 const Navbar = () => {
   const navigate=useNavigate();
   return (
-    <div className='flex pl-20 pt-4 shadow-md h-14 w-screen'>
+    <div className='fixed flex z-10 bg-white pl-20 pt-4 shadow-md h-14 w-full'>
     <img src={quora} className='w-24 h-7' onClick={() => navigate('/')} />
     <img src={home} className='w-7 h-7 ml-10'/>
     <img src={group} className='w-7 h-7 ml-10'/>
