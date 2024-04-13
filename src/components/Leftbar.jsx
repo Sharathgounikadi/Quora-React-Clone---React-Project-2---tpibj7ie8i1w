@@ -5,14 +5,13 @@ import music from "../assets/Music.jpg"
 import tech from "../assets/Tech.jpg"
 import technology from "../assets/Technology.jpg"
 import pshycology from "../assets/Psycology.jpg"
+import CreateSpace from './CreateSpace'
 const Leftbar = () => {
     return (
         <div className='pl-20 pt-5 text-sm fixed'>
-            <div className='bg-gray-500 flex cursor-pointer'>
-                <div className='rounded-xl'>
-                    <div className='bg-black-800 p-1'>+</div>
-                </div>
-                <input className='flex text-center rounded-sm p-1' placeholder='Create Space' />
+            <div className='flex mt-2 bg-gray-200 pl-1 pr-2 pt-1 pb-1'>
+                <div className='rounded-sm p-1 bg-gray cursor-pointer'>+</div>
+                <button className='ml-1 cursor-pointer'><CreateSpace /></button>
             </div>
             <div className='flex mt-5'>
                 <img src={cooking} className='w-4 h-4 rounded-sm' />
