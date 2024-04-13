@@ -11,14 +11,16 @@ import Home from "./Home";
 function App() {
   return (
   <Router>
-    <Navbar />
-    <Home />
-    <Routes>
+    <SignUp />
+    {/* <Navbar />
+    <Home /> */}
+
+    {/* <Routes>
     
       <Route path="/" element={<SignUp />}/> 
-      {/* <Route path="/main" element={<Main />}/>
-      <Route path="/question/:id" element={<PostDetails/>}/> */}
-    </Routes>
+      <Route path="/main" element={<Main />}/>
+      <Route path="/question/:id" element={<PostDetails/>}/>
+    </Routes> */}
     {/* <Main /> */}
     </Router>
   )

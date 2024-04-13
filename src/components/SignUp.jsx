@@ -25,7 +25,7 @@ export default function SignUp() {
                         <h1 className='text-center text-sm font-semibold text-zinc-600 mt-3 hover:bg-gray-100 rounded-full cursor-pointer'><SignUpDialogue /> </h1>
                     </div>
                     <div className="ml-16">
-                        <h1>Login</h1>
+                        <h1 className='text-l'>Login</h1>
                         <hr className='w-72 mt-3' />
                         <h1 className='mt-4 font-bold text-sm'>Email</h1>
                         <input placeholder='Your Email' className='border border-spacing-1 p-2 w-72 mt-2' />
