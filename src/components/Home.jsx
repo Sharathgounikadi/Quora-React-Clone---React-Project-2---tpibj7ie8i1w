@@ -1,6 +1,7 @@
 import React from 'react'
 import Leftbar from './Leftbar'
 import Rightbar from './Rightbar'
+import Adds from './Adds'
 
 
 const Home = () => {
@@ -11,6 +12,9 @@ const Home = () => {
         </div>
         <div className='col-span-3'>
         <Rightbar/>
+        </div>
+        <div>
+          <Adds/>
         </div>
     </div>
   )

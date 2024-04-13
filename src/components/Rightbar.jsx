@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Avatar from 'react-avatar';
-import account from '../assets/Account.jpg'
 import question from '../assets/Question.jpg'
 import pen from '../assets/Pen.jpg'
 import edit from '../assets/Edit.jpg'
-import image from '../assets/Image.jpg'
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 

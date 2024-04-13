@@ -6,42 +6,45 @@ import tech from "../assets/Tech.jpg"
 import technology from "../assets/Technology.jpg"
 import pshycology from "../assets/Psycology.jpg"
 const Leftbar = () => {
-  return (
-    <div className='pl-20 pt-5 text-sm'>
-        <div className='flex justify-center align-middle bg-gray-500 w-20 ml-10 '>
-        <span className='bg-black-800 p-1'>+</span><input className='rounded-sm cursor-pointer p-1' placeholder='Create Space'/>
+    return (
+        <div className='pl-20 pt-5 text-sm fixed'>
+            <div className='bg-gray-500 flex cursor-pointer'>
+                <div className='rounded-xl'>
+                    <div className='bg-black-800 p-1'>+</div>
+                </div>
+                <input className='flex text-center rounded-sm p-1' placeholder='Create Space' />
+            </div>
+            <div className='flex mt-5'>
+                <img src={cooking} className='w-4 h-4 rounded-sm' />
+                <h2 className='ml-3 text-gray-500'>Cooking</h2>
+            </div>
+            <div className='flex mt-5'>
+                <img src={tech} className='w-4 h-4 rounded-sm' />
+                <h2 className='ml-3 text-gray-500'>Technology</h2>
+            </div>
+            <div className='flex mt-5'>
+                <img src={music} className='w-4 h-4 rounded-sm' />
+                <h2 className='ml-3 text-gray-500'>Music</h2>
+            </div>
+            <div className='flex mt-5'>
+                <img src={science} className='w-4 h-4 rounded-sm' />
+                <h2 className='ml-3 text-gray-500'>Science</h2>
+            </div>
+            <div className='flex mt-5'>
+                <img src={pshycology} className='w-4 h-4 rounded-sm' />
+                <h2 className='ml-3 text-gray-500'>Psycology</h2>
+            </div>
+            <div className='flex mt-5'>
+                <img src={technology} className='w-4 h-4 rounded-sm' />
+                <h2 className='ml-3 text-gray-500'>Social</h2>
+            </div>
+            <hr className='mt-3' />
+            <h1 className='mt-3 text-gray-400 text-sm'>About . Careers .</h1>
+            <h1 className=' text-gray-400 text-sm'>Terms . Privacy .</h1>
+            <h1 className=' text-gray-400 text-sm'>Acceptable Use</h1>
+            <h1 className=' text-gray-400 text-sm'>Terms . Privacy .</h1>
         </div>
-        <div className='flex mt-5'>
-            <img src={cooking} className='w-4 h-4 rounded-sm' />
-            <h2 className='ml-3 text-gray-500'>Cooking</h2>
-        </div>
-        <div className='flex mt-5'>
-            <img src={tech} className='w-4 h-4 rounded-sm' />
-            <h2 className='ml-3 text-gray-500'>Technology</h2>
-        </div>
-        <div className='flex mt-5'>
-            <img src={music} className='w-4 h-4 rounded-sm' />
-            <h2 className='ml-3 text-gray-500'>Music</h2>
-        </div>
-        <div className='flex mt-5'>
-            <img src={science} className='w-4 h-4 rounded-sm' />
-            <h2 className='ml-3 text-gray-500'>Science</h2>
-        </div>
-        <div className='flex mt-5'>
-            <img src={pshycology} className='w-4 h-4 rounded-sm' />
-            <h2 className='ml-3 text-gray-500'>Psycology</h2>
-        </div>
-        <div className='flex mt-5'>
-            <img src={technology} className='w-4 h-4 rounded-sm' />
-            <h2 className='ml-3 text-gray-500'>Social</h2>
-        </div>
-        <hr className='mt-3'/>
-        <h1 className='mt-3 text-gray-400 text-sm'>About . Careers .</h1>
-        <h1 className=' text-gray-400 text-sm'>Terms . Privacy .</h1>
-        <h1 className=' text-gray-400 text-sm'>Acceptable Use</h1>
-        <h1 className=' text-gray-400 text-sm'>Terms . Privacy .</h1>
-    </div>
-  )
+    )
 }
 
 export default Leftbar
