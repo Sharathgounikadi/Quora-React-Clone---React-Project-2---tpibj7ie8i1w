@@ -7,8 +7,11 @@ import globe from  '../assets/Globe.jpg';
 import edit from  '../assets/Edit.jpg';
 import bell from  '../assets/Bell.jpg';
 import group from  '../assets/Group.jpg';
-import Avatar from 'react-avatar';
+import account from  '../assets/Account.jpg';
 import AskDialog from './AskDialog';
+import { ProfileMenu } from './ProfileMenu';
+import LanguageMenu from './LanguageMenu';
+import Subscription from './Subscription';
 
 
 const Navbar = () => {
@@ -25,9 +28,9 @@ const Navbar = () => {
         <img src={search} className='w-3 h-3 mt-2'/>
         <input className='ml-2' placeholder='Search Quora'/>
     </div>
-    <h1 className='text-sm border border-spacing-1 rounded-full p-2 ml-5 h-9'>Try Quora+</h1>
-    <img src={globe} className='w-5 h-5 ml-5 mt-2'/>
-    <Avatar round size="25" className="mt-0.5 ml-2" name="wee"/>
+    <h1 className='text-sm border border-spacing-1 rounded-full p-2 ml-5 h-9'><Subscription /></h1>
+    <div><ProfileMenu /></div>
+    <div><LanguageMenu /></div>
     <h1 className='bg-red-800 rounded-full text-sm text-white w-36 pl-6 ml-6 pt-2 h-9'><AskDialog /></h1>
     </div>
   )

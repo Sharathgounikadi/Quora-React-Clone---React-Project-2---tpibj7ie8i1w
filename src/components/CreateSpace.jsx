@@ -50,7 +50,7 @@ const CreateSpace = () => {
               </div>
             </CardBody>
             <CardFooter className="pt-0">
-              <button className="bg-blue-500 p-2 rounded-2xl ml-40" onClick={handleOpen} >
+              <button className="bg-blue-500 p-2 rounded-2xl ml-40 text-gray-500" onClick={handleOpen} >
                 Create
               </button>    
             </CardFooter>

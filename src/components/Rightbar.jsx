@@ -3,6 +3,8 @@ import Avatar from 'react-avatar';
 import question from '../assets/Question.jpg'
 import pen from '../assets/Pen.jpg'
 import edit from '../assets/Edit.jpg'
+import uparrow from '../assets/Uparrow.jpg'
+import downarrow from '../assets/Downarrow.jpg'
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 
@@ -14,8 +16,7 @@ const Rightbar = () => {
         const dataUser=localStorage.getItem("token");
         // console.log(dataUser)
         try {
-          const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=3', {
-            
+          const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=3',{
             headers: {
               'projectID': 'tpibj7ie8i1w',
               'Authorization': `Bearer ${dataUser}`  
@@ -73,7 +74,13 @@ const Rightbar = () => {
                 <h1 className='font-semibold mt-3'>{post.title}</h1>
                 <h1 className='mt-2'>{post.content}</h1>
                 <img src={post.images[0]} className='mt-3 w-full'/>
-            </div>   
+                <div>
+                  <div className='flex ml-10 rounded-lg w-20 p-1 border border-spacing-0 bg-gray-200'> 
+                    <button className='flex p-1'><img className='w-4 h-5 pt-1 pr-1' src={uparrow}/>Upvote</button>
+                    <img className='flex w-4 h-5 p-1 ml-3 boder border-spacing-4 bg-gray-200' src={downarrow}/>
+                  </div>
+                </div>
+            </div>  
             )
         })}
         </div>

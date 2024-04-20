@@ -1,10 +1,9 @@
 import axios from 'axios';
-import React,{useEffect,useState} from 'react'
-import { useParams } from 'react-router-dom'
-import GetComments from './GetComments';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 
-const PostDetails = () => {
-  const params=useParams();
+const GetComments = () => {
+    const params=useParams();
   console.log(params)
   const [data,setData]=useState({});
   // Fetch data from the API
@@ -18,7 +17,7 @@ const PostDetails = () => {
 
     try {
         // Make the API call using Axios
-        const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${params.id}`, { headers });
+        const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${params.id}/comments`, { headers });
         
         // Set the data from the response
         setData(response.data);
@@ -32,14 +31,10 @@ const PostDetails = () => {
 useEffect(() => {
     fetchData();
 }, []);
-  
+
   return (
-    <div className='p-52'>
-      Post Details
-      <GetComments />
-    </div>
-    
+    <div>GetComments</div>
   )
 }
 
-export default PostDetails
+export default GetComments
