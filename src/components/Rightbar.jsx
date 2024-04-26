@@ -75,12 +75,21 @@ const Rightbar = () => {
                 <h1 className='mt-2'>{post.content}</h1>
                 <img src={post.images[0]} className='mt-3 w-full'/>
                 <div>
-                  <div className='flex ml-10 rounded-lg w-20 p-1 border border-spacing-0 bg-gray-200'> 
-                    <button className='flex p-1'><img className='w-4 h-5 pt-1 pr-1' src={uparrow}/>Upvote</button>
-                    <img className='flex w-4 h-5 p-1 ml-3 boder border-spacing-4 bg-gray-200' src={downarrow}/>
+                  <div>
+                  <div className='box-border pl-3 pr-3 transition duration-250 ease-out hover:shadow'> 
+                    <div className='flex border-box'>
+                      <div className='flex items-middle'>
+                        <div className='block'>
+                          <div className='box-border inline-flex  bg-gray h-8' src={uparrow}>
+                            <button className='box-border font-inherit px-10 h-8 duration-60 ease-out border-0 outline-none text-inherit bg-transparent'>Upvote</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
             </div>  
+            </div>
             )
         })}
         </div>

@@ -12,7 +12,7 @@ import AskDialog from './AskDialog';
 import { ProfileMenu } from './ProfileMenu';
 import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
-
+import Notification from './Notification';
 
 const Navbar = () => {
   const navigate=useNavigate();
@@ -23,7 +23,7 @@ const Navbar = () => {
     <img src={group} className='w-7 h-7 ml-10'/>
     <img src={edit} className='w-7 h-7 ml-10'/>
     <img src={group} className='w-7 h-7 ml-10'/>
-    <img src={bell} className='w-7 h-7 ml-10'/>
+    <img src={bell} className='w-7 h-7 ml-10' onClick={() => navigate('/Notification')}/>
     <div className='flex border border-spacing-1 h-9 ml-10 w-72 p-1'>
         <img src={search} className='w-3 h-3 mt-2'/>
         <input className='ml-2' placeholder='Search Quora'/>
