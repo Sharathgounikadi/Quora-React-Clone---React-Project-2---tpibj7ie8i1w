@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import Home from "./Home";
 import Notification from "./Notification";
 import Rightbar from "./Rightbar";
+import ComingSoon from "./ComingSoon";
 
 
 
@@ -17,7 +18,7 @@ function App() {
 
     {/* <Home /> */}
     <Routes>
-    {/* <Route path='/rightbar' element={<Rightbar />}/> */}
+    <Route path='/ComingSoon' element={<ComingSoon />}/>
       {/* <Route path="/" element={<SignUp />}/>  */}
       <Route path="/" element={<Home />}/>
       <Route path='/notification' element={<Notification />}/>
