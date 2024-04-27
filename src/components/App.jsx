@@ -5,6 +5,7 @@ import PostDetails from "./PostDetails";
 import Navbar from "./Navbar";
 import Home from "./Home";
 import Notification from "./Notification";
+import Rightbar from "./Rightbar";
 
 
 
@@ -13,11 +14,14 @@ function App() {
   <Router>
     {/* <SignUp /> */}
     <Navbar />
+
     {/* <Home /> */}
     <Routes>
+    {/* <Route path='/rightbar' element={<Rightbar />}/> */}
       {/* <Route path="/" element={<SignUp />}/>  */}
       <Route path="/" element={<Home />}/>
-      <Route path='/Notification' element={<Notification />}/>
+      <Route path='/notification' element={<Notification />}/>
+      
       <Route path="/question/:id" element={<PostDetails/>}/>
     </Routes>
     {/* <Main /> */}
