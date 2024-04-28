@@ -7,6 +7,7 @@ import Home from "./Home";
 import Notification from "./Notification";
 import Rightbar from "./Rightbar";
 import ComingSoon from "./ComingSoon";
+import Spaces from "./Spaces";
 
 
 
@@ -19,6 +20,7 @@ function App() {
     {/* <Home /> */}
     <Routes>
     <Route path='/ComingSoon' element={<ComingSoon />}/>
+    <Route path='/Spaces' element={<Spaces />}/>
       {/* <Route path="/" element={<SignUp />}/>  */}
       <Route path="/" element={<Home />}/>
       <Route path='/notification' element={<Notification />}/>

@@ -17,11 +17,11 @@ const Leftbar = () => {
             </div>
             <div className='flex mt-5'>
                 <img src={cooking} className='w-4 h-4 rounded-sm' />
-                <button className='ml-3 text-gray-500' onClick={() => navigate('/')}  >Cooking</button>
+                <button className='ml-3 text-gray-500' onClick={() => navigate('/')} >Cooking</button>
             </div>
             <div className='flex mt-5'>
                 <img src={tech} className='w-4 h-4 rounded-sm' />
-                <button className='ml-3 text-gray-500'>Technology</button>
+                <button className='ml-3 text-gray-500' onClick={()=>navigate('/Spaces')}>Technology</button>
             </div>
             <div className='flex mt-5'>
                 <img src={music} className='w-4 h-4 rounded-sm' />

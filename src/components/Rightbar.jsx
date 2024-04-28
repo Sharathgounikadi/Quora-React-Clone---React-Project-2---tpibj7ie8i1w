@@ -3,6 +3,7 @@ import Avatar from 'react-avatar';
 import question from '../assets/Question.jpg'
 import pen from '../assets/Pen.jpg'
 import edit from '../assets/Edit.jpg'
+import comment from '../assets/Comment.jpg'
 import uparrow from '../assets/Uparrow.jpg'
 import downarrow from '../assets/Downarrow.jpg'
 import axios from 'axios';
@@ -78,11 +79,11 @@ const Rightbar = () => {
                   <div>
                   <div className='box-border pl-3 pr-3 transition duration-250 ease-out hover:shadow'> 
                     <div className='flex border-box '>
-                      <div className='flex items-middle'>
-                        <div className='m-2 block bg-gray-300 rounded-full'>
-                          <div className='box-border inline-flex  bg-gray h-8' src={uparrow}>
-                            <button className='box-border font-inherit px-10 h-8 duration-60 ease-out border-0 outline-none text-inherit bg-transparent'>Upvote</button>
-                          </div>
+                      <div className='flex items-middle'>      
+                        <div className='m-2  bg-gray-300 rounded-full'>
+                          <img className='' src={comment}/>
+                            <button className='box-border font-inherit px-10 h-8 duration-60 ease-out border-0 outline-none text-inherit bg-transparent text-lg'>Upvote</button>
+                      
                         </div>
                       </div>
                     </div>
