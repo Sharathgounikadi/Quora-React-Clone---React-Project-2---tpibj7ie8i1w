@@ -29,7 +29,7 @@ function App() {
       <Route path='/notification' element={<Notification />}/>
       
       <Route path="/question/:id" element={<PostDetails/>}/>
-      {/* <Route path='/AskDialog' element={<AskDialog />}/> */}
+      <Route path='/AskDialog' element={<AskDialog />}/>
     </Routes>
     {/* <Main /> */}
     </Router>

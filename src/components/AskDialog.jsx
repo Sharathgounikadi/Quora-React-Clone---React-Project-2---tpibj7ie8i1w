@@ -1,66 +1,64 @@
-import React from "react";
-import {
-  Tabs,
-  TabsHeader,
-  TabsBody,
-  Tab,
-  TabPanel,
-} from "@material-tailwind/react";
-import {
-  Square3Stack3DIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-} from "@heroicons/react/24/solid";
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const AskDialog = () => {
-  const data = [
-    {
-      label: "Dashboard",
-      value: "dashboard",
-      icon: Square3Stack3DIcon,
-      desc: `It really matters and then like it really doesn't matter.
-      What matters is the people who are sparked by it. And the people
-      who are like offended by it, it doesn't matter.`,
-    },
-    {
-      label: "Profile",
-      value: "profile",
-      icon: UserCircleIcon,
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
-    },
-    {
-      label: "Settings",
-      value: "settings",
-      icon: Cog6ToothIcon,
-      desc: `We're not always in the position that we want to be at.
-      We're constantly growing. We're constantly making mistakes. We're
-      constantly trying to express ourselves and actualize our dreams.`,
-    },
-  ];
+
+const AskDialog = ({ questions, setQuestions }) => {
+  const [questionInput, setQuestionInput] = useState('')
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const updateQuestion = [...questions]
+    if (user?.islogged) {
+      updateQuestion.push({
+        id: +questions[questions.length - 1].id + +1,
+        questionedBy: user?.username,
+        question: questionInput
+      })
+      setQuestions(updateQuestion)
+      localStorage.setItem('quesList', JSON.stringify(updateQuestion))
+      setQuestionInput('')
+      alert('Question added')
+    }
+    else {
+      navigate('/login')
+    }
+  }
   return (
-    <Tabs value="dashboard">
-      <TabsHeader>
-        {data.map(({ label, value, icon }) => (
-          <Tab key={value} value={value}>
-            <div className="flex items-center gap-2">
-              {React.createElement(icon, { className: "w-5 h-5" })}
-              {label}
-            </div>
-          </Tab>
-        ))}
-      </TabsHeader>
-      <TabsBody>
-        {data.map(({ value, desc }) => (
-          <TabPanel key={value} value={value}>
-            {desc}
-          </TabPanel>
-        ))}
-      </TabsBody>
-    </Tabs>
-  );
+    <div className="add-question-container">
+      <div className="add-question">
+        <form action="#" method="post" onSubmit={handleSubmit} id="add-question-form">
+          <div className="question-input relative">
+            <label htmlFor="question" className="absolute left-6 text-lg font-bold">Question:</label>
+            <input
+              type="text"
+              name="question"
+              id="question"
+              onChange={(e) => setQuestionInput(e.target.value)}
+              placeholder="Type your question here.........."
+              value={questionInput}
+              minLength={8}
+              required
+              className="w-full h-12 pl-16 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+            />
+          </div>
+          <div className="buttons absolute right-6 top-1/2 transform -translate-y-1/2 flex gap-4">
+            <input
+              type="reset"
+              value="cancel"
+              onClick={() => navigate("/")}
+              className="py-2 px-4 text-lg font-semibold text-white bg-red-500 rounded hover:bg-red-600 cursor-pointer"
+            />
+            <input
+              type="submit"
+              value="Add question"
+              className="py-2 px-4 text-lg font-semibold text-white bg-blue-500 rounded hover:bg-blue-600 cursor-pointer"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  )
 }
-export default AskDialog;
 
-
-      
+export default AskDialog
