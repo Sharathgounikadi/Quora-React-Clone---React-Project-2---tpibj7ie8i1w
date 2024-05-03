@@ -9,6 +9,8 @@ import Rightbar from "./Rightbar";
 import ComingSoon from "./ComingSoon";
 import Spaces from "./Spaces";
 
+import AskDialog from "./AskDialog";
+
 
 
 function App() {
@@ -21,11 +23,13 @@ function App() {
     <Routes>
     <Route path='/ComingSoon' element={<ComingSoon />}/>
     <Route path='/Spaces' element={<Spaces />}/>
+    
       {/* <Route path="/" element={<SignUp />}/>  */}
       <Route path="/" element={<Home />}/>
       <Route path='/notification' element={<Notification />}/>
       
       <Route path="/question/:id" element={<PostDetails/>}/>
+      {/* <Route path='/AskDialog' element={<AskDialog />}/> */}
     </Routes>
     {/* <Main /> */}
     </Router>
