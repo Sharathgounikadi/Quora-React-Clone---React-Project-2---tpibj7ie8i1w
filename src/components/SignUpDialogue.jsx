@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+
+import {useNavigate} from 'react-router-dom';
 import {
     p,
     Dialog,
@@ -14,6 +16,7 @@ import {
 
 
 const SignUpDialogue = () => {
+    const navigate=useNavigate();
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen((cur) => !cur);
 
@@ -60,6 +63,8 @@ const SignUpDialogue = () => {
                     localStorage.setItem("userInfo", JSON.stringify(data.data.user));
                     localStorage.setItem("token", data.token);
                     console.log("User information and token stored successfully.");
+                    navigate('/SignUp')
+
                 } else {
                     console.log("API response status is not 'success'");
                 }

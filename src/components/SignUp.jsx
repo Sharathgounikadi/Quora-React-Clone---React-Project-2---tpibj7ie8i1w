@@ -3,8 +3,54 @@ import SignUpBgm from '../assets/SignUpBgm.jpg';
 import google from "../assets/google.jpeg"
 import facebook from "../assets/facebook.jpeg";
 import SignUpDialogue from './SignUpDialogue';
+import { useState } from 'react';
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 export default function SignUp() {
+
+    const [getData, setData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        appType: 'music'
+    });
+
+    const [getError, setError] = useState(null);
+
+    const navigate = useNavigate();
+
+    const onChangeHandler = (event) => {
+        setData({ ...getData, [event.target.name]: event.target.value })
+    }
+
+    const onSubmitHandler = (event) => {
+        event.preventDefault();
+        setError(null);
+        if (!getData.name) {
+            setError('userName is mandatory');
+            return;
+        }
+        else if (!getData.email) {
+            setError('email is mandatory');
+            return;
+        }
+        else if (!getData.password) {
+            setError('password cannot be empty');
+            return;
+        }
+        axios.post('https://academics.newtonschool.co/api/v1/user/signup',getData, {
+            headers: {
+                projectID: 'tpibj7ie8i1w'
+            }
+        }).then((result) => {
+            console.log(result);
+            navigate('/login');
+        }).catch((error) => {
+            setError("internal server error please try after sometime");
+        })
+    }
+
     return (
         <div style={{ backgroundImage: `url(${SignUpBgm})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", height: "100vh" }} className='flex items-center justify-center'>
             <div className='bg-white h-11/12 w-7/12 rounded-sm p-8'>

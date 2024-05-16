@@ -6,8 +6,7 @@ const AskDialog = () => {
   
   return (
     // show={show} close={closeModal}
-    <div >
-    <div className='ml-20 '>
+    <div className='ml-50'>
 			<div className="h-screen w-screen md:h-fit md:max-h-screen md:max-w-[600px] bg-white dark:bg-[#181818] rounded-lg py-6 px-3 sm:px-6 flex flex-col items-start gap-2">
 				<div className="w-full flex justify-between items-center">
 					<div className="flex gap-4 items-center">
@@ -124,7 +123,6 @@ const AskDialog = () => {
 				</button>
 			</div>
 		</div>
-    </div>
   )
 }
 
