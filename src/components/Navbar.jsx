@@ -24,10 +24,11 @@ const Navbar = () => {
     <img src={edit} className='w-7 h-7 ml-10' onClick={() => navigate('/ComingSoon')}/>
     <img src={group} className='w-7 h-7 ml-10' onClick={() => navigate('/ComingSoon')}/>
     <img src={bell} className='w-7 h-7 ml-10' onClick={() => navigate('/Notification')}/>
-    <div className='flex border border-spacing-1 h-9 ml-10 w-72 p-1'>
+    <input className='ml-5 w-50 h-8 border border-spacing-1 rounded-lg' placeholder='        Search Quora'/>
+    {/* <div className='flex border border-spacing-1 h-9 ml-10 w-72 p-1'>
         <img src={search} className='w-3 h-3 mt-2'/>
-        <input className='ml-2' placeholder='Search Quora'/>
-    </div>
+        
+    </div> */}
     <h1 className='text-sm border border-spacing-1 rounded-full p-2 ml-5 h-9'><Subscription /></h1>
     <div><ProfileMenu /></div>
     <div><LanguageMenu /></div>

@@ -61,10 +61,10 @@ const SignUpDialogue = () => {
                 // Store user information and token in local storage
                 if (data.status === "success") {
                     localStorage.setItem("userInfo", JSON.stringify(data.data.user));
-                    localStorage.setItem("token", data.token);
+                    localStorage.setItem("token",data.token);
+                    // console.log(data)
                     console.log("User information and token stored successfully.");
-                    navigate('/SignUp')
-
+                    navigate('/home')
                 } else {
                     console.log("API response status is not 'success'");
                 }
@@ -87,7 +87,7 @@ return (
         >
             <Card className="mx-auto w-full max-w-[24rem]">
                 <CardBody className="flex flex-col gap-4">
-                    <Typography variant="h5" color="black">
+                    <Typography variant="h5" color="black" >
                         Sign Up
                     </Typography>
 
