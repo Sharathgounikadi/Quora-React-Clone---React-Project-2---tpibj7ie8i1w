@@ -75,10 +75,13 @@ const Rightbar = () => {
               <h1 className='font-semibold mt-3'>{post.title}</h1>
               <h1 className='mt-2'>{post.content}</h1>
               <img src={post.images[0]} className='mt-3 w-full' />
+              
             </div>
           )
         })}
+        <div>
         <GetComments/>
+        </div>
       </div> 
   )
 }
