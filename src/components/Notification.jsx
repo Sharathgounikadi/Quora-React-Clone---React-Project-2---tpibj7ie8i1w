@@ -1,36 +1,57 @@
-import React from 'react'
-import bell from  '../assets/Bell.jpg';
-import notification from '../assets/Notification.jpg'
-import { useNavigate } from 'react-router-dom';
-import ComingSoon from './ComingSoon';
-const Notification = () => {
-    const navigate=useNavigate();
+import React from "react";
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  Typography,
+} from "@material-tailwind/react";
+ 
+export function Notification() {
+  const [open, setOpen] = React.useState(false);
+ 
+  const handleOpen = () => setOpen(!open);
+ 
   return (
-    <div className='flex ml-20'>
-        <div className='mt-20 flex flex-col text-center'>
-            <div className='p-1'>Filters</div>
-            <hr className='h-1'/>
-            <button className='p-2 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>All notes</button>
-            <button className='p-2 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>Articles</button>
-            <button className='p-1 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>Questions</button>
-            <button className='p-1 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>venues</button>
-            <button className='p-1 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>People updates</button>
-            <button className='p-1 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>Comments</button>
-            <button className='p-1 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>Upvotes</button>
-            <button className='p-1 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>Your content</button>
-            <button className='p-1 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>Your profile</button>
-            <button className='p-1 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>Announcements</button>
-            <button className='p-1 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>Earnings</button>
-            <button className='p-1 m-1 text-center bg-gray-300 rounded' onClick={() => navigate('/ComingSoon')}>Subscriptions</button>
-        </div>
-        <div className='ml-20 mt-20'>
-            <div className='mt-1 p-1 text-center'>Notifications</div>
-            <hr/>
-            <img className='flex ml-20 mt-20 w-20 h-20' src={notification}/>
-            <div className=''>There are no notification till now</div>
-        </div>
-    </div>
-  )
+    <>
+      <Button onClick={handleOpen}>Notification</Button>
+      <Dialog open={open} handler={handleOpen}>
+        <DialogHeader>
+          <Typography variant="h5" color="blue-gray">
+            Your Attention is Required!
+          </Typography>
+        </DialogHeader>
+        <DialogBody divider className="grid place-items-center gap-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="h-16 w-16 text-red-500"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <Typography color="red" variant="h4">
+            You should read this!
+          </Typography>
+          <Typography className="text-center font-normal">
+            A small river named Duden flows by their place and supplies it with
+            the necessary regelialia.
+          </Typography>
+        </DialogBody>
+        <DialogFooter className="space-x-2">
+          <Button variant="text" color="blue-gray" onClick={handleOpen}>
+            close
+          </Button>
+          <Button variant="gradient" onClick={handleOpen}>
+            Ok, Got it
+          </Button>
+        </DialogFooter>
+      </Dialog>
+    </>
+  );
 }
-
-export default Notification

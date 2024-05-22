@@ -4,7 +4,7 @@ import SignUp from "./SignUp";
 import PostDetails from "./PostDetails";
 import Navbar from "./Navbar";
 import Home from "./Home";
-import Notification from "./Notification";
+import {Notification} from "./Notification";
 import Rightbar from "./Rightbar";
 import ComingSoon from "./ComingSoon";
 import Spaces from "./Spaces";

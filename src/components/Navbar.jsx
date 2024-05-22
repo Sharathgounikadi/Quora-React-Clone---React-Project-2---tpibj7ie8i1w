@@ -12,7 +12,7 @@ import { ProfileMenu } from './ProfileMenu';
 import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import Notification from './Notification';
-import { MessageDialog } from './MessageDialog';
+import  MessageDialog  from './MessageDialog';
 
 const Navbar = () => {
   const navigate=useNavigate();
