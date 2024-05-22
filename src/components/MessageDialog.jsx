@@ -1,12 +1,13 @@
 import React from "react";
 import {
-  Button,
+  h1,
   Dialog,
   DialogHeader,
   DialogBody,
   DialogFooter,
   Input,
   Textarea,
+  Typography
 } from "@material-tailwind/react";
 
 const MessageDialog = () => {
@@ -16,7 +17,7 @@ const MessageDialog = () => {
    
     return (
       <>
-        <Button onClick={handleOpen}>Message Dialog</Button>
+        <h1 onClick={handleOpen}>Ask Question</h1>
       <Dialog open={open} size="xs" handler={handleOpen}>
           <div className="flex items-center justify-between">
             <DialogHeader className="flex flex-col items-start">
@@ -52,12 +53,12 @@ const MessageDialog = () => {
             </div>
           </DialogBody>
           <DialogFooter className="space-x-2">
-            <Button variant="text" color="gray" onClick={handleOpen}>
+            <h1 variant="text" color="gray" onClick={handleOpen}>
               cancel
-            </Button>
-            <Button variant="gradient" color="gray" onClick={handleOpen}>
+            </h1>
+            <h1 variant="gradient" color="gray" onClick={handleOpen}>
               send message
-            </Button>
+            </h1>
           </DialogFooter>
         </Dialog>
       </>
