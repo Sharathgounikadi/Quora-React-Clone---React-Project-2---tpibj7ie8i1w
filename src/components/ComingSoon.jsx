@@ -1,16 +1,18 @@
 import React from 'react'
-import notification from '../assets/Notification.jpg'
-import { Navbar } from '@material-tailwind/react'
+import ComingSoonImg from '../assets/ComingSoon.jpg'
+import  Navbar  from './Navbar'
 const ComingSoon = () => {
   return (
-    <div className='flex items-center justify-center'>
-      <Navbar />
-        <div className='mt-20 flex items-center justify-center flex-col'>
-        <img className='w-20 h-20' src={notification} />
-        <div className='p-2 text-2xl'>No new Notifications</div>
-        <div className='p-2'>Notifications you received in the last 24 hours will show up here.</div>
+    <>
+    <Navbar />
+    <div className="max-w-md mx-auto p-6 rounded-lg shadow-md ">
+            <div className="mx-auto mb-6 w-full sm:w-2/4 md:w-3/4 lg:w-2/4 xl:w-3/4 mt-20">
+                <img src={ComingSoonImg} alt="Under Maintenance" className="mt-20 w-full h-auto" />
+            </div>
+            <h2 className="text-center text-xl font-semibold text-gray-800 mb-2">Feature Under Development</h2>
+            <p className="text-center text-gray-600">We apologize for the inconvenience. This feature is currently under development. Please check back later.</p>
         </div>
-    </div>
+    </>
   )
 }
 

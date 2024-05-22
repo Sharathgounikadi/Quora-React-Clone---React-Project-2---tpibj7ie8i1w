@@ -8,22 +8,20 @@ import Notification from "./Notification";
 import Rightbar from "./Rightbar";
 import ComingSoon from "./ComingSoon";
 import Spaces from "./Spaces";
-import AskDialog from "./AskDialog";
+
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/SignUp" element={<SignUp />} /> */}
         {/* <Route path='/Spaces' element={<Spaces />} /> */}
         <Route path="/" element={<SignUp />}/> 
         <Route path="/home" element={<Home />} />
         <Route path='/notification' element={<Notification />} />
         {/* <Route path="/question/:id" element={<PostDetails />} /> */}
-        <Route path='/AskDialog' element={<AskDialog />} />
+        {/* <Route path='/AskDialog' element={<AskDialog />} /> */}
         <Route path='/ComingSoon' element={<ComingSoon />} />
       </Routes>
-      {/* <Main /> */}
     </Router>
   )
 }

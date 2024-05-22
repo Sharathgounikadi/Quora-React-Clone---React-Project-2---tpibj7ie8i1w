@@ -1,7 +1,7 @@
 import React from "react";
 import quora from  '../assets/Quora.jpg';
 import {
-  Button,
+  h1,
   Dialog,
   DialogHeader,
   DialogBody,
@@ -18,13 +18,113 @@ const Subscription = () => {
 
   return (
     <>
-      <button onClick={handleOpen}>Try Quora+</button>
-      <Dialog size="xs" open={open} handler={handleOpen}>
-        <div className="bg-grey-100 w-auto h-auto">
-          <div className="w-50 h-20 bg-yellow-100 flex items-center justify-center" >
-          <img src={quora} className="w-15 h-10"/>
+      <h1 onClick={handleOpen}>Try Quora</h1>
+    <Dialog size="xs" open={open} handler={handleOpen}>
+        <DialogHeader className="justify-between">
+          <div>
+            <Typography variant="h5" color="blue-gray">
+              Connect a Wallet
+            </Typography>
+            <Typography color="gray" variant="paragraph">
+              Choose which card you want to connect
+            </Typography>
           </div>
-        </div>
+          <IconButton
+            color="blue-gray"
+            size="sm"
+            variant="text"
+            onClick={handleOpen}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+              className="h-5 w-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </IconButton>
+        </DialogHeader>
+        <DialogBody className="overflow-y-scroll !px-5">
+          <div className="mb-6">
+            <Typography
+              variant="paragraph"
+              color="blue-gray"
+              className="py-3 font-semibold uppercase opacity-70"
+            >
+              Popular
+            </Typography>
+            <ul className="mt-3 -ml-2 flex flex-col gap-1">
+              <MenuItem className="mb-4 flex items-center justify-center gap-3 !py-4 shadow-md">
+                <img
+                  src="https://docs.material-tailwind.com/icons/metamask.svg"
+                  alt="metamast"
+                  className="h-6 w-6"
+                />
+                <Typography
+                  className="uppercase"
+                  color="blue-gray"
+                  variant="h6"
+                >
+                  Connect with MetaMask
+                </Typography>
+              </MenuItem>
+              <MenuItem className="mb-1 flex items-center justify-center gap-3 !py-4 shadow-md">
+                <img
+                  src="https://docs.material-tailwind.com/icons/coinbase.svg"
+                  alt="metamast"
+                  className="h-6 w-6 rounded-md"
+                />
+                <Typography
+                  className="uppercase"
+                  color="blue-gray"
+                  variant="h6"
+                >
+                  Connect with Coinbase
+                </Typography>
+              </MenuItem>
+            </ul>
+          </div>
+          <div>
+            <Typography
+              variant="paragraph"
+              color="blue-gray"
+              className="py-4 font-semibold uppercase opacity-70"
+            >
+              Other
+            </Typography>
+            <ul className="mt-4 -ml-2.5 flex flex-col gap-1">
+              <MenuItem className="mb-4 flex items-center justify-center gap-3 !py-4 shadow-md">
+                <img
+                  src="https://docs.material-tailwind.com/icons/trust-wallet.svg"
+                  alt="metamast"
+                  className="h-7 w-7 rounded-md border border-blue-gray-50"
+                />
+                <Typography
+                  className="uppsecase"
+                  color="blue-gray"
+                  variant="h6"
+                >
+                  Connect with Trust Wallet
+                </Typography>
+              </MenuItem>
+            </ul>
+          </div>
+        </DialogBody>
+        <DialogFooter className="justify-between gap-2">
+          <Typography variant="small" color="gray" className="font-normal">
+            New to Ethereum wallets?
+          </Typography>
+          <h1 variant="outlined" size="sm">
+            Learn More
+          </h1>
+        </DialogFooter>
       </Dialog>
     </>
   );

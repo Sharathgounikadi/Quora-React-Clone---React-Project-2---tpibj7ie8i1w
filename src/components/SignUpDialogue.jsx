@@ -98,7 +98,6 @@ return (
                     <Typography variant="h5" color="black" >
                         Sign Up
                     </Typography>
-
                     <Typography className="-mb-2" variant="h6">
                         Name
                     </Typography >

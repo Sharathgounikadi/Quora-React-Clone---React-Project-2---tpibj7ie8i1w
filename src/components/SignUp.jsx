@@ -102,7 +102,7 @@ export default function SignUp() {
                             />
 
                         <div className='flex mt-4'>
-                        <h1 className='text-zinc-400 text-sm mt-2 hover:underline cursor-pointer'>Forgot Password</h1>
+                        {/* <h1 className='text-zinc-400 text-sm mt-2 hover:underline cursor-pointer'>Forgot Password</h1> */}
                         <button className='bg-blue-500 text-white p-2 ml-24 rounded-full' onClick={onSubmitHandler}>Login</button>
                         </div> 
                     </div>

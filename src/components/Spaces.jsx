@@ -75,8 +75,7 @@ const Spaces = () => {
               <h1 className='mt-2'>{post.content}</h1>
               <img src={post.images[0]} className='mt-3 w-full' />
               <GetComments/>
-            </div>
-            
+            </div> 
           )
         })}
       </div> 

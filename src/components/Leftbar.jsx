@@ -26,16 +26,16 @@ const Leftbar = () => {
         fetchCommunities()
     }, [])
     return (
-        <div className='pl-20 mt-20 ml-5 text-sm fixed'>
-            <div className='flex mt-2 bg-gray-200 pl-1 pr-2 pt-1 pb-1'>
+        <div className='pl-12 mt-20 ml-5 text-sm fixed'>
+            <div className='flex mt-2 bg-gray-300 pl-1 pr-1 pt-1 pb-1 rounded-lg'>
                 <div className='rounded-sm p-1 bg-gray cursor-pointer'>+</div>
-                <button className='ml-1 cursor-pointer'><CreateSpace /></button>
+                <button className='ml-1 cursor-pointer text-center'><CreateSpace /></button>
             </div>
             {communities.map((comm,idx) => {
                 return (
                     <div className='flex mt-5 cursor-pointer' key={idx}>
                         <img src={cooking} className='w-4 h-4 rounded-sm' />
-                        <p className='ml-3 text-gray-500' onClick={() => navigate('/ComingSoon')} >{comm.name}</p>
+                        <p className='ml-1 text-gray-500 cursor-pointer hover:text-gray-800 bg-gray-200 rounded-sm pl-1 pr-1' onClick={() => navigate('/ComingSoon')} >{comm.name}</p>
                     </div>)
             })}
 
