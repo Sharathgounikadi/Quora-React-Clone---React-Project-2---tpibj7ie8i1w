@@ -3,7 +3,6 @@ import Avatar from 'react-avatar';
 import question from '../assets/Question.jpg'
 import pen from '../assets/Pen.jpg'
 import edit from '../assets/Edit.jpg'
-
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
@@ -40,7 +39,7 @@ const Rightbar = () => {
   }
 
   return (
-    
+    <div className='ml-25px'>
       <div className='mt-20 rounded-sm'>
         <div className='bg-white p-2 h-20 border border-spacing-1'>
           <div className='flex'>
@@ -75,14 +74,13 @@ const Rightbar = () => {
               <h1 className='font-semibold mt-3'>{post.title}</h1>
               <h1 className='mt-2'>{post.content}</h1>
               <img src={post.images[0]} className='mt-3 w-full' />
-              
+              <GetComments/>
             </div>
+            
           )
         })}
-        <div>
-        <GetComments/>
-        </div>
       </div> 
+      </div>
   )
 }
 

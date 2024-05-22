@@ -7,6 +7,7 @@ import uparrow from '../assets/Uparrow.jpg'
 import downarrow from '../assets/Downarrow.jpg'
 
 const GetComments = () => {
+  const [getComment,setComments]=useState('');
     const params=useParams();
   console.log(params)
   const [data,setData]=useState({});

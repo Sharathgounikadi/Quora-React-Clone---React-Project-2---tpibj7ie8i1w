@@ -13,16 +13,13 @@ import AskDialog from "./AskDialog";
 function App() {
   return (
     <Router>
-
-      {/* <Navbar /> */}
-      {/* <Home /> */}
       <Routes>
         {/* <Route path="/SignUp" element={<SignUp />} /> */}
         {/* <Route path='/Spaces' element={<Spaces />} /> */}
         <Route path="/" element={<SignUp />}/> 
         <Route path="/home" element={<Home />} />
         <Route path='/notification' element={<Notification />} />
-        <Route path="/question/:id" element={<PostDetails />} />
+        {/* <Route path="/question/:id" element={<PostDetails />} /> */}
         <Route path='/AskDialog' element={<AskDialog />} />
         <Route path='/ComingSoon' element={<ComingSoon />} />
       </Routes>

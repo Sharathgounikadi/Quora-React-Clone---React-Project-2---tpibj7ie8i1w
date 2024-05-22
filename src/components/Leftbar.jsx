@@ -1,11 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import cooking from "../assets/Cooking.jpg"
-import science from "../assets/Science.jpg"
-import music from "../assets/Music.jpg"
-import tech from "../assets/Tech.jpg"
-import technology from "../assets/Technology.jpg"
-import pshycology from "../assets/Psycology.jpg"
 import CreateSpace from './CreateSpace'
 import { useNavigate } from 'react-router-dom'
 const Leftbar = () => {
@@ -14,7 +9,7 @@ const Leftbar = () => {
     const [communities, setCommunities]=useState([])
     const fetchCommunities = async () => {
         try {
-            const res = await axios.get('https://academics.newtonschool.co/api/v1/quora/channel/?limit=6', {
+            const res = await axios.get('https://academics.newtonschool.co/api/v1/quora/channel/?limit=10', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'projectID': 'tpibj7ie8i1w',
@@ -31,7 +26,7 @@ const Leftbar = () => {
         fetchCommunities()
     }, [])
     return (
-        <div className='pl-20 mt-20 ml-10 text-sm fixed'>
+        <div className='pl-20 mt-20 ml-5 text-sm fixed'>
             <div className='flex mt-2 bg-gray-200 pl-1 pr-2 pt-1 pb-1'>
                 <div className='rounded-sm p-1 bg-gray cursor-pointer'>+</div>
                 <button className='ml-1 cursor-pointer'><CreateSpace /></button>
@@ -40,7 +35,7 @@ const Leftbar = () => {
                 return (
                     <div className='flex mt-5 cursor-pointer' key={idx}>
                         <img src={cooking} className='w-4 h-4 rounded-sm' />
-                        <p className='ml-3 text-gray-500' onClick={() => navigate('/')} >{comm.name}</p>
+                        <p className='ml-3 text-gray-500' onClick={() => navigate('/ComingSoon')} >{comm.name}</p>
                     </div>)
             })}
 

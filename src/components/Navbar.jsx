@@ -17,7 +17,7 @@ import Notification from './Notification';
 const Navbar = () => {
   const navigate=useNavigate();
   return (
-    <div className='fixed flex z-10 bg-white pl-20 pt-4 shadow-md h-14 w-full'>
+    <div className='fixed flex z-10 bg-white pl-20 pt-4 shadow-md h-14 w-full ml-auto'>
     <img src={quora} className='w-24 h-7' onClick={() => navigate('/')} />
     <img src={home} className='w-7 h-7 ml-10' onClick={() => navigate('/')} />
     <img src={group} className='w-7 h-7 ml-10' onClick={() => navigate('/ComingSoon')} />

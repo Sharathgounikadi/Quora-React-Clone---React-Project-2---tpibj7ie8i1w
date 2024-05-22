@@ -6,6 +6,8 @@ import SignUpDialogue from './SignUpDialogue';
 import { useState } from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignUp() {
 
@@ -29,10 +31,12 @@ export default function SignUp() {
         setError(null);
         if (!getData.email) {
             setError('email is mandatory');
+            toast.error('Email is mandatory');
             return;
         }
         else if (!getData.password) {
             setError('password cannot be empty');
+            toast.error('password cannot be empty');
             return;
         }
         await axios.post('https://academics.newtonschool.co/api/v1/user/login',getData, {
@@ -46,15 +50,19 @@ export default function SignUp() {
             localStorage.setItem("token",(result.data.token));
             if(result.status===200){
                 navigate('/home');
-
+                toast.success("Login Successful")
             }
         }).catch((error) => {
             setError("internal server error please try after sometime",error);
+            toast.error("internal server error please try after sometime")
         })
     }
 
     return (
+        <>
+        <ToastContainer />
         <div style={{ backgroundImage: `url(${SignUpBgm})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", height: "100vh" }} className='flex items-center justify-center'>
+            
             <div className='bg-white h-11/12 w-7/12 rounded-sm p-8'>
                 <h1 className='text-red-700 text-6xl font-bold font-serif text-center'>Quora</h1>
                 <h1 className='text-center font-bold text-gray-500 mt-3 '>A place to share knowledge and better understand the world</h1>
@@ -68,7 +76,7 @@ export default function SignUp() {
                         </div>
                         <div className='flex p-4 border border-spacing-1 items-center w-80 rounded-sm mt-5'>
                             <img src={facebook} className='w-6 h-5 ml-2 rounded-full' />
-                            <h1 className='ml-7'>Continue with Facebook</h1>
+                            <h1 className='ml-7' onClick={()=>navigate('/')}>Continue with Facebook</h1>
                         </div>
                         <h1 className='text-center text-sm font-semibold text-zinc-600 mt-3 hover:bg-gray-100 rounded-full cursor-pointer'><SignUpDialogue /> </h1>
                     </div>
@@ -103,6 +111,7 @@ export default function SignUp() {
                 <h1 className='text-sm text-center mt-3 text-zinc-600'>About . Careers . Privacy . Terms . Contact . Languages . Your Ad ChoicesPress© Quora, Inc. 2024</h1>
             </div>
         </div>
+       </>
 
     )
 }

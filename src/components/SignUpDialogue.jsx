@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {useNavigate} from 'react-router-dom';
 import {
@@ -64,20 +66,26 @@ const SignUpDialogue = () => {
                     localStorage.setItem("token",data.token);
                     // console.log(data)
                     console.log("User information and token stored successfully.");
-                    navigate('/home')
+                    // navigate('/')
+                    setOpen(false)
+                    toast('Your acount created successfully')
                 } else {
                     console.log("API response status is not 'success'");
+                    toast("API response status is not 'success'")
                 }
             } else {
                 console.log("API response status is not 200");
+                toast("API response status is not 200")
             }
         } catch (err) {
             console.error("Error occurred during sign-up:", err);
+            toast("Error occurred during sign-up:")
         }
     };
 
 return (
     <>
+    <ToastContainer />
         <p onClick={handleOpen}>Sign Up with email</p>
         <Dialog
             size="xs"
