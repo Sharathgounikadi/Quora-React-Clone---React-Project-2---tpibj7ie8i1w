@@ -1,6 +1,7 @@
 import React from "react";
+import bell from  '../assets/Bell.jpg';
 import {
-  Button,
+  h1,
   Dialog,
   DialogHeader,
   DialogBody,
@@ -15,7 +16,8 @@ export function Notification() {
  
   return (
     <>
-      <Button onClick={handleOpen}>Notification</Button>
+      <h1></h1>
+      <img onClick={handleOpen} src={bell}/> 
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>
           <Typography variant="h5" color="blue-gray">
@@ -44,12 +46,12 @@ export function Notification() {
           </Typography>
         </DialogBody>
         <DialogFooter className="space-x-2">
-          <Button variant="text" color="blue-gray" onClick={handleOpen}>
+          <h1 variant="text" color="blue-gray" onClick={handleOpen}>
             close
-          </Button>
-          <Button variant="gradient" onClick={handleOpen}>
+          </h1>
+          <h1 variant="gradient" className="bg-red-500 p-1 rounded-xl " onClick={handleOpen}>
             Ok, Got it
-          </Button>
+          </h1>
         </DialogFooter>
       </Dialog>
     </>

@@ -17,7 +17,7 @@ const MessageDialog = () => {
    
     return (
       <>
-        <h1 onClick={handleOpen}>Ask Question</h1>
+        <h1 onClick={handleOpen}>Ask </h1>
       <Dialog open={open} size="xs" handler={handleOpen}>
           <div className="flex items-center justify-between">
             <DialogHeader className="flex flex-col items-start">
