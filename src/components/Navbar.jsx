@@ -13,6 +13,7 @@ import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import Notification from './Notification';
 import  MessageDialog  from './MessageDialog';
+import CheckoutForm from './CheckoutForm';
 
 const Navbar = () => {
   const navigate=useNavigate();
@@ -32,7 +33,7 @@ const Navbar = () => {
     <h1 className='text-sm border border-spacing-1 rounded-full p-2 ml-5 h-9'><Subscription /></h1>
     <div><ProfileMenu /></div>
     <div><LanguageMenu /></div>
-    <h1 className='bg-red-800 rounded-full text-sm text-white w-36 pl-6 ml-6 pt-2 h-9' ><MessageDialog /></h1>
+    <h1 className='bg-red-800 rounded-full text-sm text-white w-36 pl-6 ml-6 pt-2 h-9' ><CheckoutForm /></h1>
     </div>
   )
 }
