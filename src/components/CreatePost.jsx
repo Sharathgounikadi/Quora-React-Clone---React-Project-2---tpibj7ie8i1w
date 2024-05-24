@@ -1,5 +1,5 @@
-import { Dialog } from "@material-tailwind/react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Dialog, Input, Textarea, Button } from "@material-tailwind/react";
 import { toast } from "react-toastify";
 
 export default function CreatePost() {
@@ -15,16 +15,14 @@ export default function CreatePost() {
 
   return (
     <>
-      <h1 onClick={openModal}>Ask Question</h1>
-      <Dialog open={show} handler={closeModal} size="xl">
-        <div className=" w-screen md:h-fit md:max-h-screen md:max-w-[600px] bg-white dark:bg-[#181818] rounded-lg py-6 px-3 sm:px-6 flex flex-col items-start gap-2">
-         
-
-          <div className="text-[18px] font-semibold mx-auto text-center">
-            Create Post
+      <h1 onClick={openModal} className="cursor-pointer">Ask Question</h1>
+      <Dialog open={show} handler={closeModal} size="xl" className="flex">
+        <div className="w-screen md:h-fit md:max-h-screen md:max-w-[600px] bg-white dark:bg-gray-900 rounded-lg py-6 px-3 sm:px-6 flex flex-col items-start gap-2">
+          <div className="text-lg font-semibold mx-auto text-center">
+            Add Question
           </div>
-          <div className="w-full h-1 bg-[#2e69ff] rounded-t"></div>
-          <div className="p-3 w-full bg-[#ebf0ff] dark:bg-[#282d41] text-[#2e69ff] dark:text-[#4894fd] rounded-md text-[12px] sm:text-[15px]">
+          <div className="w-full h-1 bg-blue-600 rounded-t"></div>
+          <div className="p-3 w-full bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-md text-sm sm:text-base">
             <div className="font-bold">
               Tips on getting good answers quickly
             </div>
@@ -38,36 +36,40 @@ export default function CreatePost() {
           <label htmlFor="post-title" className="font-semibold">
             Post Title <span className="font-normal">(required)</span>:
           </label>
-          <input
-            className="w-full outline-none border-2 dark:border-[#393839] p-2 focus:border-[#2e69ff] dark:focus:border-[#2e69ff] transition-all duration-300"
+          <Input
+            id="post-title"
             placeholder="Enter The Question or Title"
+            className="w-full border border-gray-300 dark:border-gray-700 p-2 focus:border-blue-600 dark:focus:border-blue-600 transition duration-300"
           />
           <label htmlFor="post-content" className="font-semibold">
             Post Description :
           </label>
-          <textarea
+          <Textarea
+            id="post-content"
             placeholder="Enter Description or Answer"
-            className="w-full outline-none border-2 dark:border-[#393839] p-2 focus:border-[#2e69ff] dark:focus:border-[#2e69ff] transition-all duration-300"
+            className="w-full border border-gray-300 dark:border-gray-700 p-2 focus:border-blue-600 dark:focus:border-blue-600 transition duration-300"
           />
-          <button className="sm:hidden w-full mt-4 bg-[#2e69ff] hover:bg-[#1a5aff] disabled:opacity-35 disabled:hover:bg-[#2e69ff] text-white text-[15px] font-medium p-2 rounded-full transition duration-300">
+          <Button className="sm:hidden w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white text-base font-medium py-2 rounded-full transition duration-300">
             Add Post
-          </button>
+          </Button>
         </div>
-        <div className="w-full flex justify-between items-center ml-30">
-            <div className="flex gap-4 items-center">
-              <button
-                onClick={closeModal}
-                className="rounded-full p-[6px] flex-shrink-0 hover:bg-[rgba(0,0,0,0.1)] dark:hover:bg-[#ffffff15] transition duration-300"
-              >
-                Close
-              </button>
-              <button
-                className="hidden sm:block bg-[#2e69ff] hover:bg-[#1a5aff] disabled:opacity-35 disabled:hover:bg-[#2e69ff] text-white text-[13px] sm:text-[15px] font-medium p-2 sm:p-3 rounded-full transition duration-300"
-              >
-                Add Post
-              </button>
-            </div>
+        <div className="w-full flex justify-between items-center px-6 py-4">
+          <div className="flex gap-4 items-center">
+            <Button
+              onClick={closeModal}
+              variant="text"
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300"
+            >
+              Close
+            </Button>
+            <Button
+              className="hidden sm:block bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-medium py-2 px-4 rounded-full transition duration-300"
+            >
+              Add Post
+            </Button>
           </div>
+        </div>
+       
       </Dialog>
     </>
   );

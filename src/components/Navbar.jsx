@@ -23,7 +23,7 @@ const Navbar = () => {
     navigate('/ComingSoon')
   }
   return (
-    <div className='fixed flex z-10 bg-white pl-20 pt-4 shadow-md h-14 w-full ml-auto'>
+    <div className='fixed flex z-10 bg-white pl-20 pt-4 shadow-md h-14 w-full ml-30'>
     <img src={quora} className='w-24 h-7' onClick={() => navigate('/home')} />
     <img src={home} className='w-7 h-7 ml-10' onClick={() => navigate('/home')} />
     <img src={group} className='w-7 h-7 ml-10' onClick={nav} />
