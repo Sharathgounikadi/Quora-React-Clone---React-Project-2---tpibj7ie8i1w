@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Dialog, Card, CardBody, CardFooter, Typography, Input } from '@material-tailwind/react';
+import { toast } from 'react-toastify';
 
 export default function CreateSpaceComponent() {
   const [open, setOpen] = useState(false);
@@ -26,13 +27,16 @@ export default function CreateSpaceComponent() {
       }
     })
       .then(response => {
-        console.log('Space created successfully:', response.data);
+        // console.log('Space created successfully:', response.data);
         // Close the dialog after successful creation
+        toast.success('Space created successfully')
         setOpen(false);
         window.location.reload();
+        
       })
       .catch(error => {
         console.error('There was an error creating the space!', error);
+        toast.error('There was an error creating the space!')
       });
   };
 
