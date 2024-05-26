@@ -68,7 +68,7 @@ const Subscription = () => {
                   className="h-6 w-6"
                 />
                 <Typography
-                  className="uppercase"
+                  className="uppercase cursor-not-allowed"
                   color="blue-gray"
                   variant="h6"
                 >
@@ -82,7 +82,7 @@ const Subscription = () => {
                   className="h-6 w-6 rounded-md"
                 />
                 <Typography
-                  className="uppercase"
+                  className="uppercase cursor-not-allowed"
                   color="blue-gray"
                   variant="h6"
                 >
@@ -107,7 +107,7 @@ const Subscription = () => {
                   className="h-7 w-7 rounded-md border border-blue-gray-50"
                 />
                 <Typography
-                  className="uppsecase"
+                  className="uppsecase cursor-not-allowed"
                   color="blue-gray"
                   variant="h6"
                 >

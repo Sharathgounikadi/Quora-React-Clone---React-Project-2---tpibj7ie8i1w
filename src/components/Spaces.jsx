@@ -15,7 +15,7 @@ const Spaces = () => {
     const dataUser = localStorage.getItem("token");
     // console.log(dataUser)
     try {
-      const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=5', {
+      const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=', {
         headers: {
           'projectID': 'tpibj7ie8i1w',
           'Authorization': `Bearer ${dataUser}`

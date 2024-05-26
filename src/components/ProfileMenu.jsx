@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom"
+import { useUser } from './UserProvider';
 
 export function ProfileMenu() {
   const navigate = useNavigate()
@@ -16,6 +17,9 @@ export function ProfileMenu() {
     navigate("/")
 
   }
+
+  const {theme,toggleTheme}=useUser();
+
   return (
     <Menu>
       <MenuHandler>
@@ -101,8 +105,8 @@ export function ProfileMenu() {
               fill="#90A4AE"
             />
           </svg>
-          <Typography variant="small" className="font-medium">
-            Dark Mode
+          <Typography variant="small" className="font-medium" onClick={toggleTheme}>
+            {theme=='light'?'Dark Mode':'Light Mode'}
           </Typography>
         </MenuItem>
         <MenuItem className="flex items-center gap-2">

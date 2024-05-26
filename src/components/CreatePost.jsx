@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Dialog, Input, Textarea, Button } from "@material-tailwind/react";
 import { toast } from "react-toastify";
+import AddPost from "./AddPost";
 
 export default function CreatePost() {
   const [show, setShow] = useState(false);
@@ -16,7 +17,7 @@ export default function CreatePost() {
   return (
     <>
       <h1 onClick={openModal} className="cursor-pointer">Ask Question</h1>
-      <Dialog open={show} handler={closeModal} size="l" >
+      <Dialog open={show} handler={closeModal} size="xl" className="flex" >
         <div className="w-screen md:h-fit md:max-h-screen md:max-w-[600px] bg-white dark:bg-gray-900 rounded-lg py-6 px-3 sm:px-6 flex flex-col items-start gap-2">
           <div className="text-lg font-semibold mx-auto text-center">
             Add Question
@@ -49,11 +50,7 @@ export default function CreatePost() {
             placeholder="Enter Description or Answer"
             className="w-full border border-gray-300 dark:border-gray-700 p-2 focus:border-blue-600 dark:focus:border-blue-600 transition duration-300"
           />
-          <Button className="sm:hidden w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white text-base font-medium py-2 rounded-full transition duration-300">
-            Add Post
-          </Button>
-        </div>
-        <div className="w-full flex justify-between items-center px-6 py-4">
+          <div className="w-full flex justify-between items-center px-6 py-4">
           <div className="flex gap-4 items-center">
             <Button
               onClick={closeModal}
@@ -69,7 +66,9 @@ export default function CreatePost() {
             </Button>
           </div>
         </div>
-       
+        </div>
+        
+       <AddPost />
       </Dialog>
     </>
   );

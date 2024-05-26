@@ -29,6 +29,7 @@ export default function CreateSpaceComponent() {
         console.log('Space created successfully:', response.data);
         // Close the dialog after successful creation
         setOpen(false);
+        window.location.reload();
       })
       .catch(error => {
         console.error('There was an error creating the space!', error);
