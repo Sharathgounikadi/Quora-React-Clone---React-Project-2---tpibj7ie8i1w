@@ -9,7 +9,7 @@ const Leftbar = () => {
     const [communities, setCommunities]=useState([])
     const fetchCommunities = async () => {
         try {
-            const res = await axios.get('https://academics.newtonschool.co/api/v1/quora/channel/?limit=10', {
+            const res = await axios.get('https://academics.newtonschool.co/api/v1/quora/channel/?limit=6', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'projectID': 'tpibj7ie8i1w',
@@ -38,7 +38,6 @@ const Leftbar = () => {
                         <p className='ml-1 text-gray-500 cursor-pointer hover:text-gray-800 bg-gray-200 rounded-sm pl-1 pr-1' onClick={() => navigate('/ComingSoon')} >{comm.name}</p>
                     </div>)
             })}
-
             <hr className='mt-3' />
             <h1 className='mt-3 text-gray-400 text-sm'>About . Careers .</h1>
             <h1 className=' text-gray-400 text-sm'>Terms . Privacy .</h1>

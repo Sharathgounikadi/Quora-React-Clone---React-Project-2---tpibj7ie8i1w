@@ -63,6 +63,7 @@ const Rightbar = () => {
             </div>
           </div>
         </div>
+        <div>
         {/* PostCard */}
         {posts.map((post, index) => {
           return (
@@ -75,11 +76,12 @@ const Rightbar = () => {
               <h1 className='mt-2'>{post.content}</h1>
               <img src={post.images[0]} className='mt-3 w-full' />
               <GetComments/>
-            </div>
-            
+            </div> 
           )
         })}
+        
       </div> 
+      </div>
       </div>
   )
 }

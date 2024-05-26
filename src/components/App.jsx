@@ -8,10 +8,15 @@ import {Notification} from "./Notification";
 import Rightbar from "./Rightbar";
 import ComingSoon from "./ComingSoon";
 import Spaces from "./Spaces";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 function App() {
+  
   return (
+    <>
+    <ToastContainer/>
     <Router>
       <Routes>
         {/* <Route path='/Spaces' element={<Spaces />} /> */}
@@ -23,6 +28,7 @@ function App() {
         <Route path='/ComingSoon' element={<ComingSoon />} />
       </Routes>
     </Router>
+    </>
   )
 }
 
