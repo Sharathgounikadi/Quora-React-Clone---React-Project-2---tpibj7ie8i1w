@@ -71,14 +71,17 @@ const SignUpDialogue = () => {
                     toast('Your acount created successfully')
                 } else {
                     console.log("API response status is not 'success'");
+                    setOpen(false)
                     toast("API response status is not 'success'")
                 }
             } else {
                 console.log("API response status is not 200");
+                setOpen(false)
                 toast("API response status is not 200")
             }
         } catch (err) {
             console.error("Error occurred during sign-up:", err);
+            setOpen(false)
             toast("Error occurred during sign-up:")
         }
     };

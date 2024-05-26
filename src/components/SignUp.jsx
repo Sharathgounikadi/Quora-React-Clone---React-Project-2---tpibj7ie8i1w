@@ -1,4 +1,6 @@
 import React from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import SignUpBgm from '../assets/SignUpBgm.jpg';
 import google from "../assets/google.jpeg"
 import facebook from "../assets/facebook.jpeg";
@@ -6,8 +8,7 @@ import SignUpDialogue from './SignUpDialogue';
 import { useState } from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function SignUp() {
 
@@ -36,7 +37,7 @@ export default function SignUp() {
         }
         else if (!getData.password) {
             setError('password cannot be empty');
-            toast.error('password cannot be empty');
+            toast.error('Password cannot be empty');
             return;
         }
         await axios.post('https://academics.newtonschool.co/api/v1/user/login',getData, {
@@ -48,9 +49,10 @@ export default function SignUp() {
             console.log(result);
             localStorage.setItem("userInfo", JSON.stringify(result.data.data.user));
             localStorage.setItem("token",(result.data.token));
-            if(result.status===200){
-                navigate('/home');
-                toast.success("Login Successful")
+            if(result.data.status==='success'){
+                toast.success("Login Successful") 
+                navigate('/home');  
+                console.log("Login Successful")
             }
         }).catch((error) => {
             setError("internal server error please try after sometime",error);
@@ -62,7 +64,6 @@ export default function SignUp() {
         <>
         <ToastContainer />
         <div style={{ backgroundImage: `url(${SignUpBgm})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", height: "100vh" }} className='flex items-center justify-center'>
-            
             <div className='bg-white h-11/12 w-7/12 rounded-sm p-8'>
                 <h1 className='text-red-700 text-6xl font-bold font-serif text-center'>Quora</h1>
                 <h1 className='text-center font-bold text-gray-500 mt-3 '>A place to share knowledge and better understand the world</h1>
@@ -100,9 +101,7 @@ export default function SignUp() {
                                 placeholder='Your Password'
                                 className='border border-spacing-1 p-2 w-72 mt-2'
                             />
-
                         <div className='flex mt-4'>
-                        {/* <h1 className='text-zinc-400 text-sm mt-2 hover:underline cursor-pointer'>Forgot Password</h1> */}
                         <button className='bg-blue-500 text-white p-2 ml-24 rounded-full' onClick={onSubmitHandler}>Login</button>
                         </div> 
                     </div>
