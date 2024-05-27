@@ -6,6 +6,7 @@ import edit from '../assets/Edit.jpg'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
+import CreatePost from './CreatePost';
 
 const Rightbar = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Rightbar = () => {
           <div className='flex pt-2'>
             <div className='ml-16 flex'>
               <img src={question} className='w-5 h-5' />
-              <h1 className='ml-2' onClick={()=>navigate('/CreatePost')} >Ask</h1>
+              <h1 className='ml-2'  ><CreatePost /></h1>
             </div>
             <h1 className='ml-20'>|</h1>
             <div className='ml-16 flex'>
