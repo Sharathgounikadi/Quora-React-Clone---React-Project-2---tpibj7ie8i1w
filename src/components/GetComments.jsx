@@ -1,10 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import comment from '../assets/Comment.jpg'
-import refresh from '../assets/Refresh.jpg'
-import uparrow from '../assets/Uparrow.jpg'
-import downarrow from '../assets/Downarrow.jpg'
 
 const GetComments = () => {
     const [getComment,setComments]=useState('');
