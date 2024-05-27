@@ -9,6 +9,7 @@ import Rightbar from "./Rightbar";
 import ComingSoon from "./ComingSoon";
 import Spaces from "./Spaces";
 import { ToastContainer, toast } from 'react-toastify';
+import CreatePost from "./CreatePost";
 
 
 
@@ -24,7 +25,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path='/notification' element={<Notification />} />
         {/* <Route path="/question/:id" element={<PostDetails />} /> */}
-        {/* <Route path='/AskDialog' element={<AskDialog />} /> */}
+        <Route path='/CreatePost' element={<CreatePost />} />
         <Route path='/ComingSoon' element={<ComingSoon />} />
       </Routes>
     </Router>

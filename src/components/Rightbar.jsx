@@ -49,17 +49,17 @@ const Rightbar = () => {
           <div className='flex pt-2'>
             <div className='ml-16 flex'>
               <img src={question} className='w-5 h-5' />
-              <h1 className='ml-2'>Ask</h1>
+              <h1 className='ml-2' onClick={()=>navigate('/CreatePost')} >Ask</h1>
             </div>
             <h1 className='ml-20'>|</h1>
             <div className='ml-16 flex'>
               <img src={edit} className='w-5 h-5' />
-              <h1 className='ml-2'>Answer</h1>
+              <h1 className='ml-2' onClick={()=>navigate('/ComingSoon')}>Answer</h1>
             </div>
             <h1 className='ml-20'>|</h1>
             <div className='ml-16 flex'>
               <img src={pen} className='w-5 h-5' />
-              <h1 className='ml-2'>Post</h1>
+              <h1 className='ml-2' onClick={()=>navigate('/CreatePost')}>Post</h1>
             </div>
           </div>
         </div>

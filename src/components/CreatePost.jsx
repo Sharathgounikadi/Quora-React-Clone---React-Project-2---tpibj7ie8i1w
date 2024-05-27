@@ -16,7 +16,7 @@ export default function CreatePost() {
   return (
     <>
       <h1 onClick={openModal} className="cursor-pointer">Ask Question</h1>
-      <Dialog open={show} handler={closeModal} size="l" className="flex" >
+      <Dialog open={show} handler={closeModal} size="xl" className="flex" >
         <div className="w-screen md:h-fit md:max-h-screen md:max-w-[600px] bg-white dark:bg-gray-900 rounded-lg py-6 px-3 sm:px-6 flex flex-col items-start gap-2">
           <div className="text-lg font-semibold mx-auto text-center">
             Add Question
