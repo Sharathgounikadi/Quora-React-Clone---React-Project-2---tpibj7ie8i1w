@@ -39,6 +39,8 @@ const Rightbar = () => {
     navigate(`/question/${postId}`)
   }
 
+
+
   return (
     <div className='ml-25px'>
       <div className='mt-20 rounded-sm'>

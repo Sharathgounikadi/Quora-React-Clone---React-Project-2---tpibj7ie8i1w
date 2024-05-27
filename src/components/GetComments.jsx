@@ -4,6 +4,11 @@ import { useParams } from 'react-router-dom';
 
 const GetComments = () => {
     const [getComment,setComments]=useState('');
+    const [count,setCount]=useState(3);
+
+    const countHandler=()=>{
+      setCount(count+1);
+    }
       const params=useParams();
     console.log(params)
     const [data,setData]=useState({});
@@ -41,10 +46,10 @@ const GetComments = () => {
           disabled:shadow-none disabled:pointer-events-none text-xs px-4 rounded-lg border hover:opacity-75 focus:ring
            focus:ring-white/50 active:opacity-[0.85] rounded-r-none border-r-0 flex items-center border-gray-300
             dark:border-gray-700 capitalize h-6 text-gray-700 dark:text-gray-300 rounded-s-full py-4 gap-1" type="button">
-            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="stroke-blue-500">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="stroke-blue-500" >
               <path d="M12 4 3 15h6v5h6v-5h6z" className="icon_svg-stroke icon_svg-fill" fill="none" strokeWidth="1.5" strokeLinejoin="round"></path>
             </svg>
-            Upvote<span>&nbsp;•&nbsp;3</span>
+            Upvote<span>&nbsp;•&nbsp;{count}</span>
           </button>
           <button className="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 
           disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] max-h-[40px] rounded-lg text-xs border hover:opacity-75 
