@@ -15,7 +15,6 @@ export function ProfileMenu() {
     localStorage.removeItem("userInfo")
     localStorage.removeItem("token")
     navigate("/")
-
   }
 
   const {theme,toggleTheme}=useUser();
@@ -46,7 +45,7 @@ export function ProfileMenu() {
               fill="#90A4AE"
             />
           </svg>
-          <Typography variant="small" className="font-medium">
+          <Typography variant="small" className="font-medium" onClick={()=>navigate('/ComingSoon')}>
             My Profile
           </Typography>
         </MenuItem>
@@ -66,7 +65,7 @@ export function ProfileMenu() {
             />
           </svg>
 
-          <Typography variant="small" className="font-medium">
+          <Typography variant="small" className="font-medium" onClick={()=>navigate('/ComingSoon')}>
             Edit Profile
           </Typography>
         </MenuItem>
@@ -86,7 +85,7 @@ export function ProfileMenu() {
             />
           </svg>
 
-          <Typography variant="small" className="font-medium">
+          <Typography variant="small" className="font-medium" onClick={()=>navigate('/ComingSoon')}>
             Inbox
           </Typography>
         </MenuItem>
@@ -109,7 +108,7 @@ export function ProfileMenu() {
             {theme=='light'?'Dark Mode':'Light Mode'}
           </Typography>
         </MenuItem>
-        <MenuItem className="flex items-center gap-2">
+        {/* <MenuItem className="flex items-center gap-2">
           <svg
             width="16"
             height="16"
@@ -127,7 +126,7 @@ export function ProfileMenu() {
           <Typography variant="small" className="font-medium">
             Help
           </Typography>
-        </MenuItem>
+        </MenuItem> */}
         <hr className="my-2 border-blue-gray-50" />
         <MenuItem className="flex items-center gap-2 " onClick={logouthandler}>
           <svg

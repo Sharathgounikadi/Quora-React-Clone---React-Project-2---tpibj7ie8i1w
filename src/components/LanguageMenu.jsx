@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import globe from  '../assets/Globe.jpg';
 import {
     Menu,
@@ -10,6 +11,7 @@ import {
   
 
 const LanguageMenu = () => {
+  const navigate=useNavigate();
     return (
         <Menu>
           <MenuHandler>
@@ -22,17 +24,17 @@ const LanguageMenu = () => {
           </MenuHandler>
           <MenuList>
             <MenuItem className="flex items-center gap-2">
-              <div variant="small" className="font-medium">
+              <div variant="small" className="font-medium" onClick={()=>navigate('/ComingSoon')}>
                 Languages
               </div>
             </MenuItem>
             <MenuItem className="flex items-center gap-2">
-              <div variant="small" className="font-medium">
+              <div variant="small" className="font-medium" onClick={()=>navigate('/ComingSoon')}>
                 Add Language
               </div>
             </MenuItem>
             <MenuItem className="flex items-center gap-2">
-              <div variant="small" className="font-medium">
+              <div variant="small" className="font-medium" onClick={()=>navigate('/ComingSoon')}>
                 See all languages
               </div>
             </MenuItem>

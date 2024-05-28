@@ -4,9 +4,11 @@ import question from '../assets/Question.jpg'
 import pen from '../assets/Pen.jpg'
 import edit from '../assets/Edit.jpg'
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
 import CreatePost from './CreatePost';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Rightbar = () => {
   const navigate = useNavigate();
@@ -24,9 +26,10 @@ const Rightbar = () => {
       });
       setPosts(response.data.data)
       // console.log(response.data.data)
-      //   return response.data; 
+      return response.data;
     } catch (error) {
       console.error('Failed to fetch posts:', error);
+      // toast('Failed to fetch posts')
       return [];
     }
   };
@@ -42,50 +45,53 @@ const Rightbar = () => {
 
 
   return (
-    <div className='ml-25px'>
-      <div className='mt-20 rounded-sm'>
-        <div className='bg-white p-2 h-20 border border-spacing-1'>
-          <div className='flex'>
-            <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
-            <input placeholder='What do you want to ask for share?' className='bg-gray-100 p-1 ml-4 placeholder-gray-600 border border-spacing-1 rounded-full w-full' />
+    <>
+      <ToastContainer />
+      <div className='ml-25px'>
+        <div className='mt-20 rounded-sm'>
+          <div className='bg-white p-2 h-20 border border-spacing-1'>
+            <div className='flex'>
+              <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
+              <input placeholder='What do you want to ask for share?' className='bg-gray-100 p-1 ml-4 placeholder-gray-600 border border-spacing-1 rounded-full w-full' />
+            </div>
+            <div className='flex pt-2'>
+              <div className='ml-16 flex'>
+                <img src={question} className='w-5 h-5' />
+                <h1 className='ml-2'  ><CreatePost /></h1>
+              </div>
+              <h1 className='ml-20'>|</h1>
+              <div className='ml-16 flex'>
+                <img src={edit} className='w-5 h-5' />
+                <h1 className='ml-2' onClick={() => navigate('/ComingSoon')}>Answer</h1>
+              </div>
+              <h1 className='ml-20'>|</h1>
+              <div className='ml-16 flex'>
+                <img src={pen} className='w-5 h-5' />
+                <Link className='ml-2' onClick={() => navigate('/CreatePost')}>Post</Link>
+              </div>
+            </div>
           </div>
-          <div className='flex pt-2'>
-            <div className='ml-16 flex'>
-              <img src={question} className='w-5 h-5' />
-              <h1 className='ml-2'  ><CreatePost /></h1>
-            </div>
-            <h1 className='ml-20'>|</h1>
-            <div className='ml-16 flex'>
-              <img src={edit} className='w-5 h-5' />
-              <h1 className='ml-2' onClick={()=>navigate('/ComingSoon')}>Answer</h1>
-            </div>
-            <h1 className='ml-20'>|</h1>
-            <div className='ml-16 flex'>
-              <img src={pen} className='w-5 h-5' />
-              <h1 className='ml-2' onClick={()=>navigate('/CreatePost')}>Post</h1>
-            </div>
+          <div>
+            {/* PostCard */}
+            {posts.map((post, index) => {
+              return (
+                <div className='bg-white mt-2 p-2' key={index} onClick={() => handlePostOpen(post._id)}>
+                  <div className='flex items-center'>
+                    <img className="w-10 h-10 rounded-full" src={post.channel.image} />
+                    <h1 className='ml-5 font-semibold'>{post.channel.name}</h1>
+                  </div>
+                  <h1 className='font-semibold mt-3'>{post.title}</h1>
+                  <h1 className='mt-2'>{post.content}</h1>
+                  <img src={post.images[0]} className='mt-3 w-full' />
+                  <GetComments />
+                </div>
+              )
+            })}
+
           </div>
         </div>
-        <div>
-        {/* PostCard */}
-        {posts.map((post, index) => {
-          return (
-            <div className='bg-white mt-2 p-2' key={index} onClick={() => handlePostOpen(post._id)}>
-              <div className='flex items-center'>
-                <img className="w-10 h-10 rounded-full" src={post.channel.image} />
-                <h1 className='ml-5 font-semibold'>{post.channel.name}</h1>
-              </div>
-              <h1 className='font-semibold mt-3'>{post.title}</h1>
-              <h1 className='mt-2'>{post.content}</h1>
-              <img src={post.images[0]} className='mt-3 w-full' />
-              <GetComments/>
-            </div> 
-          )
-        })}
-        
-      </div> 
       </div>
-      </div>
+    </>
   )
 }
 
