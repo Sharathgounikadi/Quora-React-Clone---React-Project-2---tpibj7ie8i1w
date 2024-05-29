@@ -9,23 +9,13 @@ const GetComments = ({ postId }) => {
   const [count, setCount] = useState(3);
   const [data, setData] = useState([]);
 
-  const addCountHandler = () => {
-    setCount(prevCount => prevCount + 1);
-    toast('You liked the post')
-  };
-
-  const subCountHandler = () => {
-    setCount(prevCount => prevCount - 1);
-    toast('You disliked the post')
+  const token = localStorage.getItem('token');
+  const headers = {
+    'Authorization': `Bearer ${token}`,
+    'projectID': 'tpibj7ie8i1w'
   };
 
   const fetchData = async () => {
-    const token = localStorage.getItem('token');
-    const headers = {
-      'projectID': 'tpibj7ie8i1w',
-      'Authorization': `Bearer ${token}`
-    };
-
     try {
       const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${postId}/comments`, { headers });
       setData(response.data.data);
@@ -41,13 +31,29 @@ const GetComments = ({ postId }) => {
     }
   }, [postId]);
 
-  const handleAddComment = async () => {
-    const token = localStorage.getItem('token');
-    const headers = {
-      'projectID': 'tpibj7ie8i1w',
-      'Authorization': `Bearer ${token}`
-    };
+  const handleUpvote = async () => {
+    try {
+      await axios.post(`https://academics.newtonschool.co/api/v1/quora/like/${postId}`, {}, { headers });
+      setCount(prevCount => prevCount + 1);
+      toast('You liked the post');
+    } catch (error) {
+      console.error('Error upvoting the post:', error);
+      toast.error('You already liked the post');
+    }
+  };
 
+  const handleDownvote = async () => {
+    try {
+      await axios.delete(`https://academics.newtonschool.co/api/v1/quora/like/${postId}`, { headers });
+      setCount(prevCount => prevCount - 1);
+      toast('You disliked the post');
+    } catch (error) {
+      console.error('Error downvoting the post:', error);
+      toast.error('You already disliked the post');
+    }
+  };
+
+  const handleAddComment = async () => {
     const body = {
       content: postComment
     };
@@ -64,12 +70,6 @@ const GetComments = ({ postId }) => {
   };
 
   const handleDeleteComment = async (id) => {
-    const token = localStorage.getItem('token');
-    const headers = {
-      "projectID": 'tpibj7ie8i1w',
-      'Authorization': `Bearer ${token}`
-    };
-
     try {
       await axios.delete(`https://academics.newtonschool.co/api/v1/quora/comment/${id}`, { headers });
       setData(prevData => prevData.filter(comment => comment._id !== id));
@@ -81,13 +81,10 @@ const GetComments = ({ postId }) => {
   };
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"))?._id;
-  // useEffect(()=>{
-
-  // },[data])
 
   return (
     <>
-
+      <ToastContainer />
       <div className="flex flex-col gap-2 sm:flex-row justify-between items-center p-3">
         <div className="flex flex-col items-center sm:flex-row gap-2">
           <div className="row flex">
@@ -95,7 +92,7 @@ const GetComments = ({ postId }) => {
               disabled:shadow-none disabled:pointer-events-none text-xs px-4 rounded-lg border hover:opacity-75 focus:ring
               focus:ring-white/50 active:opacity-[0.85] rounded-r-none border-r-0 flex items-center border-gray-300
               dark:border-gray-700 capitalize h-6 text-gray-700 dark:text-gray-300 rounded-s-full py-4 gap-1"
-              type="button" onClick={addCountHandler}>
+              type="button" onClick={handleUpvote}>
               <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="stroke-blue-500">
                 <path d="M12 4 3 15h6v5h6v-5h6z" className="icon_svg-stroke icon_svg-fill" fill="none" strokeWidth="1.5" strokeLinejoin="round"></path>
               </svg>
@@ -104,7 +101,7 @@ const GetComments = ({ postId }) => {
             <button className="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 
               disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] max-h-[40px] rounded-lg text-xs border hover:opacity-75 
               focus:ring focus:ring-gray-300 active:opacity-[0.85] border-gray-300 dark:border-gray-700 h-6 text-gray-700
-              dark:text-gray-300 rounded-e-full py-4" type="button" onClick={subCountHandler}>
+              dark:text-gray-300 rounded-e-full py-4" type="button" onClick={handleDownvote}>
               <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                 <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="stroke-gray-700 dark:stroke-gray-300">
                   <path d="m12 20 9-11h-6V4H9v5H3z" className="icon_svg-stroke icon_svg-fill" fill="none" strokeWidth="1.5" strokeLinejoin="round"></path>

@@ -27,6 +27,7 @@ export default function CreatePost() {
     const token = localStorage.getItem("token");
 
     const formData = new FormData();
+    formData.append("imgage", image);
     formData.append("title", title);
     formData.append("content", content);
     // if (image) {
