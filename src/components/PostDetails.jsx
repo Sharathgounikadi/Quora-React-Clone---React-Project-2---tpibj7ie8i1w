@@ -36,7 +36,7 @@ useEffect(() => {
   return (
     <div className='p-52'>
       Post Details
-      <GetComments />
+      {/* <GetComments /> */}
     </div>
     
   )
