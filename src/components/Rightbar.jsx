@@ -44,9 +44,8 @@ const Rightbar = () => {
 
 
   return (
-    <>
-     
-      <div className='ml-25px'>
+    <> 
+      <div className='mx-auto'>
         <div className='mt-20 rounded-sm'>
           <div className='bg-white p-2 h-20 border border-spacing-1'>
             <div className='flex'>

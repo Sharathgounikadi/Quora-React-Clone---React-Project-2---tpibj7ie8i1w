@@ -80,7 +80,7 @@ const GetComments = ({ postId }) => {
 
   return (
     <>
-     
+
       <div className="flex flex-col gap-2 sm:flex-row justify-between items-center p-3">
         <div className="flex flex-col items-center sm:flex-row gap-2">
           <div className="row flex">
@@ -141,9 +141,9 @@ const GetComments = ({ postId }) => {
       </div>
       {toggleComments &&
         <div className='flex flex-col'>
-          <div className='flex'>
-            <input type="text" value={postComment} className='border border-red-500' onChange={(e) => { setPostComment(e.target.value) }} />
-            <button onClick={handleAddComment}>Add</button>
+          <div className='flex justify-between'>
+            <input type="text" value={postComment} className='border border-black-500 rounded-2xl' onChange={(e) => { setPostComment(e.target.value) }} />
+            <button onClick={handleAddComment} className='bg-blue-300 rounded-2xl p-2 ml-5'>Add Comment</button>
           </div>
           <div>
             {data?.map((comment, idx) => (
