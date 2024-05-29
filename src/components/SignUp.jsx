@@ -62,7 +62,7 @@ export default function SignUp() {
             }
         }).catch((error) => {
             // setError("internal server error please try after sometime", error);
-            toast.error("internal server error please try after sometime")
+            toast.error("Email or Password is incorrect")
         })
     }
 
