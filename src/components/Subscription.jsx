@@ -124,7 +124,7 @@ const Subscription = () => {
           <h1 variant="outlined" size="sm">
             Learn More
           </h1>
-        </DialogFooter>
+        </DialogFooter>                
       </Dialog>
     </>
   );

@@ -50,7 +50,7 @@ const Navbar = () => {
   return (
     <div className='fixed flex z-10 bg-white pl-20 pt-4 shadow-md h-14 w-full'>
 
-      <div className='flex mx-auto'>
+      <div className='flex mx-auto gap-5'>
         <img src={quora} className='w-24 h-7 cursor-pointer' onClick={() => navigate('/home')} alt="Quora" />
         <img src={home} className='w-7 h-7 ml-10 cursor-pointer' onClick={() => navigate('/home')} alt="Home" />
         <img src={group} className='w-7 h-7 ml-10 cursor-pointer' onClick={nav} alt="Group" />
@@ -65,14 +65,13 @@ const Navbar = () => {
         <h1 className='text-sm border border-spacing-1 rounded-full p-2 ml-5 h-9'><Subscription /></h1>
         <div><ProfileMenu /></div>
         <div><LanguageMenu /></div>
-        <h1 className='bg-red-800 rounded-full text-sm text-white w-36 pl-6 ml-6 pt-2 h-9'><CreatePost /></h1>
+        <h1 className='bg-red-800 rounded-full text-sm text-white w-36 pl-6 ml-6 pt-2 h-9' ><CreatePost /></h1>
         {query && searchResults.length > 0 && (
           <div className="absolute top-12 left-44 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll">
             {searchResults.map((result, index) => (
               <div key={index} className="p-2 border-b last:border-b-0 ">
                 <h2 className='font-bold'>{result?.title}</h2>
                 <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
-
               </div>
             ))}
           </div>
