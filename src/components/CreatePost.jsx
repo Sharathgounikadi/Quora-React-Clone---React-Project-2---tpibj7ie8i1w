@@ -47,7 +47,7 @@ export default function CreatePost() {
       );
       toast.success('Post created successfully');
       console.log(response);
-      window.location.href="/";
+      window.location.href="/home";
       setShow(false);
     } catch (error) {
       console.error('There was an error creating the post!', error);
