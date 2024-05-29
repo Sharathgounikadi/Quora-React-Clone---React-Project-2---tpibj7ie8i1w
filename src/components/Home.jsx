@@ -16,7 +16,7 @@ const Home = () => {
   }
   return (
     <>
-    <div className='h-full w-full  grid grid-cols-6' style={colour}>
+    <div className='h-full w-50 grid grid-cols-6' style={colour}>
         <div>
         <Navbar />
         <Leftbar/>

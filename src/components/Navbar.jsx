@@ -3,14 +3,18 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import quora from '../assets/Quora.jpg';
 import home from '../assets/Home.jpg';
+import search from '../assets/Search.jpg';
+import globe from '../assets/Globe.jpg';
 import edit from '../assets/Edit.jpg';
+import bell from '../assets/Bell.jpg';
 import group from '../assets/Group.jpg';
+// import account from '../assets/Account.jpg';
 import { ProfileMenu } from './ProfileMenu';
 import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import { Notification } from './Notification';
 import CreatePost from './CreatePost';
-import Tooltip from "@material-tailwind/react";
+// import Tooltip from '@mui/material/Tooltip';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -45,48 +49,12 @@ const Navbar = () => {
   return (
     <div className='fixed flex z-10 bg-white pl-20 pt-4 shadow-md h-14 w-full'>
 
-      <div className='flex mx-auto gap-5'>
-        <Tooltip content="Quora" placement="bottom">
-          <img
-            src={quora}
-            className='w-24 h-7 cursor-pointer'
-            onClick={() => navigate('/home')}
-            alt="Quora"
-          />
-        </Tooltip>
-
-        <Tooltip content="HOme" placement="bottom">
-          <img
-            src={home}
-            className='w-7 h-7 ml-10 cursor-pointer'
-            onClick={() => navigate('/home')}
-            alt="Home"
-          />
-        </Tooltip>
-
-        <Tooltip content="Group" placement="bottom">
-          <img
-            src={group}
-            className='w-7 h-7 ml-10 cursor-pointer'
-            onClick={nav}
-            alt="Group"
-          />
-        </Tooltip>
-
-        <Tooltip content="Quora" placement="bottom">
-          <img
-            src={edit}
-            className='w-7 h-7 ml-10 cursor-pointer'
-            onClick={nav}
-            alt="Edit"
-          />
-        </Tooltip>
-
-        <Tooltip content="Notifications" placement="bottom">
-          <div className='w-7 h-7 ml-10'>
-            <Notification />
-          </div>
-        </Tooltip>
+      <div className='flex mx-auto gap-3'>
+        <img src={quora} className='w-24 h-7 cursor-pointer' onClick={() => navigate('/home')} alt="Quora" />
+        <img src={home} className='w-7 h-7 ml-10 cursor-pointer' onClick={() => navigate('/home')} alt="Home" />
+        <img src={group} className='w-7 h-7 ml-10 cursor-pointer' onClick={()=>navigate('/Answers')} alt="Group" />
+        <img src={edit} className='w-7 h-7 ml-10 cursor-pointer' onClick={nav} alt="Edit" />
+        <div className='w-7 h-7 ml-10'><Notification /></div>
         <input
           className='ml-5 w-50 h-8 border border-spacing-1 rounded-lg'
           placeholder='Search Quora'
