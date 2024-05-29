@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<SignUp />}/> 
         <Route path="/home" element={<Home />} />
         <Route path='/notification' element={<Notification />} />
-        {/* <Route path="/question/:id" element={<PostDetails />} /> */}
+        <Route path="/question/:id" element={<PostDetails />} />
         <Route path='/CreatePost' element={<CreatePost />} />
         <Route path='/ComingSoon' element={<ComingSoon />} />
       </Routes>

@@ -88,7 +88,7 @@ const SignUpDialogue = () => {
 
 return (
     <>
-    <ToastContainer />
+   
         <p onClick={handleOpen}>Sign Up with email</p>
         <Dialog
             size="xs"

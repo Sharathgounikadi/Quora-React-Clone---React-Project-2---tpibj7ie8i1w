@@ -18,7 +18,7 @@ const PostDetails = () => {
 
     try {
         // Make the API call using Axios
-        const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${params.id}&page=2`, { headers });
+        const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${params.id}`, { headers });
         
         // Set the data from the response
         setData(response.data);

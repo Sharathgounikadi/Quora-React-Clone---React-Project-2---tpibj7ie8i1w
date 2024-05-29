@@ -7,8 +7,7 @@ import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
 import CreatePost from './CreatePost';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 const Rightbar = () => {
   const navigate = useNavigate();
@@ -46,7 +45,7 @@ const Rightbar = () => {
 
   return (
     <>
-      <ToastContainer />
+     
       <div className='ml-25px'>
         <div className='mt-20 rounded-sm'>
           <div className='bg-white p-2 h-20 border border-spacing-1'>
@@ -67,7 +66,7 @@ const Rightbar = () => {
               <h1 className='ml-20'>|</h1>
               <div className='ml-16 flex'>
                 <img src={pen} className='w-5 h-5' />
-                <Link className='ml-2' onClick={() => navigate('/CreatePost')}>Post</Link>
+                <Link className='ml-2' to="/ComingSoon">Post</Link>
               </div>
             </div>
           </div>
@@ -75,21 +74,22 @@ const Rightbar = () => {
             {/* PostCard */}
             {posts.map((post, index) => {
               return (
-                <div className='bg-white mt-2 p-2' key={index} onClick={() => handlePostOpen(post._id)}>
+                <div className='bg-white mt-2 p-2' key={index} >
                   <div className='flex items-center'>
-                    <img className="w-10 h-10 rounded-full" src={post.channel.image} />
-                    <h1 className='ml-5 font-semibold'>{post.channel.name}</h1>
+                    <img className="w-10 h-10 rounded-full" src={post.channel?.image} />
+                    <h1 className='ml-5 font-semibold'>{post.channel?.name}</h1>
                   </div>
-                  <h1 className='font-semibold mt-3'>{post.title}</h1>
-                  <h1 className='mt-2'>{post.content}</h1>
+                  <h1 className='font-semibold mt-3' onClick={() => handlePostOpen(post._id)}>{post?.title}</h1>
+                  <h1 className='mt-2'>{post?.content}</h1>
                   <img src={post.images[0]} className='mt-3 w-full' />
-                  <GetComments />
+                  <GetComments postId={post?._id}/>
                 </div>
               )
             })}
 
           </div>
         </div>
+        
       </div>
     </>
   )

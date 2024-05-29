@@ -68,7 +68,7 @@ export default function SignUp() {
 
     return (
         <>
-            <ToastContainer />
+           
             <div style={{ backgroundImage: `url(${SignUpBgm})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", height: "100vh" }} className='flex items-center justify-center'>
                 <div className='bg-white h-11/12 w-7/12 rounded-sm p-8'>
                     <h1 className='text-red-700 text-6xl font-bold font-serif text-center'>Quora</h1>
