@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import Leftbar from './Leftbar'
 import Rightbar from './Rightbar'
 import Adds from './Adds'
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
 // import { UserProvider } from "./components/UserProvider";
 import { useUser } from './UserProvider';
+import ResponsiveNavbar from './ResponsiveNavbar';
 // import { NavbarDefault } from './NavbarDefault';
 
 
@@ -19,7 +20,8 @@ const Home = () => {
   return (
     <>
     <div className='h-full w-full grid grid-cols-7 mx-auto gap-1' style={colour}>
-    <Navbar />
+      <ResponsiveNavbar/>
+    {/* <Navbar /> */}
     <div className='col-span-1'></div>
         <div>
         <Leftbar/>
