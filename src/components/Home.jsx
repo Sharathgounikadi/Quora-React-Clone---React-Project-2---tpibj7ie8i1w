@@ -9,6 +9,7 @@ import { useUser } from './UserProvider';
 
 
 
+
 const Home = () => {
   const {theme}=useUser();
   const colour={
@@ -16,9 +17,10 @@ const Home = () => {
   }
   return (
     <>
-    <div className='h-full w-50 grid grid-cols-6' style={colour}>
+    <div className='h-full w-full grid grid-cols-7 mx-auto gap-1' style={colour}>
+    <Navbar />
+    <div className='col-span-1'></div>
         <div>
-        <Navbar />
         <Leftbar/>
         </div>
         <div className='col-span-3'>

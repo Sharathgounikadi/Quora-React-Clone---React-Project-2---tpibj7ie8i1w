@@ -8,11 +8,17 @@ import { Link, useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
 import CreatePost from './CreatePost';
 import { useUser } from './UserProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {
+  Navbar
+}from "@material-tailwind/react";
 
 const Rightbar = () => {
   const { theme } = useUser();
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
+  const [following, setFollowing] = useState({});
 
   const colour = {
     backgroundColor: theme === 'light' ? 'white' : 'black',
@@ -40,10 +46,42 @@ const Rightbar = () => {
         }
       });
       setPosts(response.data.data);
-      return response.data;
     } catch (error) {
       console.error('Failed to fetch posts:', error);
-      return [];
+    }
+  };
+
+  const handleFollow = async (userId) => {
+    const token = localStorage.getItem('token');
+    try {
+      await axios.post(`https://academics.newtonschool.co/api/v1/quora/follow/${userId}`, {}, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'projectID': 'tpibj7ie8i1w'
+        }
+      });
+      setFollowing(prev => ({ ...prev, [userId]: true }));
+      toast.success('User followed successfully');
+    } catch (error) {
+      console.error('Failed to follow user:', error);
+      toast.error('Failed to follow user');
+    }
+  };
+
+  const handleUnfollow = async (userId) => {
+    const token = localStorage.getItem('token');
+    try {
+      await axios.delete(`https://academics.newtonschool.co/api/v1/quora/follow/${userId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'projectID': 'tpibj7ie8i1w'
+        }
+      });
+      setFollowing(prev => ({ ...prev, [userId]: false }));
+      toast.success('User unfollowed successfully');
+    } catch (error) {
+      console.error('Failed to unfollow user:', error);
+      toast.error('Failed to unfollow user');
     }
   };
 
@@ -57,13 +95,14 @@ const Rightbar = () => {
 
   return (
     <> 
-      <div className='mx-auto'>
+      {/* <ToastContainer /> */}
+      <div className='mx-auto w-full sm:w-64 md:w-80 lg:w-full '>
         <div className='mt-20 rounded-sm'>
           <div className='p-2 h-20 border border-spacing-1' style={colour}>
             <div className='flex'>
               <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
               <input
-                placeholder='What do you want to ask for share?'
+                placeholder='What do you want to ask or share?'
                 className='p-1 ml-4 placeholder-gray-600 border border-spacing-1 rounded-full w-full'
                 style={inputStyle}
               />
@@ -86,13 +125,29 @@ const Rightbar = () => {
             </div>
           </div>
           <div>
-            {/* PostCard */}
             {posts.map((post, index) => {
+              if (!post || !post.channel) {
+                // Ensure post and post.channel are defined before accessing their properties
+                return null;
+              }
+              let channel = post.channel;
+              let isFollowing = following[channel._id] || false;
               return (
                 <div className='mt-2 p-2 border' key={index} style={postCardStyle}>
                   <div className='flex items-center'>
-                    <img className="w-10 h-10 rounded-full" src={post.channel?.image} alt="Channel" />
-                    <h1 className='ml-5 font-semibold'>{post.channel?.name}</h1>
+                    {channel.image && <img className="w-10 h-10 rounded-full" src={channel.image} alt="Channel" />}
+                    <div className='flex gap-1'>
+                      <h1 className='ml-5 font-semibold'>{channel.name || 'Unknown Channel'}</h1>
+                      {channel._id && (
+                        <div 
+                          className="q-text qu-dynamicFontSize--small qu-medium text-blue-500 cursor-pointer" 
+                          style={{ boxSizing: 'border-box' }}
+                          onClick={() => isFollowing ? handleUnfollow(channel._id) : handleFollow(channel._id)}
+                        >
+                          {isFollowing ? 'Unfollow' : 'Follow'}
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <h1 className='font-semibold mt-3 cursor-pointer' onClick={() => handlePostOpen(post._id)}>{post?.title}</h1>
                   <h1 className='mt-2'>{post?.content}</h1>

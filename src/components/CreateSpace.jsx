@@ -27,12 +27,11 @@ export default function CreateSpaceComponent() {
       }
     })
       .then(response => {
-        // console.log('Space created successfully:', response.data);
+        // console.log('Space created successfully:', response.data.data);
         // Close the dialog after successful creation
         toast.success('Space created successfully')
         setOpen(false);
-        window.location.reload();
-        
+        window.location.reload(); 
       })
       .catch(error => {
         console.error('There was an error creating the space!', error);
