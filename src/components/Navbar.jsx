@@ -7,7 +7,7 @@ import search from '../assets/Search.jpg';
 import globe from '../assets/Globe.jpg';
 import edit from '../assets/Edit.jpg';
 import bell from '../assets/Bell.jpg';
-import group from '../assets/Group.jpg';
+import group from '../assets/Groups.svg';
 // import account from '../assets/Account.jpg';
 import { ProfileMenu } from './ProfileMenu';
 import LanguageMenu from './LanguageMenu';

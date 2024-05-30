@@ -107,20 +107,20 @@ const Rightbar = () => {
                 style={inputStyle}
               />
             </div>
-            <div className='flex pt-2'>
-              <div className='ml-16 flex'>
+            <div className='flex items-center gap-20 p-2'>
+              <div className='flex'>
                 <img src={question} className='w-5 h-5' />
-                <h1 className='ml-2'><CreatePost /></h1>
+                <h1 className=''><CreatePost /></h1>
               </div>
-              <h1 className='ml-20'>|</h1>
-              <div className='ml-16 flex'>
+              <h1 className=''>|</h1>
+              <div className=' flex'>
                 <img src={edit} className='w-5 h-5' />
-                <h1 className='ml-2' onClick={() => navigate('/ComingSoon')}>Answer</h1>
+                <h1 className='' onClick={() => navigate('/Answers')}>Answer</h1>
               </div>
-              <h1 className='ml-20'>|</h1>
-              <div className='ml-16 flex'>
+              <h1 className=''>|</h1>
+              <div className=' flex'>
                 <img src={pen} className='w-5 h-5' />
-                <Link className='ml-2' to="/ComingSoon">Post</Link>
+                <Link className='' to="/ComingSoon">Post</Link>
               </div>
             </div>
           </div>

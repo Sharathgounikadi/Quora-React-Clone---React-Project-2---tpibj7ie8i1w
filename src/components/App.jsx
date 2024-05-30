@@ -10,6 +10,7 @@ import ComingSoon from "./ComingSoon";
 import Spaces from "./Spaces";
 import { ToastContainer, toast } from 'react-toastify';
 import CreatePost from "./CreatePost";
+import Answers from "./Answers";
 
 const PrivateRoute = ({ children }) => {
   const isAuthenticated = !!localStorage.getItem('token'); // check if the token exists
@@ -66,6 +67,7 @@ function App() {
               </PrivateRoute>
             } 
           />
+          <Route path="/Answers" element={<Answers/>}/>
         </Routes>
       </Router>
     </>

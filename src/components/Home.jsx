@@ -13,7 +13,7 @@ import { useUser } from './UserProvider';
 const Home = () => {
   const {theme}=useUser();
   const colour={
-    backgroundColor:theme=='light'?'rgb(230, 230, 230)':'black'
+    backgroundColor:theme=='light'?'rgb(241, 242, 242)':'black'
   }
   return (
     <>

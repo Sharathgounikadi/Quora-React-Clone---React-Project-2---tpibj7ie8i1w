@@ -33,15 +33,15 @@ const Leftbar = () => {
         
         <div className='pl-12 mt-20 text-sm fixed w-42' >
             <div className='flex mt-2 bg-gray-300 pl-1 pr-1 pt-1 pb-1 rounded-lg'>
-                <div className='rounded-sm p-1 bg-gray cursor-pointer'>+</div>
-                <button className='ml-1 cursor-pointer text-center'><CreateSpace /></button>
+                <div className='rounded-sm p-1 bg-gray cursor-pointer hover:bg-gray-300'>+</div>
+                <button className='ml-1 cursor-pointer text-center hover:bg-gray-300'><CreateSpace /></button>
             </div>
             {communities.map((comm,idx) => {
                 return (
                     <Typography  >
-                    <div className='flex mt-5 cursor-pointer' key={idx}>
+                    <div className='flex mt-5 cursor-pointer hover:bg-gray-300 items-center rounded-md mx-auto p-0.5 ' key={idx}>
                         <img src={cooking} className='w-4 h-4 rounded-sm' />
-                        <p className='ml-1 text-gray-500 cursor-pointer hover:bg-gray-400 text-white-100 rounded-sm pl-1 pr-1' onClick={() => navigate('/ComingSoon')} >{comm.name}</p>
+                        <p className='ml-1  cursor-pointer  color: rgb(40, 40, 41) rounded-sm pl-1 pr-1' onClick={() => navigate('/ComingSoon')} >{comm.name}</p>
                     </div>
                     </Typography>
                 )
