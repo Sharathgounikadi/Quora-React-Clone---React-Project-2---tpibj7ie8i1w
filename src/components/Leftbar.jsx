@@ -39,7 +39,7 @@ const Leftbar = () => {
             {communities.map((comm,idx) => {
                 return (
                     <Typography  >
-                    <div className='flex mt-5 cursor-pointer hover:bg-gray-300 items-center rounded-md mx-auto p-0.5 ' key={idx}>
+                    <div className='flex mt-5 cursor-pointer hover:bg-gray-300 items-center rounded-md mx-auto p-0.5' key={idx}>
                         <img src={cooking} className='w-4 h-4 rounded-sm' />
                         <p className='ml-1  cursor-pointer  color: rgb(40, 40, 41) rounded-sm pl-1 pr-1' onClick={() => navigate('/ComingSoon')} >{comm.name}</p>
                     </div>

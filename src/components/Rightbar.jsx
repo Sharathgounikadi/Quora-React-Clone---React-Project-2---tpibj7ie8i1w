@@ -108,9 +108,9 @@ const Rightbar = () => {
               />
             </div>
             <div className='flex items-center gap-20 p-2'>
-              <div className='flex'>
+              <div className='flex items-center'>
                 <img src={question} className='w-5 h-5' />
-                <h1 className=''><CreatePost /></h1>
+                <h1 className='flex items-center'><CreatePost /></h1>
               </div>
               <h1 className=''>|</h1>
               <div className=' flex'>
