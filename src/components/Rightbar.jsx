@@ -126,12 +126,12 @@ const Rightbar = () => {
           </div>
           <div>
             {posts.map((post, index) => {
-              if (!post || !post.channel) {
-                // Ensure post and post.channel are defined before accessing their properties
-                return null;
-              }
-              let channel = post.channel;
-              let isFollowing = following[channel._id] || false;
+              // if (!post || !post.channel) {
+              //   // Ensure post and post.channel are defined before accessing their properties
+              //   return null;
+              // }
+              const channel = post.channel;
+              const isFollowing = following[channel._id] || false;
               return (
                 <div className='mt-2 p-2 border' key={index} style={postCardStyle}>
                   <div className='flex items-center'>
