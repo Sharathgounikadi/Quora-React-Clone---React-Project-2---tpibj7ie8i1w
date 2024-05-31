@@ -13,10 +13,7 @@ import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import { Notification } from './Notification';
 import CreatePost from './CreatePost';
-// import Tooltip from '@mui/material/Tooltip';
-import {
-  // Navbar
-}from "@material-tailwind/react";
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -54,7 +51,7 @@ const Navbar = () => {
       <div className='flex mx-auto gap-2 w-full sm:w-2/4 md:w-3/4 lg:w-2/4 xl:w-3/4 '>
         <img src={quora} className='w-24 h-7 cursor-pointer' onClick={() => navigate('/home')} alt="Quora" />
         <img src={home} className='w-7 h-7 ml-10 cursor-pointer' onClick={() => navigate('/home')} alt="Home" />
-        <img src={group} className='w-7 h-7 ml-10 cursor-pointer' onClick={()=>navigate('/Answers')} alt="Group" />
+        <img src={bell} className='w-7 h-7 ml-10 cursor-pointer' onClick={()=>navigate('/Answers')} alt="Group" />
         <img src={edit} className='w-7 h-7 ml-10 cursor-pointer' onClick={nav} alt="Edit" />
         <div className='w-7 h-7 ml-10'><Notification /></div>
         <input
