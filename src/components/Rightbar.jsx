@@ -12,7 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   Navbar
-}from "@material-tailwind/react";
+} from "@material-tailwind/react";
 
 const Rightbar = () => {
   const { theme } = useUser();
@@ -46,44 +46,12 @@ const Rightbar = () => {
         }
       });
       setPosts(response.data.data);
+      console.log(response.data.data)
     } catch (error) {
       console.error('Failed to fetch posts:', error);
     }
   };
 
-  const handleFollow = async (userId) => {
-    const token = localStorage.getItem('token');
-    try {
-      await axios.post(`https://academics.newtonschool.co/api/v1/quora/follow/${userId}`, {}, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'projectID': 'tpibj7ie8i1w'
-        }
-      });
-      setFollowing(prev => ({ ...prev, [userId]: true }));
-      toast.success('User followed successfully');
-    } catch (error) {
-      console.error('Failed to follow user:', error);
-      toast.error('Failed to follow user');
-    }
-  };
-
-  const handleUnfollow = async (userId) => {
-    const token = localStorage.getItem('token');
-    try {
-      await axios.delete(`https://academics.newtonschool.co/api/v1/quora/follow/${userId}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'projectID': 'tpibj7ie8i1w'
-        }
-      });
-      setFollowing(prev => ({ ...prev, [userId]: false }));
-      toast.success('User unfollowed successfully');
-    } catch (error) {
-      console.error('Failed to unfollow user:', error);
-      toast.error('Failed to unfollow user');
-    }
-  };
 
   useEffect(() => {
     fetchPosts();
@@ -94,8 +62,7 @@ const Rightbar = () => {
   };
 
   return (
-    <> 
-      {/* <ToastContainer /> */}
+    <>
       <div className='mx-auto w-full sm:w-64 md:w-80 lg:w-full '>
         <div className='mt-20 rounded-sm'>
           <div className='p-2 h-20 border border-spacing-1' style={colour}>
@@ -125,38 +92,19 @@ const Rightbar = () => {
             </div>
           </div>
           <div>
-            {posts.map((post, index) => {
-              // if (!post || !post.channel) {
-              //   // Ensure post and post.channel are defined before accessing their properties
-              //   return null;
-              // }
-              const channel = post.channel;
-              const isFollowing = following[channel._id] || false;
+          {posts.map((post, index) => {
               return (
-                <div className='mt-2 p-2 border' key={index} style={postCardStyle}>
+                <div className='bg-white mt-2 p-2' key={index} onClick={() => handlePostOpen(post._id)}>
                   <div className='flex items-center'>
-                    {channel.image && <img className="w-10 h-10 rounded-full" src={channel.image} alt="Channel" />}
-                    <div className='flex gap-1'>
-                      <h1 className='ml-5 font-semibold'>{channel.name || 'Unknown Channel'}</h1>
-                      {channel._id && (
-                        <div 
-                          className="q-text qu-dynamicFontSize--small qu-medium text-blue-500 cursor-pointer" 
-                          style={{ boxSizing: 'border-box' }}
-                          onClick={() => isFollowing ? handleUnfollow(channel._id) : handleFollow(channel._id)}
-                        >
-                          {isFollowing ? 'Unfollow' : 'Follow'}
-                        </div>
-                      )}
-                    </div>
+                    <img className="w-10 h-10 rounded-full" src={post?.channel?.image} />
+                    <h1 className='ml-5 font-semibold'>{post?.channel?.name}</h1>
                   </div>
-                  <h1 className='font-semibold mt-3 cursor-pointer' onClick={() => handlePostOpen(post._id)}>{post?.title}</h1>
+                  <h1 className='font-semibold mt-3'>{post?.title}</h1>
                   <h1 className='mt-2'>{post?.content}</h1>
-                  {post.images && post.images[0] && (
-                    <img src={post.images[0]} className='mt-3 w-full' alt="Post"/>
-                  )}
-                  <GetComments postId={post?._id}/>
+                  <img src={post.images[0]} className='mt-3 w-full' />
+                  <GetComments />
                 </div>
-              );
+              )
             })}
           </div>
         </div>

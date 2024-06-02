@@ -7,12 +7,12 @@ import search from '../assets/Search.jpg';
 import globe from '../assets/Globe.jpg';
 import edit from '../assets/Edit.jpg';
 import bell from '../assets/Bell.jpg';
-import group from '../assets/Groups.svg';
 import { ProfileMenu } from './ProfileMenu';
 import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import { Notification } from './Notification';
 import CreatePost from './CreatePost';
+import { Icons, Post, Home, Spaces, Notify, Quora } from './Icons';
 
 
 const Navbar = () => {
@@ -49,10 +49,20 @@ const Navbar = () => {
 
     <div className='fixed flex z-10 bg-white pl-20 pt-4 shadow-md h-14 w-full sm:w-64 md:w-80 lg:w-full'>
       <div className='flex mx-auto gap-2 w-full sm:w-2/4 md:w-3/4 lg:w-2/4 xl:w-3/4 '>
-        <img src={quora} className='w-24 h-7 cursor-pointer' onClick={() => navigate('/home')} alt="Quora" />
-        <img src={home} className='w-7 h-7 ml-10 cursor-pointer' onClick={() => navigate('/home')} alt="Home" />
-        <img src={bell} className='w-7 h-7 ml-10 cursor-pointer' onClick={()=>navigate('/Answers')} alt="Group" />
-        <img src={edit} className='w-7 h-7 ml-10 cursor-pointer' onClick={nav} alt="Edit" />
+        {/* <img src={quora} className='w-24 h-7 cursor-pointer' onClick={() => navigate('/home')} alt="Quora" /> */}
+        {/* <img src={home} className='w-7 h-7 ml-10 cursor-pointer' onClick={() => navigate('/home')} alt="Home" /> */}
+
+        {/* <img src={Icons} className='w-7 h-7 ml-10 cursor-pointer' onClick={()=>navigate('/Answers')} alt="Group" /> */}
+        <div className='flex gap-5' >
+          <Quora />
+          <Home />
+          <Post />
+          <Icons />
+          <Spaces />
+          <Notify />
+        </div>
+        {/* <img src={edit} className='w-7 h-7 ml-10 cursor-pointer' onClick={nav} alt="Edit" /> */}
+        {/* <UpVoteIcon /> */}
         <div className='w-7 h-7 ml-10'><Notification /></div>
         <input
           className='ml-5 w-50 h-8 border border-spacing-1 rounded-lg'
@@ -76,7 +86,7 @@ const Navbar = () => {
         )}
       </div>
     </div>
-    
+
   );
 };
 
