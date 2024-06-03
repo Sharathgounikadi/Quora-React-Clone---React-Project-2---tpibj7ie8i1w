@@ -3,14 +3,22 @@ import axios from 'axios';
 import cooking from "../assets/Cooking.jpg"
 import CreateSpace from './CreateSpace'
 import { useNavigate } from 'react-router-dom'
+import { useUser } from './UserProvider';
 import {
     Typography 
 }from "@material-tailwind/react";
 
 const Leftbar = () => {
+    const { theme } = useUser();
     const navigate = useNavigate();
     const token = localStorage.getItem("token")
     const [communities, setCommunities]=useState([])
+
+    const colour = {
+        backgroundColor: theme === 'light' ? 'white' : 'black',
+        color: theme === 'light' ? 'black' : 'white'
+      };
+
     const fetchCommunities = async () => {
         try {
             const res = await axios.get('https://academics.newtonschool.co/api/v1/quora/channel/?limit=6', {
@@ -31,7 +39,7 @@ const Leftbar = () => {
     }, [])
     return (
         
-        <div className='pl-12 mt-20 text-sm fixed w-42 sm:w-15 md:w-30' >
+        <div className='pl-12 mt-20 text-sm fixed w-42 sm:w-15 md:w-30'style={colour} >
             <div className='flex mt-2 bg-gray-300 pl-1 pr-1 pt-1 pb-1 rounded-lg'>
                 <div className='rounded-sm p-1 bg-gray cursor-pointer hover:bg-gray-300'>+</div>
                 <button className='ml-1 cursor-pointer text-center hover:bg-gray-300'><CreateSpace /></button>

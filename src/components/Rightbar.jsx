@@ -98,7 +98,7 @@ const Rightbar = () => {
           <div>
             {posts.map((post, index) => {
               return (
-                <div className='bg-white mt-2 p-2' key={index} >
+                <div className='bg-white mt-2 p-2' key={index}  style={postCardStyle}>
                   <div className='flex items-center'>
                     <img className="w-10 h-10 rounded-full" src={post.channel?.image} />
                     <h1 className='ml-5 font-semibold'>{post.channel?.name}</h1>

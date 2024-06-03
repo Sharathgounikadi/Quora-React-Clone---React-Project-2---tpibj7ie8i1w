@@ -12,6 +12,7 @@ const Home = () => {
   const colour={
     backgroundColor:theme=='light'?'rgb(241, 242, 242)':'black'
   }
+  
   return (
     <>
     <div className='h-full w-full grid grid-cols-7 mx-auto gap-1' style={colour}>

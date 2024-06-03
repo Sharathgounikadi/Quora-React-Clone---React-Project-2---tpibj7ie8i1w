@@ -147,15 +147,15 @@ const GetComments = ({ postId,likeCount ,commentCount}) => {
       {toggleComments &&
         <div className='flex flex-col'>
           <div className='flex justify-between'>
-            <input type="text" value={postComment} className='border border-black-500 rounded-2xl' onChange={(e) => { setPostComment(e.target.value) }} />
+            <input type="text" value={postComment} className='border border-gray-500 rounded-2xl ' onChange={(e) => { setPostComment(e.target.value) }} />
             <button onClick={handleAddComment} className='bg-blue-300 rounded-2xl p-2 ml-5'>Add Comment</button>
           </div>
           <div>
             {data?.map((comment, idx) => (
               <div key={idx} className='flex justify-between'>
-                <div className='flex justify-between'>
-                  <h1>{comment?.author_details?.name}</h1>
-                  <h1>{comment?.content}</h1></div>
+                <div className='flex-row gap-1'>
+                  <h1 className='text-lg'>{comment?.author_details?.name}</h1>
+                  <h1 className='p-1 text-gray-800'>{comment?.content}</h1></div>
                 {(userInfo === comment?.author_details?._id) && <div className='text-red-900 cursor-pointer' onClick={() => handleDeleteComment(comment?._id)}>DELETE</div>}
               </div>
             ))}
