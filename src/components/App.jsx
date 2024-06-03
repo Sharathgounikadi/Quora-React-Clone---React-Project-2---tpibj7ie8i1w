@@ -2,13 +2,9 @@ import "../styles/App.css";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import SignUp from "./SignUp";
 import PostDetails from "./PostDetails";
-import Navbar from "./Navbar";
 import Home from "./Home";
 import {Notification} from "./Notification";
-import Rightbar from "./Rightbar";
 import ComingSoon from "./ComingSoon";
-import Spaces from "./Spaces";
-import { ToastContainer, toast } from 'react-toastify';
 import CreatePost from "./CreatePost";
 import Answers from "./Answers";
 

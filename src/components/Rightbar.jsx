@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Avatar from 'react-avatar';
-import question from '../assets/Question.jpg';
-import pen from '../assets/Pen.jpg';
-import edit from '../assets/Edit.jpg';
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
 import CreatePost from './CreatePost';
 import { useUser } from './UserProvider';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Ask, Answer, PostImage } from './Icons';
-import {
-  Navbar
-} from "@material-tailwind/react";
+
 
 const Rightbar = () => {
   const { theme } = useUser();
@@ -62,13 +56,10 @@ const Rightbar = () => {
     navigate(`/question/${postId}`);
   };
 
-  // const authorInitial = posts?.author.name ? posts.author.name.charAt(0).toUpperCase() : '';
-
-
 
   return (
     <>
-      <div className='mx-auto '>
+      <div className='mx-auto'>
         <div className='mt-20 rounded-sm'>
           <div className='p-2 h-20 border border-spacing-1' style={colour}>
             <div className='flex'>
@@ -115,7 +106,7 @@ const Rightbar = () => {
                     <h1 className='ml-5 font-semibold'>{post.channel?.name}</h1>
                   </div>
                   <div className="p-6">
-                    <h5 className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-white">
+                    <h5 className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-black" onClick={handlePostOpen}>
                       {post?.title}
                     </h5>
                     <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
@@ -127,18 +118,8 @@ const Rightbar = () => {
                       src={post.images[0]}
                       alt="card-image" />
                   </div>
-                  {/* <img src={post.images[0]} className='mt-3 w-full' /> */}
                   <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} />
                 </div>
-                // <div  key={index} style={postCardStyle}>
-                //   <div className='flex items-center'>
-                //     <img className="w-10 h-10 rounded-full" src={post.channel?.image} />
-                //     <h1 className='ml-5 font-semibold'>{post.channel?.name}</h1>
-                //   </div> */}
-                //   {/* <h1 className='font-semibold mt-3 hover:bottom-3 cursor-pointer' onClick={() => handlePostOpen(post._id)}>{post?.title}</h1>
-                //   <h1 className='mt-2'>{post?.content}</h1>
-
-                // </div>
               )
             })}
           </div>

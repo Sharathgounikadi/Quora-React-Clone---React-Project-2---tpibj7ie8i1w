@@ -2,13 +2,20 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { useUser } from './UserProvider';
 
 const GetComments = ({ postId,likeCount ,commentCount}) => {
+  const { theme } = useUser();
   const [toggleComments, setToggleComments] = useState(false);
   const [postComment, setPostComment] = useState("");
   const [count, setCount] = useState(likeCount);
   const [data, setData] = useState([]);
   const [comment,SetComment]=useState(commentCount)
+
+  const colour = {
+    backgroundColor: theme === 'light' ? 'white' : 'black',
+    color: theme === 'light' ? 'gray' : 'white'
+  };
 
   const token = localStorage.getItem('token');
   const headers = {
@@ -85,8 +92,8 @@ const GetComments = ({ postId,likeCount ,commentCount}) => {
 
   return (
     <>
-      <ToastContainer />
-      <div className="flex flex-col gap-2 sm:flex-row justify-between items-center p-3">
+     
+      <div className="flex flex-col gap-2 sm:flex-row justify-between items-center p-3" style={colour}>
         <div className="flex flex-col items-center sm:flex-row gap-2">
           <div className="row flex">
             <button className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 

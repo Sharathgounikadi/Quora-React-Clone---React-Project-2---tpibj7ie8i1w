@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import Leftbar from './Leftbar'
 import Rightbar from './Rightbar'
 import Adds from './Adds'
-import Navbar from './Navbar';
-// import { UserProvider } from "./components/UserProvider";
 import { useUser } from './UserProvider';
+import NavbarDefault from './NavbarDefault';
 
 
 const Home = () => {
@@ -15,11 +14,13 @@ const Home = () => {
   
   return (
     <>
-    <div className='flex justify-center' style={colour}>
-    <Navbar />
-    <div className='flex'>       
+    <div className='' style={colour}>
+    <NavbarDefault />
+    <div className='flex items-center'> 
+      <div>    
         <Leftbar />
-        <Rightbar className="ml-20"/>      
+        </div>  
+        <Rightbar />      
         </div>
         <div>
         <Adds/>

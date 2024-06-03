@@ -1,7 +1,7 @@
 import React from "react";
 import quora from  '../assets/Quora.jpg';
 import {
-  h1,
+  h4,
   Dialog,
   DialogHeader,
   DialogBody,
@@ -18,7 +18,7 @@ const Subscription = () => {
 
   return (
     <>
-      <h1 onClick={handleOpen}>Try Quora</h1>
+      <h4 onClick={handleOpen} className="text-center">Try Quora</h4>
     <Dialog size="xs" open={open} handler={handleOpen}>
         <DialogHeader className="justify-between">
           <div>
@@ -121,9 +121,9 @@ const Subscription = () => {
           <Typography variant="small" color="gray" className="font-normal">
             New to Ethereum wallets?
           </Typography>
-          <h1 variant="outlined" size="sm">
+          <h4 variant="outlined" size="sm">
             Learn More
-          </h1>
+          </h4>
         </DialogFooter>                
       </Dialog>
     </>
