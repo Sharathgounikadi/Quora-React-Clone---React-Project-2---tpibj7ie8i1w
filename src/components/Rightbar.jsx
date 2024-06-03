@@ -10,6 +10,7 @@ import CreatePost from './CreatePost';
 import { useUser } from './UserProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Ask, Answer, PostImage } from './Icons';
 import {
   Navbar
 } from "@material-tailwind/react";
@@ -63,7 +64,7 @@ const Rightbar = () => {
 
   return (
     <>
-      <div className='mx-auto w-full sm:w-64 md:w-80 lg:w-full '>
+      <div className='mx-auto '>
         <div className='mt-20 rounded-sm'>
           <div className='p-2 h-20 border border-spacing-1' style={colour}>
             <div className='flex'>
@@ -74,25 +75,28 @@ const Rightbar = () => {
                 style={inputStyle}
               />
             </div>
-            <div className='flex items-center gap-20 p-2'>
+            <div className='flex items-center gap-5 p-2 '>
               <div className='flex items-center'>
-                <img src={question} className='w-5 h-5' />
+                {/* <img src={question} className='w-5 h-5' /> */}
+                <Ask />
                 <h1 className='flex items-center'><CreatePost /></h1>
               </div>
               <h1 className=''>|</h1>
               <div className=' flex'>
-                <img src={edit} className='w-5 h-5' />
+                {/* <img src={edit} className='w-5 h-5' /> */}
+                <Answer />
                 <h1 className='' onClick={() => navigate('/Answers')}>Answer</h1>
               </div>
               <h1 className=''>|</h1>
               <div className=' flex'>
-                <img src={pen} className='w-5 h-5' />
+                {/* <img src={pen} className='w-5 h-5' /> */}
+                <PostImage />
                 <Link className='' to="/ComingSoon">Post</Link>
               </div>
             </div>
           </div>
           <div>
-          {posts.map((post, index) => {
+            {posts.map((post, index) => {
               return (
                 <div className='bg-white mt-2 p-2' key={index} >
                   <div className='flex items-center'>

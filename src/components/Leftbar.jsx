@@ -31,7 +31,7 @@ const Leftbar = () => {
     }, [])
     return (
         
-        <div className='pl-12 mt-20 text-sm fixed w-42' >
+        <div className='pl-12 mt-20 text-sm fixed w-42 sm:w-15 md:w-30' >
             <div className='flex mt-2 bg-gray-300 pl-1 pr-1 pt-1 pb-1 rounded-lg'>
                 <div className='rounded-sm p-1 bg-gray cursor-pointer hover:bg-gray-300'>+</div>
                 <button className='ml-1 cursor-pointer text-center hover:bg-gray-300'><CreateSpace /></button>
