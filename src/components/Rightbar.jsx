@@ -62,6 +62,10 @@ const Rightbar = () => {
     navigate(`/question/${postId}`);
   };
 
+  // const authorInitial = posts?.author.name ? posts.author.name.charAt(0).toUpperCase() : '';
+
+
+
   return (
     <>
       <div className='mx-auto '>
@@ -97,28 +101,35 @@ const Rightbar = () => {
           </div>
           <div>
             {posts.map((post, index) => {
+              const authorInitial = post.channel?.name ? post.channel?.name.charAt(0).toUpperCase() : '';
               return (
-                <div className="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96" key={index} style={postCardStyle}>
+                <div className="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96" key={index} style={postCardStyle}>                 
                   <div className='flex items-center p-2'>
-                    <img className="w-8 h-8 rounded-full" src={post.channel?.image} />
+                    {post.channel?.image ? (
+                      <img className="w-8 h-8 rounded-full" src={post.channel?.image}  />
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-red-500">
+                        {authorInitial}
+                      </div>
+                    )}
                     <h1 className='ml-5 font-semibold'>{post.channel?.name}</h1>
                   </div>
-                    <div className="p-6">
-                      <h5 className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-white">
-                        {post?.title}
-                      </h5>
-                      <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                        {post?.content}
-                      </p>
-                    </div>
-                    <div className="relative h-80 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-sm bg-blue-gray-500 shadow-blue-gray-500/40">
-                      <img
-                        src={post.images[0]}
-                        alt="card-image" />
-                    </div>
-                    {/* <img src={post.images[0]} className='mt-3 w-full' /> */}
-                    <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} />
+                  <div className="p-6">
+                    <h5 className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-white">
+                      {post?.title}
+                    </h5>
+                    <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                      {post?.content}
+                    </p>
                   </div>
+                  <div className="relative h-64 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-sm bg-blue-gray-500 shadow-blue-gray-500/40">
+                    <img
+                      src={post.images[0]}
+                      alt="card-image" />
+                  </div>
+                  {/* <img src={post.images[0]} className='mt-3 w-full' /> */}
+                  <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} />
+                </div>
                 // <div  key={index} style={postCardStyle}>
                 //   <div className='flex items-center'>
                 //     <img className="w-10 h-10 rounded-full" src={post.channel?.image} />
@@ -126,14 +137,14 @@ const Rightbar = () => {
                 //   </div> */}
                 //   {/* <h1 className='font-semibold mt-3 hover:bottom-3 cursor-pointer' onClick={() => handlePostOpen(post._id)}>{post?.title}</h1>
                 //   <h1 className='mt-2'>{post?.content}</h1>
-                  
+
                 // </div>
               )
             })}
           </div>
         </div>
       </div>
-      
+
 
     </>
   );

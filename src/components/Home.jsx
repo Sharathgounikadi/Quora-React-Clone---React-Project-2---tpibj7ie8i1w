@@ -17,14 +17,9 @@ const Home = () => {
     <>
     <div className='flex justify-center' style={colour}>
     <Navbar />
-    <div className='flex justify-center gap-20'>
-        <div>
+    <div className='flex'>       
         <Leftbar />
-        </div>
-        <div className=''>
-        <Rightbar/>
-        </div>
-        
+        <Rightbar className="ml-20"/>      
         </div>
         <div>
         <Adds/>
