@@ -54,7 +54,7 @@ const Navbar = () => {
           <img src={quora} className='w-24 h-7 cursor-pointer' onClick={() => navigate('/home')} alt="Quora" />
           <Link to="/home"><Home /></Link>
           <Link to="/ComingSoon"><Post /></Link>
-          <Link to="/ComingSoon"><Icons /></Link>
+          <Link to="/Answers"><Icons /></Link>
           <Link to="/ComingSoon"><Spaces /></Link>
           <Link to="/ComingSoon" ><Notification /></Link>
         </div>

@@ -1,23 +1,29 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import cooking from "../assets/Cooking.jpg"
 import CreateSpace from './CreateSpace'
 import { useNavigate } from 'react-router-dom'
 import { useUser } from './UserProvider';
 import {
-    Typography 
-}from "@material-tailwind/react";
+    Card,
+    Typography,
+    List,
+    ListItem,
+    ListItemPrefix,
+
+} from "@material-tailwind/react";
+
 
 const Leftbar = () => {
     const { theme } = useUser();
     const navigate = useNavigate();
     const token = localStorage.getItem("token")
-    const [communities, setCommunities]=useState([])
+    const [communities, setCommunities] = useState([])
 
     const colour = {
         backgroundColor: theme === 'light' ? 'white' : 'black',
-        color: theme === 'light' ? 'black' : 'white'
-      };
+        color: theme === 'light' ? 'gray' : 'white'
+    };
 
     const fetchCommunities = async () => {
         try {
@@ -38,31 +44,36 @@ const Leftbar = () => {
         fetchCommunities()
     }, [])
     return (
-        
-        <div className='pl-12 mt-20 text-sm fixed w-42 sm:w-15 md:w-30'style={colour} >
-            <div className='flex mt-2 bg-gray-300 pl-1 pr-1 pt-1 pb-1 rounded-lg'>
-                <div className='rounded-sm p-1 bg-gray cursor-pointer hover:bg-gray-300'>+</div>
-                <button className='ml-1 cursor-pointer text-center hover:bg-gray-300'><CreateSpace /></button>
-            </div>
-            {communities.map((comm,idx) => {
-                return (
-                    <Typography  >
-                    <div className='flex mt-5 cursor-pointer hover:bg-gray-300 items-center rounded-md mx-auto p-0.5' key={idx}>
-                        <img src={cooking} className='w-4 h-4 rounded-sm' />
-                        <p className='ml-1  cursor-pointer  color: rgb(40, 40, 41) rounded-sm pl-1 pr-1' onClick={() => navigate('/ComingSoon')} >{comm.name}</p>
-                    </div>
-                    </Typography>
-                )
-            })}
-            
+        <  >
+            <Card className="h-[calc(100vh-2rem)] w-full max-w-[10rem] shadow-xl shadow-blue-gray-900/5 mt-20 fixed" style={colour}>
+                <Typography variant="h5" p-1 text-md>+
+                    <CreateSpace />
+                </Typography>
+                <List>
+                    {communities.map((comm, idx) => {
+                        return (
+                            <ListItem key={idx}>
+                                <ListItemPrefix>
+                                    <img src={cooking} className="h-5 w-5" />
+                                </ListItemPrefix>
+                                {comm.name}
+                            </ListItem>
+                        )
+                    })}
+                </List>
+                <div>
             <hr className='mt-3' />
             <h1 className='mt-3 text-gray-400 text-sm'>About . Careers .</h1>
             <h1 className=' text-gray-400 text-sm'>Terms . Privacy .</h1>
             <h1 className=' text-gray-400 text-sm'>Acceptable Use</h1>
             <h1 className=' text-gray-400 text-sm'>Terms . Privacy .</h1>
-        </div>
-        
+            </div>
+            </Card>
+            
+        </>
+
     )
 }
 
 export default Leftbar
+

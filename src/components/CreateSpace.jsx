@@ -81,16 +81,6 @@ export default function CreateSpaceComponent() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-            {/* <div className="-mb-2" variant="h6">
-              Image URL
-              <div className="text-10">Provide an image URL for the space.</div>
-            </div>
-            <input
-              type="file"
-              id='images'
-              onChange={(e) => setImage(e.target.files[0])}
-              className="mb-2 mt-5"
-            /> */}
           </CardBody>
           <CardFooter className="pt-0">
             <button className="bg-blue-500 p-2 rounded-2xl ml-40 text-black" onClick={createSpace}>
