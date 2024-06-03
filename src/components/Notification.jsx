@@ -8,6 +8,7 @@ import {
   DialogFooter,
   Typography,
 } from "@material-tailwind/react";
+import { Notify } from "./Icons";
  
 export function Notification() {
   const [open, setOpen] = React.useState(false);
@@ -16,8 +17,8 @@ export function Notification() {
  
   return (
     <>
-      <h1></h1>
-      <img onClick={handleOpen} src={bell}/> 
+      <h1><Notify/></h1>
+      
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>
           <Typography variant="h5" color="blue-gray">

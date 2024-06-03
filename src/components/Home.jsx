@@ -14,13 +14,13 @@ const Home = () => {
   }
   return (
     <>
-    <div className='h-full w-full grid grid-cols-7 mx-auto gap-1' style={colour}>
+    <div className='grid grid-cols-7 mx-auto gap-1' style={colour}>
     <Navbar />
     <div className='col-span-1'></div>
         <div>
-        <Leftbar/>
+        <Leftbar />
         </div>
-        <div className='col-span-3'>
+        <div className='col-span-2'>
         <Rightbar/>
         </div>
         <div>
