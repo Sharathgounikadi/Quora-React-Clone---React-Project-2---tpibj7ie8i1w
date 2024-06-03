@@ -1,20 +1,39 @@
-import React from 'react'
-import adds from '../assets/Adds.jpg'
-import adds1 from '../assets/Adds1.jpg'
+import React, { useState, useEffect } from 'react';
+import adds from '../assets/Adds.jpg';
+import adds1 from '../assets/Adds1.jpg';
+
 const Adds = () => {
-  return (
-    <div className='ml-2 mt-20 border bg-gray-300 fixed sm:w-64 md:w-80'>
-        <div className='w-100 h-100'>
-        <img src={adds} className='w-80 h-50 pl-5 pt-2 pr-5' />
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    if (windowWidth < 1024) { // Adjust this value based on the Tailwind CSS breakpoint you want to use
+        return null;
+    }
+
+    return (
+        <div className='ml-2  border bg-gray-300 fixed right-24 top-24 sm:w-64 md:w-80'>
+            <div className='w-100 h-100'>
+                <img src={adds} className='w-80 h-50 pl-5 pt-2 pr-5' />
+            </div>
+            <div>
+                <img src={adds1} className='w-80 h-50 pl-5 pt-2 pr-5 pb-2' />
+            </div>
+            <div className='text-center border bg-blue-gray-50'>
+                Advertisement
+            </div>
         </div>
-        <div>
-        <img src={adds1} className='w-80 h-50 pl-5 pt-2 pr-5 pb-2' />
-        </div>
-        <div className='text-center border bg-blue-gray-50 '>
-            Advertisement
-        </div>
-    </div>
-  )
+    );
 }
 
-export default Adds
+export default Adds;
