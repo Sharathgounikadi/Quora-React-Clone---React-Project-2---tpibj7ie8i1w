@@ -106,7 +106,7 @@ const Rightbar = () => {
                   <h1 className='font-semibold mt-3 hover:bottom-3 cursor-pointer' onClick={() => handlePostOpen(post._id)}>{post?.title}</h1>
                   <h1 className='mt-2'>{post?.content}</h1>
                   <img src={post.images[0]} className='mt-3 w-full' />
-                  <GetComments />
+                  <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount}/>
                 </div>
               )
             })}
