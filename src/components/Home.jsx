@@ -16,7 +16,7 @@ const Home = () => {
     <>
     <div className='' style={colour}>
     <NavbarDefault />
-    <div className='flex items-center'> 
+    <div className='flex '> 
       <div>    
         <Leftbar />
         </div>  

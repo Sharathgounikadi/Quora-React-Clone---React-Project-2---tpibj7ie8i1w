@@ -45,7 +45,7 @@ const Leftbar = () => {
     }, [])
     return (
         <  >
-            <Card className="h-[calc(100vh-2rem)] w-full max-w-[10rem] shadow-xl shadow-blue-gray-900/5  bg-gray-400  fixed " style={colour}>
+            <Card className="h-[calc(100vh-2rem)] w-full max-w-[10rem] shadow-xl shadow-blue-gray-900/5  bg-gray-400 fixed top-20 ml-48" style={colour}>
                 <Typography variant="h5" p-1 text-md>+
                     <CreateSpace />
                 </Typography>
