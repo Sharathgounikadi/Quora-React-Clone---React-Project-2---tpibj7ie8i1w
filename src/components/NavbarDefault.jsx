@@ -128,7 +128,7 @@ const NavbarDefault = () => {
                                 }}
                             />
                             <Typography
-                                
+
                                 className="mr-4 cursor-pointer py-1.5 font-medium text-sm border border-spacing-md rounded-xl w-20"
                             >
                                 <Subscription />
@@ -165,39 +165,115 @@ const NavbarDefault = () => {
                         </div>
                     </div>
                 </div>
+                <MobileNav open={openNav}>
+                    <div className="container mx-auto">
+                        <div className="flex flex-col gap-x-2 sm:flex-row sm:items-center">
+                        <Typography
+                        as="a"
+                        href="#"
+                        className="mr-4 cursor-pointer py-1.5 font-medium"
+                    >
+                        <img src={quora} className='w-24 h-7 cursor-pointer' onClick={() => navigate('/home')} alt="Quora" />
+                    </Typography>
+                    <Typography
+                        as="a"
+                        href="#"
+                        className="mr-4 cursor-pointer py-1.5 font-medium"
+                    >
+                        <Link to="/home"><Home /></Link>
+                    </Typography>
+                    <Typography
+                        as="a"
+                        href="#"
+                        className="mr-4 cursor-pointer py-1.5 font-medium"
+                    >
+                        <Link to="/ComingSoon"><Post /></Link>
+                    </Typography>
+                    <Typography
+                        as="a"
+                        href="#"
+                        className="mr-4 cursor-pointer py-1.5 font-medium"
+                    >
+                        <Link to="/Answers"><Icons /></Link>
+                    </Typography>
+                    <Typography
+                        as="a"
+                        href="#"
+                        className="mr-4 cursor-pointer py-1.5 font-medium"
+                    >
+                        <Link to="/ComingSoon"><Spaces /></Link>
+                    </Typography>
+                    <Typography
+                        as="a"
+                        href="#"
+                        className="mr-4 cursor-pointer py-1.5 font-medium"
+                    >
+                        <Link to="/ComingSoon" ><Notification /></Link>
+                    </Typography>
+
+                    <div className="hidden items-center gap-x-2 lg:flex">
+                        <div className="relative flex w-full gap-2 md:w-max">
+                            <Input
+                                type="search"
+                                placeholder='Search Quora'
+                                value={query}
+                                onChange={handleSearch}
+                                containerProps={{
+                                    className: "min-w-[288px]",
+                                }}
+                                className=" !border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
+                                labelProps={{
+                                    className: "before:content-none after:content-none",
+                                }}
+                            />
+                            <Typography
+
+                                className="mr-4 cursor-pointer py-1.5 font-medium text-sm border border-spacing-md rounded-xl w-20"
+                            >
+                                <Subscription />
+                            </Typography>
+                            <Typography
+                                as="a"
+                                href="#"
+                                className="mr-4 cursor-pointer py-1.5 font-medium"
+                            >
+                                <ProfileMenu />
+                            </Typography>
+                            <Typography
+                                as="a"
+                                href="#"
+                                className="mr-4 cursor-pointer py-1.5 font-medium"
+                            >
+                                <LanguageMenu />
+                            </Typography>
+                            <Typography
+                                className="mr-4 cursor-pointer py-1.5 font-medium"
+                            >
+                                <h1 className='bg-red-800 rounded-full text-sm text-white w-36 pl-6 ml-6 pt-2 h-9' ><CreatePost /></h1>
+                            </Typography>
+                            <div className="relative w-full gap-2 md:w-max">
+                            <Input
+                                type="search"
+                                placeholder='Search Quora'
+                                value={query}
+                                onChange={handleSearch}
+                                containerProps={{
+                                    className: "min-w-[288px]",
+                                }}
+                                className=" !border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
+                                labelProps={{
+                                    className: "before:content-none after:content-none",
+                                }}
+                            />
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </MobileNav>
             </Navbar>
-            {/* <div className='fixed flex z-10 bg-white pl-20 pt-4 shadow-md h-14 w-full sm:w-64 md:w-80 lg:w-full' style={colour}>
-          <div className='flex mx-auto gap-2 w-full sm:w-2/4 md:w-3/4 lg:w-2/4 xl:w-3/4 '>
-            <div className='flex gap-5' >
-          <img src={quora} className='w-24 h-7 cursor-pointer' onClick={() => navigate('/home')} alt="Quora" />
-          <Link to="/home"><Home /></Link>
-          <Link to="/ComingSoon"><Post /></Link>
-          <Link to="/Answers"><Icons /></Link>
-          <Link to="/ComingSoon"><Spaces /></Link>
-          <Link to="/ComingSoon" ><Notification /></Link>
-        </div>
-        <input
-          className='ml-5 w-50 h-8 border border-spacing-1 rounded-lg'
-          placeholder='Search Quora'
-          value={query}
-          onChange={handleSearch}
-        />
-            <h1 className='text-sm border border-spacing-1 rounded-full p-2 ml-5 h-9'><Subscription /></h1>
-            <div><ProfileMenu /></div>
-            <div><LanguageMenu /></div>
-            <h1 className='bg-red-800 rounded-full text-sm text-white w-36 pl-6 ml-6 pt-2 h-9' ><CreatePost /></h1>
-            {query && searchResults.length > 0 && (
-              <div className="absolute top-12 left-44 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll">
-                {searchResults.map((result, index) => (
-                  <div key={index} className="p-2 border-b last:border-b-0 ">
-                    <h2 className='font-bold'>{result?.title}</h2>
-                    <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div> */}
+         
 
         </>
     );
