@@ -5,6 +5,7 @@
 
 @media screen and (max-width: 420px) {
   .comments-container {
-    flex-direction: column; /* Change to column on small screens */
+    display: flex;
+    flex-direction: column; 
   }
 }

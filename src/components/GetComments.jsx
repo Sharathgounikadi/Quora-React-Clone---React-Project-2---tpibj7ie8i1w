@@ -95,9 +95,9 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
   return (
     <>
 
-      <div className="flex flex-col gap-2 sm:flex-row justify-between items-center p-3" style={colour}>
-        <div className="flex flex-col items-center sm:flex-row gap-2">
-          <div className=" flex">
+      <div className="flex flex-col gap-2 sm:flex-row justify-between items-center p-3 comments-container" style={colour}>
+        <div className="comments-container flex flex-col items-center sm:flex-row gap-2 ">
+          <div className="flex">
             <button className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 
               disabled:shadow-none disabled:pointer-events-none text-xs px-4 rounded-lg border hover:opacity-75 focus:ring
               focus:ring-white/50 active:opacity-[0.85] rounded-r-none border-r-0 flex items-center border-gray-300
