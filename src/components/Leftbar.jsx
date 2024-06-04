@@ -19,10 +19,11 @@ const Leftbar = () => {
     const [communities, setCommunities] = useState([]);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-    const colour = {
-        backgroundColor: theme === 'light' ? 'white' : 'black',
-        color: theme === 'light' ? 'gray' : 'white'
-    };
+    const postCardStyle = {
+        backgroundColor: theme === 'light' ? 'white' : 'gray',
+        color: theme === 'light' ? 'black' : 'white',
+        // borderColor: theme === 'light' ? '#ddd' : '#444'
+      };
 
     const fetchCommunities = async () => {
         try {
@@ -61,7 +62,7 @@ const Leftbar = () => {
 
     return (
         <>
-            <Card className="h-[calc(100vh-15rem)] w-full max-w-[15rem]  p-5 clr-gray fixed top-24 ml-44" style={colour}>
+            <Card className="h-[calc(100vh-15rem)] w-full max-w-[15rem]  p-5 clr-gray fixed top-24 ml-44" style={postCardStyle}>
                 <Typography variant="h5" p-1 text-md className='text-black'>+
                     <CreateSpace />
                 </Typography>

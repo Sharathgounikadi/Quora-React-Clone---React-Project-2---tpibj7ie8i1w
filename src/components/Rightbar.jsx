@@ -26,9 +26,9 @@ const Rightbar = () => {
   };
 
   const postCardStyle = {
-    backgroundColor: theme === 'light' ? 'white' : '#333',
+    backgroundColor: theme === 'light' ? 'white' : 'gray',
     color: theme === 'light' ? 'black' : 'white',
-    borderColor: theme === 'light' ? '#ddd' : '#444'
+    // borderColor: theme === 'light' ? '#ddd' : '#444'
   };
 
   const fetchPosts = async () => {
@@ -118,7 +118,6 @@ const Rightbar = () => {
                   ) : (
                     ""
                   )}
-
                   <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} />
                 </div>
               )
