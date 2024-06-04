@@ -118,7 +118,7 @@ const Rightbar = () => {
                   ) : (
                     ""
                   )}
-                  <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} />
+                  <GetComments className="getComments" postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} />
                 </div>
               )
             })}
