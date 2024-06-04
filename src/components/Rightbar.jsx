@@ -28,7 +28,6 @@ const Rightbar = () => {
   const postCardStyle = {
     backgroundColor: theme === 'light' ? 'white' : 'gray',
     color: theme === 'light' ? 'black' : 'white',
-    // borderColor: theme === 'light' ? '#ddd' : '#444'
   };
 
   const fetchPosts = async () => {

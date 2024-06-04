@@ -10,7 +10,7 @@ import CreatePost from './CreatePost';
 import { Icons, Post, Home, Spaces, Notify, Quora } from './Icons';
 import { useUser } from './UserProvider';
 import {
-    div,
+    Navbar,
     MobileNav,
     Typography,
     Button,
@@ -28,7 +28,6 @@ const NavbarDefault = () => {
     const postCardStyle = {
         backgroundColor: theme === 'light' ? 'white' : 'gray',
         color: theme === 'light' ? 'black' : 'white',
-        // borderColor: theme === 'light' ? '#ddd' : '#444'
       };
 
     const [openNav, setOpenNav] = React.useState(false);
@@ -68,7 +67,7 @@ const NavbarDefault = () => {
 
     return (
         <>
-            <div className="mx-auto max-w-screen-xl px-4 py-2 lg:px-8 lg:py-4 clr-gray fixed top-0 left-0 right-0 z-50" style={postCardStyle}>
+            <Navbar className="mx-auto max-w-screen-xl px-4 py-2 lg:px-8 lg:py-4 fixed top-0 left-0 right-0 z-50" style={postCardStyle}>
                 <div className="container mx-auto flex flex-wrap items-center justify-between text-gray-900">
                     <Typography
                         as="a"
@@ -273,7 +272,7 @@ const NavbarDefault = () => {
                     </div>
                     </div>
                 </MobileNav>
-            </div>
+            </Navbar>
         </>
     );
 };

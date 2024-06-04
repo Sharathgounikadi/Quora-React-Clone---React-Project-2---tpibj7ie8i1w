@@ -22,7 +22,6 @@ const Leftbar = () => {
     const postCardStyle = {
         backgroundColor: theme === 'light' ? 'white' : 'gray',
         color: theme === 'light' ? 'black' : 'white',
-        // borderColor: theme === 'light' ? '#ddd' : '#444'
       };
 
     const fetchCommunities = async () => {
@@ -62,7 +61,7 @@ const Leftbar = () => {
 
     return (
         <>
-            <Card className="h-[calc(100vh-15rem)] w-full max-w-[15rem]  p-5 clr-gray fixed top-24 ml-44" style={postCardStyle}>
+            <Card className="h-[calc(100vh-15rem)] w-full max-w-[15rem]  p-5  fixed top-24 ml-44" style={postCardStyle}>
                 <Typography variant="h5" p-1 text-md className='text-black'>+
                     <CreateSpace />
                 </Typography>
