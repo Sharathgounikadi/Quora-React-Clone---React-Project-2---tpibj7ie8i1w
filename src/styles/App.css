@@ -1,3 +1,10 @@
 .clr-gray{
-  background-color: rgb(241,241,241) !important;
+  background-color: rgb(241,241,241);
+}
+
+
+@media screen and (max-width: 420px) {
+  .comments-container {
+    flex-direction: column; /* Change to column on small screens */
+  }
 }

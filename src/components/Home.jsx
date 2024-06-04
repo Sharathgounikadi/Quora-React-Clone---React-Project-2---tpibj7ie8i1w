@@ -14,15 +14,15 @@ const Home = () => {
   
   return (
     <>
-    <div className='' style={colour}>
+    <div className='clr-gray' style={colour}>
     <NavbarDefault />
-    <div className='flex '> 
+    <div className='flex'> 
       <div>    
         <Leftbar />
         </div>  
         <Rightbar />      
         </div>
-        <div>
+        <div >
         <Adds/>
         </div>
     </div>
