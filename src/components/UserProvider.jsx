@@ -11,6 +11,8 @@ export const UserProvider = ({ children }) => {
     // const isAuthenticated = !!localStorage.getItem('token'); // check if the token exists
     // return isAuthenticated ? children : <Navigate to="/" />;
 
+    
+
     const [theme, setTheme] = useState('light');
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme');

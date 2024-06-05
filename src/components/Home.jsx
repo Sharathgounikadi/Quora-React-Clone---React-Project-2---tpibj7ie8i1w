@@ -14,7 +14,7 @@ const Home = () => {
   
   return (
     <>
-    <div  style={colour}>
+    <div style={colour}>
     <NavbarDefault />
     <div className='flex'> 
       <div>    

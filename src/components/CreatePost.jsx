@@ -15,6 +15,7 @@ export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
+  
 
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false);
@@ -190,7 +191,7 @@ export default function CreatePost() {
 
   return (
     <div>
-      <h1 onClick={openModal} >Add Question</h1>
+      <h1 onClick={openModal}>Add Question</h1>
       <Dialog open={show} handler={closeModal} size="sm">
         <DialogHeader> 
           <Tabs value="Add Question" >

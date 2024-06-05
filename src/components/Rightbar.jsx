@@ -82,7 +82,7 @@ const Rightbar = () => {
               <h1 className=''>|</h1>
               <div className=' flex'>
                 <PostImage />
-                <Link className='' to="/ComingSoon">Post</Link>
+                <Link className='' ><CreatePost/></Link>
               </div>
             </div>
           </div>

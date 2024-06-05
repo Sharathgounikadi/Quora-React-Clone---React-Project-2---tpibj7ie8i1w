@@ -41,7 +41,7 @@ export default function CreateSpaceComponent() {
 
   return (
     <>
-      <button className='p-2 flex items-center hover:bg-gray-400 bg-gray-200 rounded-lg text-sm ml-2 ' onClick={handleOpen}>+ Create Space</button>
+      <div className='p-2 flex items-center hover:bg-gray-400 bg-gray-200 rounded-lg text-sm' onClick={handleOpen}>+ Create Space</div>
       <Dialog
         size="xs"
         open={open}
@@ -60,7 +60,7 @@ export default function CreateSpaceComponent() {
             >
               Share your interests, curate content, host discussions, and more.
             </Typography>
-            <div className="-mb-2" variant="h6">
+            <div className="-mb-2" variant="div">
               Name*
               <div className="text-5">This can be changed in Space settings.</div>
             </div>
@@ -71,7 +71,7 @@ export default function CreateSpaceComponent() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <div className="-mb-2" variant="h6">
+            <div className="-mb-2" variant="div">
               Brief description
               <div className="text-10">Include a few keywords to show people what to expect if they join.</div>
             </div>
@@ -83,9 +83,9 @@ export default function CreateSpaceComponent() {
             />
           </CardBody>
           <CardFooter className="pt-0">
-            <button className="bg-blue-500 p-2 rounded-2xl ml-40 text-black" onClick={createSpace}>
+            <div className="bg-blue-500 p-2 rounded-2xl ml-40 text-black" onClick={createSpace}>
               Create
-            </button>
+            </div>
           </CardFooter>
         </Card>
       </Dialog>
