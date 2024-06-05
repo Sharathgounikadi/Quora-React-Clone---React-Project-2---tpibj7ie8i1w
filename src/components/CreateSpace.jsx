@@ -41,7 +41,7 @@ export default function CreateSpaceComponent() {
 
   return (
     <>
-      <button className='p-2 flex items-center hover:bg-gray-400 bg-gray-200 rounded-lg text-sm' onClick={handleOpen}>+ Create Space</button>
+      <button className='p-2 flex items-center hover:bg-gray-400 bg-gray-200 rounded-lg text-sm ml-2 ' onClick={handleOpen}>+ Create Space</button>
       <Dialog
         size="xs"
         open={open}

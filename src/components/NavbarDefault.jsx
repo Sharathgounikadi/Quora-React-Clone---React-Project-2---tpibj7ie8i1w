@@ -67,7 +67,7 @@ const NavbarDefault = () => {
 
     return (
         <>
-            <Navbar className="mx-auto max-w-screen-xl  lg:px-8 lg:py-4 fixed top-0 left-0 right-0 z-50 clr-gray" style={postCardStyle}>
+            <Navbar className="mx-auto max-w-screen-xl lg:px-8 lg:py-4 fixed top-0 left-0 right-0 z-50 clr-gray" style={postCardStyle}>
                 <div className="container mx-auto flex flex-wrap items-center justify-between text-gray-900">
                     <Typography
                         as="a"

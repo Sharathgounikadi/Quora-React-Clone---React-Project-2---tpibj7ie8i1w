@@ -61,16 +61,16 @@ const Leftbar = () => {
 
     return (
         <>
-            <div className="h-[calc(100vh-10rem)] max-w-[8rem]  clr-gray fixed top-24 ml-56" style={postCardStyle}>
+            <div className="h-[calc(100vh-10rem)] max-w-[8rem]  clr-gray fixed top-24 ml-80 p-1" style={postCardStyle}>
                 <Typography variant="h5" p-1 className='text-black'>  
                     <CreateSpace />
                 </Typography>
                 <List>
                     {communities.map((comm, idx) => (
-                        <ListItem key={idx} className='text-sm hover:bg-gray-300 pt-2 flex gap-2'>
+                        <ListItem key={idx} className='text-sm hover:bg-gray-300 pt-2 flex gap-2 text-wrap'>
                             {/* <ListItemPrefix className='flex gap-2 items-center'> */}
-                                <img src={cooking} className="h-5 w-5" />
-                               <div className='w-32 hover:w-32'>{comm.name}</div> 
+                                <img src={cooking} className="h-4 w-4" />
+                               <div className='w-32 text-wrap'>{comm.name}</div> 
                             {/* </ListItemPrefix> */}
                             
                         </ListItem>

@@ -80,7 +80,7 @@ const Rightbar = () => {
                 <h1 className='' onClick={() => navigate('/Answers')}>Answer</h1>
               </div>
               <h1 className=''>|</h1>
-              <div className='flex'>
+              <div className=' flex'>
                 <PostImage />
                 <Link className='' to="/ComingSoon">Post</Link>
               </div>
@@ -92,7 +92,7 @@ const Rightbar = () => {
             {posts.map((post, index) => {
               const authorInitial = post.author?.name ? post.author?.name.charAt(0).toUpperCase() : '';
               return (
-                <div className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm xl:w-[38rem] lg:w-[30rem] md:w-[26rem] w-full " key={index} style={postCardStyle}>
+                <div className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm xl:w-[38rem] lg:w-[30rem] md:w-[26rem] w-full" key={index} style={postCardStyle}>
                   <div className='flex items-center p-2'>
                     {post.channel?.image ? (
                       <img className="w-8 h-8 rounded-full" src={post.channel?.image} />
