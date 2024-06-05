@@ -74,8 +74,8 @@ const NavbarDefault = () => {
 
     return (
         <>
-            <Navbar className="mx-auto max-w-screen-xl fixed top-0 left-0 right-0 z-20 h-16 w-3/4" style={postCardStyle}>
-                <div className="container mx-auto flex flex-wrap  text-gray-900 mb-4">
+            <Navbar className="mx-auto max-w-screen-xl lg:max-w-full fixed top-0 left-0 right-0 z-20 h-16" style={postCardStyle}>
+                <div className="container mx-auto flex flex-wrap justify-center text-gray-900 mb-4 ml-32 gap-2">
                     <Typography
                         as="a"
                         href="#"
@@ -121,7 +121,7 @@ const NavbarDefault = () => {
                         </Typography>
                     </Link>
 
-                    <div className="hidden items-center gap-x-2 lg:flex mb-10">
+                    <div className="hidden items-center gap-x-2 lg:flex">
                         <div className="relative flex w-full md:w-max ">
                             <Input
                                 type="search"
@@ -209,7 +209,7 @@ const NavbarDefault = () => {
                                 <Link to="/ComingSoon">
                                     <Notification />
                                 </Link>
-                                <div className="hidden lg:flex items-center gap-2">
+                                <div className="hidden items-center gap-2">
                                     <Input
                                         type="search"
                                         placeholder="Search Quora"
