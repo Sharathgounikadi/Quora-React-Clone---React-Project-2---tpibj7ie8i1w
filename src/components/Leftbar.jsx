@@ -5,7 +5,7 @@ import CreateSpace from './CreateSpace';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserProvider';
 import {
-    Card,
+    div,
     Typography,
     List,
     ListItem,
@@ -61,13 +61,13 @@ const Leftbar = () => {
 
     return (
         <>
-            <Card className="h-[calc(100vh-10rem)] w-full max-w-[15rem]  p-5  fixed top-24 ml-48" style={postCardStyle}>
-                <Typography variant="h5" p-1 text-md className='text-black'>+
+            <div className="h-[calc(100vh-10rem)] w-full max-w-[15rem] pt-5 clr-gray fixed top-24 ml-56" style={postCardStyle}>
+                <Typography variant="h5" p-1 className='text-black'>  
                     <CreateSpace />
                 </Typography>
                 <List>
                     {communities.map((comm, idx) => (
-                        <ListItem key={idx}>
+                        <ListItem key={idx} className='text-sm hover:bg-gray-300 p-2'>
                             <ListItemPrefix>
                                 <img src={cooking} className="h-5 w-5" />
                             </ListItemPrefix>
@@ -77,12 +77,12 @@ const Leftbar = () => {
                 </List>
                 <div>
                     <hr className='mt-3' />
-                    <h1 className='mt-3 text-gray-400 text-sm'>About . Careers .</h1>
-                    <h1 className=' text-gray-400 text-sm'>Terms . Privacy .</h1>
-                    <h1 className=' text-gray-400 text-sm'>Acceptable Use</h1>
-                    <h1 className=' text-gray-400 text-sm'>Terms . Privacy .</h1>
+                    <h1 className='mt-3 text-gray-500 text-sm'>About . Careers .</h1>
+                    <h1 className=' text-gray-500 text-sm'>Terms . Privacy .</h1>
+                    <h1 className=' text-gray-500 text-sm'>Acceptable Use</h1>
+                    <h1 className=' text-gray-500 text-sm'>Terms . Privacy .</h1>
                 </div>
-            </Card>
+            </div>
         </>
     );
 }

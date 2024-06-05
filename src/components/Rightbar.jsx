@@ -33,7 +33,7 @@ const Rightbar = () => {
   const fetchPosts = async () => {
     const dataUser = localStorage.getItem("token");
     try {
-      const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post', {
+      const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=100', {
         headers: {
           'projectID': 'tpibj7ie8i1w',
           'Authorization': `Bearer ${dataUser}`
@@ -59,18 +59,18 @@ const Rightbar = () => {
   return (
     <>
       <div className='mx-auto'>
-      <div className='mt-2.5 rounded-sm '>
-      <div className='p-2 border border-spacing-1 mt-20' style={colour}>
-          <div className="relative flex mt-2 text-gray-700 bg-clip-border rounded-sm xl:w-[38rem] lg:w-[30rem] md:w-[26rem] w-full " >
+      <div className='mt-2.5 rounded-sm'>
+      <div className='border border-spacing-1 mt-24' style={colour}>
+          <div className="relative flex text-gray-700 bg-clip-border rounded-sm xl:w-[38rem] lg:w-[30rem] md:w-[26rem]" >
               <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
               <input
                 placeholder='What do you want to ask or share?'
-                className='p-1 ml-4 placeholder-gray-600 border border-spacing-1 rounded-full w-full'
+                className='p-1 ml-4 border border-spacing-1 rounded-full w-full'
                 style={inputStyle}
               />
             </div>
-            <div className='flex items-center gap-10 p-2'>
-              <div className='flex items-center'>
+            <div className='flex items-center gap-16 p-2'>
+              <div className='flex items-center ml-4'>
                 <Ask />
                 <h1 className='flex items-center'><CreatePost /></h1>
               </div>
@@ -118,10 +118,8 @@ const Rightbar = () => {
                     </div>
                   ) : (
                     ""
-                  )}
-                  
-                    <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} />
-                
+                  )}                 
+                    <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} />                
                 </div>
               )
             })}
