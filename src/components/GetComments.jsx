@@ -85,6 +85,7 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
       setData(prevData => [...prevData, response.data.data]);
       setPostComment(''); // Clear the input field
       toast.success('Comment added successfully');
+      window.location.reload();
     } catch (error) {
       console.error('Error adding comment:', error);
       toast.error('Error adding comment');
@@ -96,6 +97,7 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
       await axios.delete(`https://academics.newtonschool.co/api/v1/quora/comment/${id}`, { headers });
       setData(prevData => prevData.filter(comment => comment._id !== id));
       toast.success('Comment deleted successfully');
+       
     } catch (error) {
       console.error('Error deleting comment:', error);
       toast.error('Error deleting comment');
@@ -171,7 +173,7 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
       </div>
       {toggleComments &&
         <div className='flex flex-col'>
-          <div className='flex justify-between'>
+          <div className='flex justify-between p-3'>
             <input type="text" value={postComment} className='border border-gray-500 rounded-2xl ' onChange={(e) => { setPostComment(e.target.value) }} />
             <button onClick={handleAddComment} className='bg-blue-300 rounded-2xl p-2 ml-5'>Add Comment</button>
           </div>
@@ -181,7 +183,7 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
                 <div className='flex-row gap-1'>
                   <h1 className='text-lg pl-5'>{comment?.author_details?.name}</h1>
                   <h1 className='pl-5 text-gray-800'>{comment?.content}</h1></div>
-                {(userInfo === comment?.author_details?._id) && <div className='text-red-900 cursor-pointer' onClick={() => handleDeleteComment(comment?._id)}>DELETE</div>}
+                {(userInfo === comment?.author_details?._id) && <div className=' cursor-pointer p-2 m-2 bg-red-500 text-white rounded-full text-center' onClick={() => handleDeleteComment(comment?._id)}>DELETE</div>}
               </div>
             ))}
           </div>
