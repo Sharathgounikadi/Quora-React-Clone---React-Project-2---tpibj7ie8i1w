@@ -60,12 +60,12 @@ const Rightbar = () => {
     <>
       <div className='mx-auto'>
       <div className='mt-2.5 rounded-sm'>
-      <div className='border border-spacing-1 mt-24' style={colour}>
+      <div className='border border-spacing-1 mt-24 pt-2' style={colour}>
           <div className="relative flex text-gray-700 bg-clip-border rounded-sm xl:w-[38rem] lg:w-[30rem] md:w-[26rem]" >
               <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
               <input
                 placeholder='What do you want to ask or share?'
-                className='p-1 ml-4 border border-spacing-1 rounded-full w-full'
+                className='p-1 ml-6 border border-spacing-1 rounded-full w-full mr-4'
                 style={inputStyle}
               />
             </div>
@@ -80,7 +80,7 @@ const Rightbar = () => {
                 <h1 className='' onClick={() => navigate('/Answers')}>Answer</h1>
               </div>
               <h1 className=''>|</h1>
-              <div className=' flex'>
+              <div className='flex'>
                 <PostImage />
                 <Link className='' to="/ComingSoon">Post</Link>
               </div>
