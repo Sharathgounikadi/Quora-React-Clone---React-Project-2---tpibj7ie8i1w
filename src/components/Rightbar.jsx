@@ -33,7 +33,7 @@ const Rightbar = () => {
   const fetchPosts = async () => {
     const dataUser = localStorage.getItem("token");
     try {
-      const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=10', {
+      const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post', {
         headers: {
           'projectID': 'tpibj7ie8i1w',
           'Authorization': `Bearer ${dataUser}`
