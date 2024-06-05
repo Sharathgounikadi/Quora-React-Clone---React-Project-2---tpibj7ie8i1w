@@ -61,7 +61,7 @@ const Leftbar = () => {
 
     return (
         <>
-            <div className="h-[calc(100vh-10rem)] max-w-[8rem]  clr-gray fixed top-24 ml-80 " style={postCardStyle}>
+            <div className="h-[calc(100vh-10rem)] max-w-[8rem]  clr-gray fixed top-20 ml-80 " style={postCardStyle}>
                 <Typography variant="h5" p-1 className='text-black'>  
                     <CreateSpace />
                 </Typography>

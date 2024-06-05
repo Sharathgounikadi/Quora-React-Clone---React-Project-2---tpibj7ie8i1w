@@ -2,6 +2,11 @@
   background-color: rgb(240, 240, 240) !important;
 }
 
+.clr-white{
+  background-color: white !important;
+  width: 100%;
+}
+
 
 @media screen and (max-width: 420px) {
   .comments-container {

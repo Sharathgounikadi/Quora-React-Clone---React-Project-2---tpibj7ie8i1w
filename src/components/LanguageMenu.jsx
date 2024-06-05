@@ -8,6 +8,7 @@ import {
     Avatar,
     div,
   } from "@material-tailwind/react";
+import { Globe } from './Icons';
   
 
 const LanguageMenu = () => {
@@ -16,11 +17,12 @@ const LanguageMenu = () => {
         <Menu>
           <MenuHandler>
             <img
-              variant="circular"
-              alt="tania andrew"
+              // variant="circular"
+              // alt="tania andrew"
               className="cursor-pointer w-7 h-7 rounded-full ml-4 mt-1"
               src={globe}
             />
+            {/* <Globe/> */}
           </MenuHandler>
           <MenuList>
             <MenuItem className="flex items-center gap-2">

@@ -7,7 +7,7 @@ import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import { Notification } from './Notification';
 import CreatePost from './CreatePost';
-import { Icons, Post, Home, Spaces, Notify, Quora } from './Icons';
+import { Icons, Post, Home, Spaces, Notify, Quora,Globe } from './Icons';
 import { useUser } from './UserProvider';
 import {
     Navbar,
@@ -67,8 +67,8 @@ const NavbarDefault = () => {
 
     return (
         <>
-            <Navbar className="mx-auto max-w-screen-xl lg:px-8 lg:py-4 fixed top-0 left-0 right-0 z-50 clr-gray h-16" style={postCardStyle}>
-                <div className="container mx-auto flex flex-wrap items-start text-gray-900">
+            <Navbar className="mx-auto max-w-screen-xl lg:px-8 lg:py-4 fixed top-0 left-0 right-0 z-20 h-16 " style={postCardStyle}>
+                <div className="container mx-auto flex flex-wrap  text-gray-900 mb-4">
                     <Typography
                         as="a"
                         href="#"
@@ -112,15 +112,15 @@ const NavbarDefault = () => {
                         <Link to="/ComingSoon" ><Notification /></Link>
                     </Typography>
 
-                    <div className="hidden  gap-x-2 lg:flex">
-                        <div className="relative flex w-full md:w-max mb-10">
+                    <div className="hidden items-center gap-x-2 lg:flex mb-10">
+                        <div className="relative flex w-full md:w-max ">
                             <Input
                                 type="search"
                                 placeholder='Search Quora'
                                 value={query}
                                 onChange={handleSearch}
                                 containerProps={{
-                                    className: "min-w-[288px] mt-1",
+                                    className: "min-w-[260px] mt-1",
                                 }}
                                 className=" !border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
                                 labelProps={{
@@ -132,26 +132,26 @@ const NavbarDefault = () => {
                             </div>
                             <Typography
 
-                                className="mr-3 ml-3 cursor-pointer py-1.5 font-medium text-sm border border-spacing-md rounded-xl w-20"
+                                className=" ml-3 h-10 cursor-pointer py-1.5 font-medium text-sm border border-spacing-lg rounded-full flex items-center roun "
                             >
                                 <Subscription />
                             </Typography>
                             <Typography
                                 as="a"
                                 href="#"
-                                className="mr-3 cursor-pointer py-1.5 font-medium"
+                                className="mr-3 cursor-pointer  font-medium rounded-full"
                             >
                                 <ProfileMenu />
                             </Typography>
                             <Typography
                                 as="a"
                                 href="#"
-                                className="mr-3 cursor-pointer py-1.5 font-medium"
+                                className="mr-3 cursor-pointer font-medium"
                             >
                                 <LanguageMenu />
                             </Typography>
                             <Typography
-                                className="mr-4 cursor-pointer py-1.5 font-medium"
+                                className="mr-4 cursor-pointer font-medium"
                             >
                                 <h1 className='bg-red-800 rounded-full text-sm text-white w-36 pl-6 ml-6 pt-2 h-9' ><CreatePost /></h1>
                             </Typography>

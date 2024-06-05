@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Avatar from 'react-avatar';
 import axios from 'axios';
-import { Link, useNavigate } from "react-router-dom";
+import { div, useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
 import CreatePost from './CreatePost';
 import { useUser } from './UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
 import { Ask, Answer, PostImage } from './Icons';
+import AddPost from './AddPost';
+
 
 
 const Rightbar = () => {
@@ -60,7 +62,7 @@ const Rightbar = () => {
     <>
       <div className='mx-auto'>
       <div className='mt-2.5 rounded-sm'>
-      <div className='border border-spacing-1 mt-24 pt-2' style={colour}>
+      <div className='border border-spacing-1 mt-20 pt-2' style={colour}>
           <div className="relative flex text-gray-700 bg-clip-border rounded-sm xl:w-[38rem] lg:w-[30rem] md:w-[26rem]" >
               <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
               <input
@@ -82,7 +84,7 @@ const Rightbar = () => {
               <h1 className=''>|</h1>
               <div className=' flex'>
                 <PostImage />
-                <Link className='' ><CreatePost/></Link>
+                <div className='' ><AddPost/></div>
               </div>
             </div>
           </div>
