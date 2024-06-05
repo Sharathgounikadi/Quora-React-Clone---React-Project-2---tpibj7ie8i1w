@@ -7,7 +7,7 @@ import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import { Notification } from './Notification';
 import CreatePost from './CreatePost';
-import { Icons, Post, Home, Spaces, Notify, Quora,Globe } from './Icons';
+import { Icons, Post, Home, Spaces, Notify, Quora, Globe } from './Icons';
 import { useUser } from './UserProvider';
 import {
     Navbar,
@@ -16,6 +16,7 @@ import {
     Button,
     IconButton,
     Input,
+    Tooltip,
 } from "@material-tailwind/react";
 
 
@@ -67,8 +68,8 @@ const NavbarDefault = () => {
 
     return (
         <>
-            <Navbar className="mx-auto max-w-screen-xl lg:px-8 lg:py-4 fixed top-0 left-0 right-0 z-20 h-16 " style={postCardStyle}>
-                <div className="container mx-auto flex flex-wrap  text-gray-900 mb-4">
+            <Navbar className="mx-auto max-w-screen-xl lg:px-8 lg:py-4 fixed top-0 left-0 right-0 z-20 h-16" style={postCardStyle}>
+                <div className="container mx-auto flex flex-wrap  text-gray-900 mb-4 gap-5">
                     <Typography
                         as="a"
                         href="#"
@@ -81,7 +82,7 @@ const NavbarDefault = () => {
                         href="#"
                         className="mr-4 cursor-pointer py-1.5 font-medium"
                     >
-                        <Link to="/home"><Home /></Link>
+                        <Link to="/home"><Tooltip title="Home"><Home /></Tooltip></Link>
                     </Typography>
                     <Typography
                         as="a"
@@ -104,14 +105,15 @@ const NavbarDefault = () => {
                     >
                         <Link to="/ComingSoon"><Spaces /></Link>
                     </Typography>
-                    <Typography
-                        as="a"
-                        href="#"
-                        className="mr-4 cursor-pointer py-1.5 font-medium"
-                    >
-                        <Link to="/ComingSoon" ><Notification /></Link>
-                    </Typography>
-
+                    {/* <Link to="/ComingSoon">
+                        <Typography
+                            as="span"
+                            className="mr-4 cursor-pointer py-1.5 font-medium"
+                        >
+                            <Notification />
+                        </Typography>
+                    </Link> */}
+                    <div><Notification/></div>
                     <div className="hidden items-center gap-x-2 lg:flex mb-10">
                         <div className="relative flex w-full md:w-max ">
                             <Input
@@ -120,7 +122,7 @@ const NavbarDefault = () => {
                                 value={query}
                                 onChange={handleSearch}
                                 containerProps={{
-                                    className: "min-w-[260px] mt-1",
+                                    className: "min-w-[288px]",
                                 }}
                                 className=" !border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
                                 labelProps={{
@@ -134,7 +136,9 @@ const NavbarDefault = () => {
 
                                 className=" ml-3 h-10 cursor-pointer py-1.5 font-medium text-sm border border-spacing-lg rounded-full flex items-center roun "
                             >
-                                <Subscription />
+                                <Tooltip title="Delete">
+                                    <Subscription />
+                                </Tooltip>
                             </Typography>
                             <Typography
                                 as="a"

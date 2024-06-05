@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
-import { Dialog, DialogHeader, DialogBody, DialogFooter, h1, Input, Textarea } from "@material-tailwind/react";
 import {
   Tabs,
   TabsHeader,
   TabsBody,
   Tab,
   TabPanel,
+  Dialog, DialogHeader, Input, Textarea
 } from "@material-tailwind/react";
 
 export default function CreatePost() {
