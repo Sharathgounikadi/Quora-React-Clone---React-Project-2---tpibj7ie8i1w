@@ -19,9 +19,10 @@ const Subscription = () => {
 
   return (
     <>
-      <div onClick={handleOpen} className="flex items-center rounded-2xl w-12 ml-5 h-2 ">Try Quora</div>
+    
+      <div onClick={handleOpen} className="p-2">Try Quora+</div>
     <Dialog size="xs" open={open} handler={handleOpen} > 
-        <DialogHeader className="justify-between">
+        <DialogHeader className="">
           <div>
             <Typography variant="h5" color="blue-gray">
               Connect a Wallet
@@ -127,6 +128,7 @@ const Subscription = () => {
           </div>
         </DialogFooter>                
       </Dialog>
+      
     </>
   );
 }
