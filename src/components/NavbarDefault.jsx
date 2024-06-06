@@ -28,9 +28,9 @@ const NavbarDefault = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
     const postCardStyle = {
         backgroundColor: theme === 'light' ? 'white' : 'gray',
@@ -90,7 +90,7 @@ const NavbarDefault = () => {
                     >
                         <Link to="/home"><Tooltip title="Home"><Home /></Tooltip></Link>
                     </Typography>
-                    
+
                     <Typography
                         as="a"
                         href="#"
@@ -150,7 +150,7 @@ const NavbarDefault = () => {
                             <Typography
                                 as="a"
                                 href="#"
-                                className="mr-3 cursor-pointer  font-medium rounded-full"
+                                className="mr-3 cursor-pointer font-medium rounded-full"
                             >
                                 <ProfileMenu />
                             </Typography>
@@ -164,7 +164,7 @@ const NavbarDefault = () => {
                             <Typography
                                 className="mr-4 cursor-pointer font-medium"
                             >
-                                <h1 className='bg-red-800 rounded-full text-sm text-white w-36 pl-6 ml-6 pt-2 h-9' ><CreatePost /></h1>
+                                <h1 className='bg-red-800 rounded-full text-sm text-white w-36 pl-6 ml-5 pt-2 h-9' ><CreatePost /></h1>
                             </Typography>
                             {query && searchResults.length > 0 && (
                                 <div className="absolute top-12 left-44 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll">
@@ -190,10 +190,20 @@ const NavbarDefault = () => {
                                     alt="Quora"
                                 />
                                 <div className="sm:hidden">
-                                    <ProfileMenu />
+                                    <button onClick={toggleMenu} className="focus:outline-none">
+                                        <svg
+                                            className="w-6 h-6"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
-                            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-2 w-full sm:w-auto">
+                            <div className={`flex flex-col sm:flex-row items-center gap-4 sm:gap-2 w-full sm:w-auto ${isMenuOpen ? 'flex' : 'hidden'} sm:flex`}>
                                 <Link to="/home">
                                     <Home />
                                 </Link>
@@ -209,7 +219,7 @@ const NavbarDefault = () => {
                                 <Link to="/ComingSoon">
                                     <Notification />
                                 </Link>
-                                <div className="hidden items-center gap-2">
+                                <div className="hidden sm:flex items-center gap-4 sm:gap-2">
                                     <Input
                                         type="search"
                                         placeholder="Search Quora"
@@ -238,7 +248,7 @@ const NavbarDefault = () => {
                 </MobileNav>
 
             </Navbar>
-            
+
         </>
     );
 };

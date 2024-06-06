@@ -85,7 +85,6 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
       setData(prevData => [...prevData, response.data.data]);
       setPostComment(''); // Clear the input field
       toast.success('Comment added successfully');
-      window.location.reload();
     } catch (error) {
       console.error('Error adding comment:', error);
       toast.error('Error adding comment');
@@ -174,7 +173,7 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
       {toggleComments &&
         <div className='flex flex-col'>
           <div className='flex justify-between p-3'>
-            <input type="text" value={postComment} className='border border-gray-500 rounded-2xl ' onChange={(e) => { setPostComment(e.target.value) }} />
+            <input type="text" value={postComment} className='border border-gray-500 rounded-2xl text-black ' onChange={(e) => { setPostComment(e.target.value) }}  />
             <button onClick={handleAddComment} className='bg-blue-300 rounded-2xl p-2 ml-5'>Add Comment</button>
           </div>
           <div>

@@ -61,9 +61,9 @@ const Rightbar = () => {
   return (
     <>
       <div className='mx-auto'>
-      <div className='mt-2.5 rounded-sm'>
-      <div className='border border-spacing-1 mt-20 pt-2 xl:w-[38rem] lg:w-[30rem] md:w-[26rem]' style={colour}>
-          <div className="relative flex text-gray-700 bg-clip-border rounded-sm " >
+        <div className='mt-2.5 rounded-sm'>
+          <div className='border border-spacing-1 mt-20 pt-2 xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[22rem] w-full' style={colour}>
+            <div className="relative flex text-gray-700 bg-clip-border rounded-sm " >
               <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
               <input
                 placeholder='What do you want to ask or share?'
@@ -71,30 +71,28 @@ const Rightbar = () => {
                 style={inputStyle}
               />
             </div>
-            <div className='flex items-center gap-16 p-2'>
+            <div className='flex flex-wrap items-center gap-16 p-2'>
               <div className='flex items-center ml-4'>
                 <Ask />
                 <h1 className='flex items-center'><CreatePost /></h1>
               </div>
               <h1 className=''>|</h1>
-              <div className=' flex'>
+              <div className='flex items-center'>
                 <Answer />
                 <h1 className='' onClick={() => navigate('/Answers')}>Answer</h1>
               </div>
               <h1 className=''>|</h1>
-              <div className=' flex'>
+              <div className='flex items-center'>
                 <PostImage />
-                <div className='' ><AddPost/></div>
+                <div className='' ><AddPost /></div>
               </div>
             </div>
           </div>
-        
-         
           <div>
             {posts.map((post, index) => {
               const authorInitial = post.author?.name ? post.author?.name.charAt(0).toUpperCase() : '';
               return (
-                <div className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm xl:w-[38rem] lg:w-[30rem] md:w-[26rem] w-full" key={index} style={postCardStyle}>
+                <div className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[22rem] w-full" key={index} style={postCardStyle}>
                   <div className='flex items-center p-2'>
                     {post.channel?.image ? (
                       <img className="w-8 h-8 rounded-full" src={post.channel?.image} />
@@ -116,18 +114,20 @@ const Rightbar = () => {
                       <img
                         src={post.images[0]}
                         alt="card-image"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                   ) : (
                     ""
-                  )}                 
-                    <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} />                
+                  )}
+                  <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} />
                 </div>
               )
             })}
           </div>
         </div>
       </div>
+
 
 
     </>
