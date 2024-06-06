@@ -17,7 +17,7 @@ export function Notification() {
  
   return (
     <>
-      <h1 className="pt-2 pr-2"><Notify/></h1>
+      <h1 className="lg:pt-2 lg:pr-2"><Notify/></h1>
       
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>

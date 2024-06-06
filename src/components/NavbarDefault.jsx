@@ -134,7 +134,7 @@ const NavbarDefault = () => {
                             <LanguageMenu />
                         </Typography>
                         <Typography className="cursor-pointer font-medium">
-                            <h1 className="bg-red-800 rounded-full text-xs text-white w-36 pl-6 ml-5 pt-2 h-9">
+                            <h1 className="bg-red-800 rounded-full text-md text-white w-36 pl-2 ml-5 pt-2 h-9 text-center">
                                 <CreatePost />
                             </h1>
                         </Typography>
@@ -160,7 +160,7 @@ const NavbarDefault = () => {
                                 className: "before:content-none after:content-none",
                             }}
                         />
-                        <div className="xs:flex lg:hidden items-center">
+                        <div className="xs:block lg:hidden items-center">
                             <button onClick={toggleMenu} className="p-2 focus:outline-none">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
@@ -168,41 +168,40 @@ const NavbarDefault = () => {
                             </button>
                         </div>
                         {isMenuOpen && (
-                            <div className="absolute top-16 left-0 w-full bg-white shadow-lg rounded-lg lg:hidden">
-                                <Typography as="a" href="#" className="block px-4 py-2 text-gray-900 cursor-pointer">
+                            <div className="absolute top-12 left-0 w-full bg-white shadow-lg rounded-lg lg:hidden flex">
+                                <Typography as="a" href="#" className="block px-1 py-2 text-gray-900 cursor-pointer">
                                     <Link to="/home">
                                         <Tooltip title="Home">
                                             <Home className="w-7 h-7 md:w-6 md:h-6" />
                                         </Tooltip>
                                     </Link>
                                 </Typography>
-                                <Typography as="a" href="#" className="block px-4 py-2 text-gray-900 cursor-pointer">
+                                <Typography as="a" href="#" className="block px-1 py-2 text-gray-900 cursor-pointer">
                                     <Link to="/ComingSoon">
                                         <Post className="w-7 h-7 md:w-6 md:h-6" />
                                     </Link>
                                 </Typography>
-                                <Typography as="a" href="#" className="block px-4 py-2 text-gray-900 cursor-pointer">
+                                <Typography as="a" href="#" className="block px-1 py-2 text-gray-900 cursor-pointer">
                                     <Link to="/Answers">
                                         <Icons className="w-7 h-7 md:w-6 md:h-6" />
                                     </Link>
                                 </Typography>
-                                <Typography as="a" href="#" className="block px-4 py-2 text-gray-900 cursor-pointer">
+                                <Typography as="a" href="#" className="block px-1 py-2 text-gray-900 cursor-pointer">
                                     <Link to="/ComingSoon">
                                         <Spaces className="w-7 h-7 md:w-6 md:h-6" />
                                     </Link>
                                 </Typography>
                                 <Link to="/ComingSoon">
-                                    <Typography as="span" className="block px-4 py-2 text-gray-900 cursor-pointer">
-                                        <Notification className="w-7 h-7 md:w-6 md:h-6" />
+                                    <Typography as="span" className="block px-1 py-2 text-gray-900 cursor-pointer">
+                                        <Notification className="w-7 h-7" />
                                     </Typography>
                                 </Link>
 
-                                <Typography as="a" href="#" className="block px-4 py-2 text-gray-900 cursor-pointer">
+                                <Typography as="a" href="#" className="block px-1 py-2 text-gray-900 cursor-pointer">
                                     <ProfileMenu />
                                 </Typography>
-
-                                <Typography className="block px-4 py-2 text-gray-900 cursor-pointer">
-                                    <h1 className="bg-red-800 rounded-full text-xs text-white w-36 pl-6 ml-5 pt-2 h-9">
+                                <Typography className="block px-1 py-2 text-gray-900 cursor-pointer">
+                                    <h1 className="bg-red-800 rounded-full text-md text-white w-36 pl-6  pt-2 h-8">
                                         <CreatePost />
                                     </h1>
                                 </Typography>
