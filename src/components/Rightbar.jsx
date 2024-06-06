@@ -62,7 +62,7 @@ const Rightbar = () => {
     <>
       <div className='mx-auto'>
         <div className='mt-2.5 rounded-sm'>
-          <div className='border border-spacing-1 mt-20 pt-2 xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[22rem] w-full' style={colour}>
+          <div className='border border-spacing-1 mt-20 pt-2 xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[18rem] w-full' style={colour}>
             <div className="relative flex text-gray-700 bg-clip-border rounded-sm " >
               <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
               <input
@@ -71,7 +71,7 @@ const Rightbar = () => {
                 style={inputStyle}
               />
             </div>
-            <div className='flex flex-wrap items-center gap-16 p-2'>
+            <div className='flex flex-wrap items-center gap-10 p-2 xs:gap-5'>
               <div className='flex items-center ml-4'>
                 <Ask />
                 <h1 className='flex items-center'><CreatePost /></h1>

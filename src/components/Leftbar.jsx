@@ -71,13 +71,12 @@ const Leftbar = () => {
                             {/* <ListItemPrefix className='flex gap-2 items-center'> */}
                                 <img src={cooking} className="h-4 w-4" />
                                <div className='break-words mr-2'>{comm.name}</div> 
-                            {/* </ListItemPrefix> */}
-                            
+                            {/* </ListItemPrefix> */}                           
                         </Link>
                     ))}
                 </List>
                 <div>
-                    <hr className='h-2' />
+                    <hr className='h-0.2 bg-blue-gray-400'/>
                     <h1 className='mt-3 ml-5 text-gray-500 text-sm'>About . Careers .</h1>
                     <h1 className='ml-5 text-gray-500 text-sm'>Terms . Privacy .</h1>
                     <h1 className='ml-5 text-gray-500 text-sm'>Acceptable Use</h1>

@@ -19,7 +19,7 @@ const Subscription = () => {
 
   return (
     <>
-      <div onClick={handleOpen} className="flex items-center text-center rounded-2xl w-20 ml-5 h-2">Try Quora</div>
+      <div onClick={handleOpen} className="flex items-center rounded-2xl w-12 ml-5 h-2 ">Try Quora</div>
     <Dialog size="xs" open={open} handler={handleOpen} > 
         <DialogHeader className="justify-between">
           <div>
