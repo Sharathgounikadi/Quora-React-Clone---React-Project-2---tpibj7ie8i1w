@@ -20,9 +20,9 @@ export default function CreatePost() {
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false);
 
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
+  // const handleImageChange = (e) => {
+  //   setImage(e.target.files[0]);
+  // };
 
   const createPost = async () => {
     const token = localStorage.getItem("token");
@@ -108,6 +108,7 @@ export default function CreatePost() {
                 onClick={closeModal}
                 variant="text"
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300"
+                
               >
                 Close
               </h1>

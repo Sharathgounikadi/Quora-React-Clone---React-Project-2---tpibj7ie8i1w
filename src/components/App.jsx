@@ -3,71 +3,73 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import SignUp from "./SignUp";
 import PostDetails from "./PostDetails";
 import Home from "./Home";
-import {Notification} from "./Notification";
+import { Notification } from "./Notification";
 import ComingSoon from "./ComingSoon";
 import CreatePost from "./CreatePost";
 import Answers from "./Answers";
+import SearchResults from "./SearchResults";
 
 const PrivateRoute = ({ children }) => {
   const isAuthenticated = !!localStorage.getItem('token'); // check if the token exists
   return isAuthenticated ? children : <Navigate to="/" />;
 };
 
-
 function App() {
 
- 
+
   return (
     <>
-    {/* <ToastContainer/> */}
-    <Router>
+      {/* <ToastContainer/> */}
+      <Router>
         <Routes>
           <Route path="/" element={<SignUp />} />
-          <Route 
-            path="/home" 
+          <Route
+            path="/home"
             element={
               <PrivateRoute>
                 <Home />
               </PrivateRoute>
-            } 
+            }
           />
-          <Route 
-            path="/notification" 
+          <Route
+            path="/notification"
             element={
               <PrivateRoute>
                 <Notification />
               </PrivateRoute>
-            } 
+            }
           />
-          <Route 
-            path="/question/:id" 
+          <Route
+            path="/question/:id"
             element={
               <PrivateRoute>
                 <PostDetails />
               </PrivateRoute>
-            } 
+            }
           />
-          <Route 
-            path="/CreatePost" 
+          <Route
+            path="/CreatePost"
             element={
               <PrivateRoute>
                 <CreatePost />
               </PrivateRoute>
-            } 
+            }
           />
-          <Route 
-            path="/ComingSoon" 
+          <Route
+            path="/ComingSoon"
             element={
               <PrivateRoute>
                 <ComingSoon />
               </PrivateRoute>
-            } 
+            }
           />
-          <Route path="/Answers" element={<Answers/>}/>
+          <Route path="/Answers" element={
+            <PrivateRoute><Answers /></PrivateRoute> }/>
+            <Route path="SearchResults" element={<PrivateRoute><SearchResults /></PrivateRoute>} />
         </Routes>
       </Router>
     </>
-   
+
   )
 }
 

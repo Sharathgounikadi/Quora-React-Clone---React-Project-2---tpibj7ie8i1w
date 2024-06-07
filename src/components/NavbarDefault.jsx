@@ -6,7 +6,7 @@ import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import { Notification } from './Notification';
 import CreatePost from './CreatePost';
-import { Icons, Post, Home, Spaces, } from './Icons';
+import { Icons, Post, Home, Spaces } from './Icons';
 import { useUser } from './UserProvider';
 import quora from '../assets/Quora.jpg';
 import {
@@ -16,14 +16,11 @@ import {
     Tooltip,
 } from "@material-tailwind/react";
 
-
-
-const NavbarDefault = () => {
+const NavbarDefault = ({ query, setQuery }) => {
     const { theme } = useUser();
     const navigate = useNavigate();
-    const [query, setQuery] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [searchResults, setSearchResults] = useState([]);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -43,7 +40,6 @@ const NavbarDefault = () => {
         );
     }, []);
 
-
     const handleSearch = async (e) => {
         const searchTerm = e.target.value;
         setQuery(searchTerm);
@@ -56,7 +52,6 @@ const NavbarDefault = () => {
                     }
                 });
                 setSearchResults(response.data.data);
-                // console.log(searchResults)
             } catch (error) {
                 console.error("Error fetching search results:", error);
             }
@@ -69,6 +64,7 @@ const NavbarDefault = () => {
         navigate('/ComingSoon');
     };
 
+
     return (
         <>
             <Navbar className=" max-w-screen-xl lg:max-w-full fixed top-0 left-0 right-0 z-20 h-16 xs:flex " style={postCardStyle}>
@@ -80,7 +76,7 @@ const NavbarDefault = () => {
                         <Typography as="a" href="#" className="mr-5 cursor-pointer py-1.5 font-medium">
                             <Link to="/home">
                                 <Tooltip title="Home">
-                                    <Home className="w-8 h-8 md:w-6 md:h-6"/>
+                                    <Home className="w-8 h-8 md:w-6 md:h-6" />
                                 </Tooltip>
                             </Link>
                         </Typography>
@@ -104,19 +100,19 @@ const NavbarDefault = () => {
                                 <Notification className="w-7 h-7 md:w-6 md:h-6 " />
                             </Typography>
                         </Link>
-                        <Input
+                        <Link to='/SearchResults'> <Input
                             type="search"
                             placeholder="Search Quora"
                             value={query}
                             onChange={handleSearch}
                             containerProps={{
-                                className: "w-[300px]",
+                                className: "lg:w-[280px]",
                             }}
                             className="!border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
                             labelProps={{
                                 className: "before:content-none after:content-none",
                             }}
-                        />
+                        /></Link>
                         <div className="!absolute ml-[350px] top-[11px]">
                             <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10.45 2.95L16 16l4.95 4.95Z" className="icon_svg-stroke" stroke="#666" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"></path>
@@ -147,19 +143,19 @@ const NavbarDefault = () => {
                         <Typography as="a" href="#" className="mr-4 cursor-pointer py-1.5 font-medium">
                             <img src={quora} className="w-36 h-6 cursor-pointer xs:w-20" onClick={() => navigate('/home')} alt="Quora" />
                         </Typography>
-                        <Input
+                        <Link to='/SearchResults'>    <Input
                             type="search"
                             placeholder="Search Quora"
                             value={query}
                             onChange={handleSearch}
                             containerProps={{
-                                className: "w-[40px] h-8",
+                                className: "xs:w-[30px] h-8",
                             }}
                             className="!border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
                             labelProps={{
                                 className: "before:content-none after:content-none",
                             }}
-                        />
+                        /></Link>
                         <div className="xs:block lg:hidden items-center">
                             <button onClick={toggleMenu} className="p-2 focus:outline-none">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -201,7 +197,7 @@ const NavbarDefault = () => {
                                     <ProfileMenu />
                                 </Typography>
                                 <Typography className="block px-1 py-2 text-gray-900 cursor-pointer">
-                                    <h1 className="bg-red-800 rounded-full text-md text-white w-36 pl-6  pt-2 h-8">
+                                    <h1 className="bg-red-800 rounded-full text-md text-white w-36 pl-6  h-8">
                                         <CreatePost />
                                     </h1>
                                 </Typography>
@@ -220,11 +216,8 @@ const NavbarDefault = () => {
                     )}
                 </div>
             </Navbar>
-
         </>
     );
 };
 
 export default NavbarDefault;
-
-

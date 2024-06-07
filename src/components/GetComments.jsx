@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useUser } from './UserProvider';
 import { useNavigate } from 'react-router-dom';
+import { FaEllipsisV } from "react-icons/fa";
 
 
-const GetComments = ({ postId, likeCount, commentCount }) => {
+const GetComments = ({ postId, likeCount, commentCount, postTitle, postContent, postImage }) => {
   const navigate = useNavigate();
   const { theme } = useUser();
   const [toggleComments, setToggleComments] = useState(false);
@@ -44,15 +45,15 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
     }
   }, [postId]);
 
-  
+
 
   const handleUpvote = async () => {
     try {
       await axios.post(`https://academics.newtonschool.co/api/v1/quora/like/${postId}`, {}, { headers });
       setCount(likeCount => likeCount + 1);
-      setColorBlue('lightblue');
+      setColorBlue('blue');
+      setColorRed('')
       toast('You liked the post'), { autoClose: 2000 };
-
     } catch (error) {
       console.error('Error upvoting the post:', error);
       toast.error('You already liked the post');
@@ -65,6 +66,7 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
       await axios.delete(`https://academics.newtonschool.co/api/v1/quora/like/${postId}`, { headers });
       setCount(likeCount => likeCount - 1);
       setColorRed('red')
+      setColorBlue('')
       toast('You disliked the post');
 
     } catch (error) {
@@ -96,10 +98,67 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
       await axios.delete(`https://academics.newtonschool.co/api/v1/quora/comment/${id}`, { headers });
       setData(prevData => prevData.filter(comment => comment._id !== id));
       toast.success('Comment deleted successfully');
-       
+
     } catch (error) {
       console.error('Error deleting comment:', error);
       toast.error('Error deleting comment');
+    }
+  };
+
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleDropdownToggle = () => setShowDropdown(!showDropdown);
+
+  const updatePost = async () => {
+    const token = localStorage.getItem("token");
+
+    const formData = new FormData();
+    formData.append("title", postTitle);
+    formData.append("content", postContent);
+    // if (postImage) {
+    //   formData.append("image", postImage);
+    // }
+
+    try {
+      const response = await axios.patch(
+        `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
+        formData,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'projectID': 'tpibj7ie8i1w',
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+      toast.success('Post updated successfully');
+      console.log(response);
+      navigate('/UpdatedPage'); // Navigate to a different page or perform another action
+    } catch (error) {
+      console.error('There was an error updating the post!', error);
+      toast.error('There was an error updating the post!');
+    }
+  };
+
+  const deletePost = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await axios.delete(
+        `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'projectID': 'tpibj7ie8i1w'
+          }
+        }
+      );
+      toast.success('Post deleted successfully');
+      console.log(response);
+      navigate('/DeletedPage'); // Navigate to a different page or perform another action
+    } catch (error) {
+      console.error('There was an error deleting the post!', error);
+      toast.error('There was an error deleting the post!');
     }
   };
 
@@ -115,7 +174,7 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
               focus:ring-white/50 active:opacity-[0.85] rounded-r-none border-r-0 flex items-center border-gray-300
               dark:border-gray-700 capitalize h-6 text-gray-700 dark:text-gray-300 rounded-s-full py-4 gap-1"
               type="button" onClick={handleUpvote} style={{ color: colorBlue }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="stroke-blue-500">
+              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="stroke-blue-500" style={{ backgroundColor: colorBlue }}>
                 <path d="M12 4 3 15h6v5h6v-5h6z" className="icon_svg-stroke icon_svg-fill" fill="none" strokeWidth="1.5" strokeLinejoin="round"></path>
               </svg>
               Upvote<span>&nbsp;•&nbsp;{count}</span>
@@ -159,21 +218,56 @@ const GetComments = ({ postId, likeCount, commentCount }) => {
             </span>
           </button>
         </div>
-        <button aria-expanded="false" aria-haspopup="menu" id=":r2bk:" className="relative align-middle select-none font-sans 
+        <div className="relative">
+          <button
+            aria-expanded={showDropdown}
+            aria-haspopup="menu"
+            className="relative align-middle select-none font-sans 
+        font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none
+        w-10 max-w-[40px] max-h-[40px] rounded-lg text-xs border hover:opacity-75 focus:ring focus:ring-gray-300 
+        active:opacity-[0.85] h-6 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 py-4"
+            type="button"
+            onClick={handleDropdownToggle}
+          >
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+              <button aria-expanded="false" aria-haspopup="menu" id=":r2bk:" className="relative align-middle select-none font-sans 
           font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none
           w-10 max-w-[40px] max-h-[40px] rounded-lg text-xs border hover:opacity-75 focus:ring focus:ring-gray-300 
-          active:opacity-[0.85] h-6 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 py-4" type="button" onClick={() => navigate('/ComingSoon')}>
-          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" className="h-6 w-6">
-              <path fillRule="evenodd" d="M4.5 12a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" clipRule="evenodd"></path>
-            </svg>
-          </span>
-        </button>
+          active:opacity-[0.85] h-6 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 py-4" type="button" >
+                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" className="h-6 w-6">
+                    <path fillRule="evenodd" d="M4.5 12a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" clipRule="evenodd"></path>
+                  </svg>
+                </span>
+              </button>
+            </span>
+          </button>
+          {showDropdown && (
+            <div className="absolute right-5 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+              <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                <button
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                  role="menuitem"
+                  onClick={updatePost}
+                >
+                  Update Post
+                </button>
+                <button
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                  role="menuitem"
+                  onClick={deletePost}
+                >
+                  Delete Post
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       {toggleComments &&
         <div className='flex flex-col'>
           <div className='flex justify-between p-3'>
-            <input type="text" value={postComment} className='border border-gray-500 rounded-2xl text-black ' onChange={(e) => { setPostComment(e.target.value) }}  />
+            <input type="text" value={postComment} className='border border-gray-500 rounded-2xl text-black ' onChange={(e) => { setPostComment(e.target.value) }} />
             <button onClick={handleAddComment} className='bg-blue-300 rounded-2xl p-2 ml-5'>Add Comment</button>
           </div>
           <div>

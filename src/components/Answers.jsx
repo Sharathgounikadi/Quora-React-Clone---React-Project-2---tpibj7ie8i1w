@@ -35,7 +35,7 @@ const Answers = () => {
     const fetchPosts = async () => {
       const dataUser = localStorage.getItem("token");
       try {
-        const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=10', {
+        const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=100', {
           headers: {
             'projectID': 'tpibj7ie8i1w',
             'Authorization': `Bearer ${dataUser}`
@@ -57,7 +57,6 @@ const Answers = () => {
       <>
       <NavbarDefault/>
         <div className='' style={colour}>
-          {/* <div className='mt-2.5 rounded-sm flex items-center  '> */}
             <div className='flex items-center flex-col mt-20'>
               {posts.map((post, index) => {
                 const authorInitial = post.author?.name ? post.author?.name.charAt(0).toUpperCase() : '';
@@ -79,16 +78,6 @@ const Answers = () => {
                         {post?.content}
                       </p>
                     </div>
-                    {post.images.length > 0 ? (
-                      <div className="relative h-80 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-sm bg-blue-gray-500 shadow-blue-gray-500/40">
-                        <img
-                          src={post.images[0]}
-                          alt="card-image"
-                        />
-                      </div>
-                    ) : (
-                      ""
-                    )}
                     <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} />
                   </div>
                 )
