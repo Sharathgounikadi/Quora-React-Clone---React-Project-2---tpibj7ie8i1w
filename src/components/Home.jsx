@@ -3,7 +3,7 @@ import Leftbar from './Leftbar';
 import Rightbar from './Rightbar';
 import Adds from './Adds';
 import { useUser } from './UserProvider';
-// import NavbarDefault from './NavbarDefault';
+import NavbarDefault from './NavbarDefault';
 
 const Home = () => {
     const { theme } = useUser();
@@ -16,7 +16,7 @@ const Home = () => {
   
     return (
         <div style={colour}>
-            {/* <NavbarDefault  /> */}
+            <NavbarDefault  />
             <div className='flex'> 
                 <Leftbar />
                 <Rightbar/>      

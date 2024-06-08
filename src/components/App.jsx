@@ -7,7 +7,7 @@ import { Notification } from "./Notification";
 import ComingSoon from "./ComingSoon";
 import CreatePost from "./CreatePost";
 import Answers from "./Answers";
-import NavbarDefault from "./NavbarDefault";
+// import NavbarDefault from "./NavbarDefault";
 
 
 const PrivateRoute = ({ children }) => {
@@ -21,7 +21,7 @@ function App() {
   return (
     <> 
       <Router>
-      <NavbarDefault />
+      {/* <NavbarDefault /> */}
         <Routes>
           <Route path="/" element={<SignUp />} />
           <Route
