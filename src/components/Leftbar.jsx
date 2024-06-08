@@ -26,7 +26,7 @@ const Leftbar = () => {
 
     const fetchCommunities = async () => {
         try {
-            const res = await axios.get('https://academics.newtonschool.co/api/v1/quora/channel/?limit=6', {
+            const res = await axios.get('https://academics.newtonschool.co/api/v1/quora/channel/?limit=5', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'projectID': 'tpibj7ie8i1w',

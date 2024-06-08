@@ -89,7 +89,7 @@ const SignUpDialogue = () => {
 return (
     <>
    
-        <p onClick={handleOpen}>Sign Up with email</p>
+        <p onClick={handleOpen} className="p-2 bg-gray-300 text-center rounded-xl">Sign Up with email</p>
         <Dialog
             size="xs"
             open={open}

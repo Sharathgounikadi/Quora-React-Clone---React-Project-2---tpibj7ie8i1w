@@ -70,9 +70,10 @@ const Rightbar = () => {
                 placeholder='What do you want to ask or share?'
                 className='p-1 ml-6 border border-spacing-1 rounded-full w-full mr-4'
                 style={inputStyle}
+                // onChange={<Answer/>}
               />
             </div>
-            <div className='flex items-center p-2 xs:gap-5 lg:gap-10'>
+            <div className='flex justify-between p-2 xs:gap-5 lg:gap-10'>
               <div className='flex items-center ml-4'>
                 <Ask />
                 <h1 className='flex items-center'><CreatePost /></h1>
@@ -91,7 +92,7 @@ const Rightbar = () => {
           </div>
           <div>
             {posts.map((post, index) => {
-              const authorInitial = post.author?.name ? post.author?.name.charAt(0).toUpperCase() : '';
+              const authorInitial = post.author?.name ? post.author?.name.charAt(0).toUpperCase() : '?';
               return (
                 <div className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[22rem] w-full" key={index} style={postCardStyle}>
                   <div className='flex items-center p-2'>
