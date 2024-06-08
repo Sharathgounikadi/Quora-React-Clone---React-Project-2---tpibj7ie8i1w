@@ -4,10 +4,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { useUser } from './UserProvider';
 import { useNavigate } from 'react-router-dom';
+import {
+  Dialog, DialogHeader, DialogBody, Input, Textarea
+} from "@material-tailwind/react";
 // import { FaEllipsisV } from "react-icons/fa";
 
 
-const GetComments = ({ postId, likeCount, commentCount,postContent,postTitle }) => {
+const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }) => {
+  // console.log(first)
   const navigate = useNavigate();
   const { theme } = useUser();
   const [toggleComments, setToggleComments] = useState(false);
@@ -17,6 +21,11 @@ const GetComments = ({ postId, likeCount, commentCount,postContent,postTitle }) 
   const [comment, SetComment] = useState(commentCount)
   const [colorBlue, setColorBlue] = useState('');
   const [colorRed, setColorRed] = useState('')
+  const [open, setOpen] = React.useState(false);
+  const [title, setTitle] = useState(postTitle || "");
+  const [content, setContent] = useState(postContent || "");
+  const [image, setImage] = useState(null);
+  const handleOpen = () => setOpen(!open);
 
   const colour = {
     backgroundColor: theme === 'light' ? 'white' : 'black',
@@ -109,19 +118,17 @@ const GetComments = ({ postId, likeCount, commentCount,postContent,postTitle }) 
 
   const handleDropdownToggle = () => setShowDropdown(!showDropdown);
 
-  const updatePost = async () => {
+  const handleEditPost = async (e) => {
+    e.preventDefault()
     const token = localStorage.getItem("token");
-    const formData = new FormData();
-    const postDetails = { postTitle, postContent };
 
-    for (const key in postDetails) {
-    if (postDetails.hasOwnProperty(key)) {
-      formData.append(key, postDetails[key]);
-    }
-  }
+    const formData = new FormData();
+    // formData.append("image", image);
+    formData.append("title", title);
+    formData.append("content", content);
 
     try {
-      const response = await axios.put(
+      const response = await axios.patch(
         `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
         formData,
         {
@@ -134,7 +141,7 @@ const GetComments = ({ postId, likeCount, commentCount,postContent,postTitle }) 
       );
       toast.success('Post updated successfully');
       console.log(response);
-      window.location.href="/home";
+      window.location.href = "/home";
       // navigate('/UpdatedPage'); // Navigate to a different page or perform another action
     } catch (error) {
       console.error('There was an error updating the post!', error);
@@ -156,7 +163,7 @@ const GetComments = ({ postId, likeCount, commentCount,postContent,postTitle }) 
         }
       );
       toast.success('Post deleted successfully');
-      window.location.href="/home";
+      window.location.href = "/home";
       // console.log(response);
       // navigate('/DeletedPage'); // Navigate to a different page or perform another action
     } catch (error) {
@@ -246,27 +253,64 @@ const GetComments = ({ postId, likeCount, commentCount,postContent,postTitle }) 
             </span>
           </button>
           {showDropdown && (
-            <div className="absolute right-5 w-40 bg-white rounded-md shadow-lg z-10 ">
-              <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                <button
-                  className="block px-4 py-2 text-sm text-gray-700 bg-gray-100 w-full text-center rounded-2xl hover:bg-light-blue-200 m-1"
-                  role="menuitem"
-                  onClick={updatePost}
-                >
-                  Update Post
-                </button>
-                <button
-                  className="block px-4 py-2 text-sm  bg-gray-100 w-full text-center rounded-2xl hover:bg-red-400 text-gray-700 m-1"
-                  role="menuitem"
-                  onClick={deletePost}
-                >
-                  Delete Post
-                </button>
-              </div>
+            <div>
+              <Dialog open={open} handler={handleOpen} size="sm">
+                <DialogBody>
+                  <form onSubmit={handleEditPost}>
+                    <div className="relative w-full min-w-[200px]">
+                      <textarea
+                        rows="2"
+                        placeholder="Give a title..."
+                        className="peer w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none disabled:cursor-not-allowed transition-all border-b placeholder-shown:border-blue-gray-200 text-sm pt-4 pb-1.5 mt-1.5 border-blue-gray-200 focus:border-gray-900"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                      <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] after:content-[' '] after:block after:w-full after:absolute after:-bottom-0 left-0 after:border-b-2 after:scale-x-0 peer-focus:after:scale-x-100 after:transition-transform after:duration-300 peer-placeholder-shown:leading-[4.25] text-gray-500 peer-focus:text-gray-900 after:border-gray-500 peer-focus:after:!border-gray-900">
+                        {' '}
+                      </label>
+                    </div>
+                    <div className="relative w-full min-w-[200px]">
+                      <textarea
+                        rows="8"
+                        placeholder="Say something..."
+                        className="peer w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none disabled:cursor-not-allowed transition-all border-b placeholder-shown:border-blue-gray-200 text-sm pt-4 pb-1.5 mt-1.5 border-blue-gray-200 focus:border-gray-900"
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                      />
+                      <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] after:content-[' '] after:block after:w-full after:absolute after:-bottom-0 left-0 after:border-b-2 after:scale-x-0 peer-focus:after:scale-x-100 after:transition-transform after:duration-300 peer-placeholder-shown:leading-[4.25] text-gray-500 peer-focus:text-gray-900 after:border-gray-500 peer-focus:after:!border-gray-900">
+                        {' '}
+                      </label>
+                    </div>
+                    <div className="flex gap-2 justify-between flex-col sm:flex-row">
+                      <button
+                        type="submit"
+                        className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-blue-500 capitalize rounded-full"
+                      >
+                        Post
+                      </button>
+                    </div>
+                  </form>
+                </DialogBody>
+              </Dialog>
+              <button
+                className="block px-4 py-2 text-sm text-gray-700 bg-gray-100 w-full text-center rounded-2xl hover:bg-light-blue-200 m-1"
+                role="menuitem"
+                onClick={handleOpen}
+              >
+                Update Post
+              </button>
+              
+              <button
+                className="block px-4 py-2 text-sm  bg-gray-100 w-full text-center rounded-2xl hover:bg-red-400 text-gray-700 m-1"
+                role="menuitem"
+                onClick={deletePost}
+              >
+                Delete Post
+              </button>
             </div>
           )}
         </div>
-      </div>
+      </div >
       {toggleComments &&
         <div className='flex flex-col'>
           <div className='flex justify-between p-3'>
@@ -283,7 +327,8 @@ const GetComments = ({ postId, likeCount, commentCount,postContent,postTitle }) 
               </div>
             ))}
           </div>
-        </div>}
+        </div>
+      }
     </>
   );
 };

@@ -7,7 +7,7 @@ import { Notification } from "./Notification";
 import ComingSoon from "./ComingSoon";
 import CreatePost from "./CreatePost";
 import Answers from "./Answers";
-import SearchResults from "./SearchResults";
+
 
 const PrivateRoute = ({ children }) => {
   const isAuthenticated = !!localStorage.getItem('token'); // check if the token exists
@@ -67,11 +67,7 @@ function App() {
             <PrivateRoute>
               <Answers />
               </PrivateRoute> }/>
-            <Route path="SearchResults" 
-            element={
-            <PrivateRoute>
-              <SearchResults />
-              </PrivateRoute>} />
+           
         </Routes>
       </Router>
     </>

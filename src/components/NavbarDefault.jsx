@@ -16,15 +16,16 @@ import {
     Input,
     Tooltip,
 } from "@material-tailwind/react";
-import SearchResults from './SearchResults';
 
-const NavbarDefault = ({ setQuery, searchResults }) => {
+
+const NavbarDefault = () => {
     const { theme } = useUser();
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [query, setQueryState] = useState('');
+    
     const [openNav, setOpenNav] = useState(false);
-    const [results, setResults] = useState([]);
+    const [query, setQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -49,21 +50,21 @@ const NavbarDefault = ({ setQuery, searchResults }) => {
     const handleSearch = async (e) => {
         const searchTerm = e.target.value;
         setQuery(searchTerm);
-        setQueryState(searchTerm);
 
-        if (searchTerm?.length > 2) {
+        if (searchTerm.length > 1) {
             try {
                 const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post?search={"content":"${searchTerm}"}`, {
                     headers: {
-                        'projectID': 'YOUR_PROJECT_ID'
+                        'projectID': 'tpibj7ie8i1w'
                     }
                 });
-                setResults(response.data.data); // Use state updater function
+                setSearchResults(response.data.data);
+                console.log(response.data.data)
             } catch (error) {
                 console.error("Error fetching search results:", error);
             }
         } else {
-            setResults([]);
+            setSearchResults([]);
         }
     };
 
@@ -108,7 +109,7 @@ const NavbarDefault = ({ setQuery, searchResults }) => {
                         </Link>
                         <Input
                             type="search"
-                            placeholder="Search Quora"
+                            placeholder="Search Quora(content based)"
                             value={query}
                             onChange={handleSearch}
                             containerProps={{
@@ -141,6 +142,16 @@ const NavbarDefault = ({ setQuery, searchResults }) => {
                             </h1>
                         </Typography>
                     </div>
+                    {query && searchResults.length > 0 && (
+                        <div className="top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll z-20">
+                            {searchResults.map((result, index) => (
+                                <div key={index} className="p-2 border-b last:border-b-0">
+                                    <h2 className='font-bold'>{result?.title}</h2>
+                                    <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 {/* for small screens */}
                 <div className="container lg:mx-auto flex flex-wrap justify-center text-gray-900 mb-4 lg:ml-32 lg:gap-2 lg:hidden md:hidden">
@@ -205,17 +216,18 @@ const NavbarDefault = ({ setQuery, searchResults }) => {
                                         <CreatePost />
                                     </h1>
                                 </Typography>
-                                {/* <Typography className="block px-1 py-2 text-gray-900 cursor-pointer">
-                                    <h1 className="bg-red-800 rounded-full text-md text-white w-36 pl-6 h-8">
-                                      <CreateSpaceComponent/>  
-                                        
-                                    </h1>
-                                </Typography> */}
                             </div>
                         )}
                     </div>
-                    {query && results.length > 0 && (
-                        <SearchResults query={query} searchResults={results} />
+                    {query && searchResults.length > 0 && (
+                        <div className="absolute top-12 left-32 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll">
+                            {searchResults.map((result, index) => (
+                                <div key={index} className="p-2 border-b last:border-b-0">
+                                    <h2 className='font-bold'>{result?.title}</h2>
+                                    <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
+                                </div>
+                            ))}
+                        </div>
                     )}
                 </div>
             </Navbar>

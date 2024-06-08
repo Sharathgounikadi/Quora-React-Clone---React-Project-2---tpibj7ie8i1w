@@ -31,9 +31,6 @@ export default function AddPost() {
     formData.append("imgage", image);
     formData.append("title", title);
     formData.append("content", content);
-    // if (image) {
-    //   formData.append("image", image);
-    // }
 
     try {
       const response = await axios.post(

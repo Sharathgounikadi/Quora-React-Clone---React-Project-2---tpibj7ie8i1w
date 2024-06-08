@@ -73,7 +73,7 @@ const Rightbar = () => {
                 // onChange={<Answer/>}
               />
             </div>
-            <div className='flex justify-between p-2 xs:gap-5 lg:gap-10'>
+            <div className='flex justify-around p-2 xs:gap-5'>
               <div className='flex items-center ml-4'>
                 <Ask />
                 <h1 className='flex items-center'><CreatePost /></h1>
@@ -84,7 +84,7 @@ const Rightbar = () => {
                 <h1 className='' onClick={() => navigate('/Answers')}>Answer</h1>
               </div>
               <h1 className=''>|</h1>
-              <div className='flex items-center'>
+              <div className='flex items-center mr-6'>
                 <PostImage />
                 <div className='' ><AddPost /></div>
               </div>
