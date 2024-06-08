@@ -19,7 +19,6 @@ function App() {
 
   return (
     <>
-      {/* <ToastContainer/> */}
       <Router>
         <Routes>
           <Route path="/" element={<SignUp />} />
@@ -63,9 +62,16 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/Answers" element={
-            <PrivateRoute><Answers /></PrivateRoute> }/>
-            <Route path="SearchResults" element={<PrivateRoute><SearchResults /></PrivateRoute>} />
+          <Route path="/Answers" 
+          element={
+            <PrivateRoute>
+              <Answers />
+              </PrivateRoute> }/>
+            <Route path="SearchResults" 
+            element={
+            <PrivateRoute>
+              <SearchResults />
+              </PrivateRoute>} />
         </Routes>
       </Router>
     </>

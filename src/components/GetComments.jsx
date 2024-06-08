@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaEllipsisV } from "react-icons/fa";
 
 
-const GetComments = ({ postId, likeCount, commentCount, postTitle, postContent, postImage }) => {
+const GetComments = ({ postId, likeCount, commentCount,postContent,setQuery,searchResults }) => {
   const navigate = useNavigate();
   const { theme } = useUser();
   const [toggleComments, setToggleComments] = useState(false);
@@ -113,8 +113,8 @@ const GetComments = ({ postId, likeCount, commentCount, postTitle, postContent, 
     const token = localStorage.getItem("token");
 
     const formData = new FormData();
-    formData.append("title", postTitle);
-    formData.append("content", postContent);
+    formData.set("title", postTitle);
+    formData.set("content", postContent);
     // if (postImage) {
     //   formData.append("image", postImage);
     // }
@@ -133,7 +133,7 @@ const GetComments = ({ postId, likeCount, commentCount, postTitle, postContent, 
       );
       toast.success('Post updated successfully');
       console.log(response);
-      navigate('/UpdatedPage'); // Navigate to a different page or perform another action
+      // navigate('/UpdatedPage'); // Navigate to a different page or perform another action
     } catch (error) {
       console.error('There was an error updating the post!', error);
       toast.error('There was an error updating the post!');
@@ -155,7 +155,7 @@ const GetComments = ({ postId, likeCount, commentCount, postTitle, postContent, 
       );
       toast.success('Post deleted successfully');
       console.log(response);
-      navigate('/DeletedPage'); // Navigate to a different page or perform another action
+      // navigate('/DeletedPage'); // Navigate to a different page or perform another action
     } catch (error) {
       console.error('There was an error deleting the post!', error);
       toast.error('There was an error deleting the post!');

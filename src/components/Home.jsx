@@ -11,15 +11,15 @@ const Home = () => {
         backgroundColor: theme === 'light' ? 'rgb(241, 242, 242)' : 'black'
     };
 
-    const [query, setQuery] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
+    // const [query, setQuery] = useState("");
+    // const [searchResults, setSearchResults] = useState([]);
   
     return (
         <div style={colour}>
-            <NavbarDefault query={query} setQuery={setQuery} setSearchResults={setSearchResults} />
+            <NavbarDefault  />
             <div className='flex'> 
                 <Leftbar />
-                <Rightbar searchResults={searchResults} />      
+                <Rightbar/>      
             </div>
             <Adds />
         </div>
