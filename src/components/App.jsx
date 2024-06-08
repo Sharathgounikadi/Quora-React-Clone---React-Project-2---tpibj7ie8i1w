@@ -7,6 +7,7 @@ import { Notification } from "./Notification";
 import ComingSoon from "./ComingSoon";
 import CreatePost from "./CreatePost";
 import Answers from "./Answers";
+import NavbarDefault from "./NavbarDefault";
 
 
 const PrivateRoute = ({ children }) => {
@@ -18,8 +19,9 @@ function App() {
 
 
   return (
-    <>
+    <> 
       <Router>
+      <NavbarDefault />
         <Routes>
           <Route path="/" element={<SignUp />} />
           <Route
@@ -30,6 +32,7 @@ function App() {
               </PrivateRoute>
             }
           />
+
           <Route
             path="/notification"
             element={
@@ -62,12 +65,12 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/Answers" 
-          element={
-            <PrivateRoute>
-              <Answers />
-              </PrivateRoute> }/>
-           
+          <Route path="/Answers"
+            element={
+              <PrivateRoute>
+                <Answers />
+              </PrivateRoute>} />
+
         </Routes>
       </Router>
     </>

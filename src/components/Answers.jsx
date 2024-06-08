@@ -3,11 +3,10 @@ import Avatar from 'react-avatar';
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
-
 import { useUser } from './UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
-import { Ask, Answer, PostImage } from './Icons';
-import NavbarDefault from './NavbarDefault';
+// import { Ask, Answer, PostImage } from './Icons';
+// import NavbarDefault from './NavbarDefault';
 
 const Answers = () => {
   
@@ -55,7 +54,7 @@ const Answers = () => {
   
     return (
       <>
-      <NavbarDefault/>
+      {/* <NavbarDefault/> */}
         <div className='' style={colour}>
             <div className='flex items-center flex-col mt-20'>
               {posts.map((post, index) => {
