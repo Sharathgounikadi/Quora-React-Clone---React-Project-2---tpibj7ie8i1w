@@ -112,7 +112,7 @@ return (
                     <Typography className="-mb-2" variant="h6">
                         Password
                     </Typography>
-                    <Input label="Password" name="password" value={formData.password} onChange={handleChange} size="lg" />
+                    <Input label="Password" name="password" type="password" value={formData.password} onChange={handleChange} size="lg" />
                 </CardBody>
                 <CardFooter className="pt-0 flex justify-end ">
                     <p className="bg-[#2e69ff] p-2 rounded-3xl text-white cursor-pointer" variant="gradient" onClick={handleSubmit} fullWidth>

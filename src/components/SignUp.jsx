@@ -93,13 +93,14 @@ export default function SignUp() {
                         <div className='mt-8 lg:mt-0 lg:ml-16'>
                             <h1 className='text-lg text-center font-bold'>Login</h1>
                             <hr className='w-full lg:w-72 mt-3' />
-                            <h1 className='mt-4 font-bold text-sm'>Email</h1>
+                            <h1 className='mt-4 font-bold text-sm' >Email</h1>
                             <input
                                 name="email"
                                 value={getData.email}
                                 onChange={onChangeHandler}
                                 placeholder='Your Email'
                                 className='border border-spacing-1 p-2 w-full lg:w-72 mt-2'
+                                type="email"
                             />
                             <h1 className='mt-4 font-bold text-sm'>Password</h1>
                             <input
