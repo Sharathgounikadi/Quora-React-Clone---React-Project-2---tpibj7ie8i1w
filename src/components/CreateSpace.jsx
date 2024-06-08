@@ -7,12 +7,12 @@ export default function CreateSpaceComponent() {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState(null);
+  // const [image, setImage] = useState(null);
 
   const handleOpen = () => setOpen(!open);
   const createSpace = async () => {
     const token = localStorage.getItem("token");
-    console.log(token)
+    // console.log(token)
     const data = {
       name: name,
       description: description,
@@ -27,7 +27,7 @@ export default function CreateSpaceComponent() {
       }
     })
       .then(response => {
-        // console.log('Space created successfully:', response.data.data);
+        console.log('Space created successfully:', response.data.data);
         // Close the dialog after successful creation
         toast.success('Space created successfully')
         setOpen(false);
@@ -83,7 +83,7 @@ export default function CreateSpaceComponent() {
             />
           </CardBody>
           <CardFooter className="pt-0">
-            <div className="bg-blue-500 p-2 rounded-2xl ml-40 text-black" onClick={createSpace}>
+            <div className="bg-blue-500 p-2 rounded-2xl ml-40 text-black w-20 text-center" onClick={createSpace}>
               Create
             </div>
           </CardFooter>

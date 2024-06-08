@@ -20,20 +20,14 @@ export default function CreatePost() {
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false);
 
-  // const handleImageChange = (e) => {
-  //   setImage(e.target.files[0]);
-  // };
 
   const createPost = async () => {
     const token = localStorage.getItem("token");
 
     const formData = new FormData();
-    formData.append("imgage", image);
+    formData.append("image", image);
     formData.append("title", title);
     formData.append("content", content);
-    // if (image) {
-    //   formData.append("image", image);
-    // }
 
     try {
       const response = await axios.post(

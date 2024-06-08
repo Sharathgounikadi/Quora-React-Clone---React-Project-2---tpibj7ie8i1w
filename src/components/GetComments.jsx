@@ -4,10 +4,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { useUser } from './UserProvider';
 import { useNavigate } from 'react-router-dom';
-import { FaEllipsisV } from "react-icons/fa";
+// import { FaEllipsisV } from "react-icons/fa";
 
 
-const GetComments = ({ postId, likeCount, commentCount,postContent,setQuery,searchResults }) => {
+const GetComments = ({ postId, likeCount, commentCount,postContent,postTitle }) => {
   const navigate = useNavigate();
   const { theme } = useUser();
   const [toggleComments, setToggleComments] = useState(false);
@@ -111,16 +111,17 @@ const GetComments = ({ postId, likeCount, commentCount,postContent,setQuery,sear
 
   const updatePost = async () => {
     const token = localStorage.getItem("token");
-
     const formData = new FormData();
-    formData.set("title", postTitle);
-    formData.set("content", postContent);
-    // if (postImage) {
-    //   formData.append("image", postImage);
-    // }
+    const postDetails = { postTitle, postContent };
+
+    for (const key in postDetails) {
+    if (postDetails.hasOwnProperty(key)) {
+      formData.append(key, postDetails[key]);
+    }
+  }
 
     try {
-      const response = await axios.patch(
+      const response = await axios.put(
         `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
         formData,
         {
@@ -133,6 +134,7 @@ const GetComments = ({ postId, likeCount, commentCount,postContent,setQuery,sear
       );
       toast.success('Post updated successfully');
       console.log(response);
+      window.location.href="/home";
       // navigate('/UpdatedPage'); // Navigate to a different page or perform another action
     } catch (error) {
       console.error('There was an error updating the post!', error);
@@ -154,7 +156,8 @@ const GetComments = ({ postId, likeCount, commentCount,postContent,setQuery,sear
         }
       );
       toast.success('Post deleted successfully');
-      console.log(response);
+      window.location.href="/home";
+      // console.log(response);
       // navigate('/DeletedPage'); // Navigate to a different page or perform another action
     } catch (error) {
       console.error('There was an error deleting the post!', error);
@@ -243,17 +246,17 @@ const GetComments = ({ postId, likeCount, commentCount,postContent,setQuery,sear
             </span>
           </button>
           {showDropdown && (
-            <div className="absolute right-5 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+            <div className="absolute right-5 w-40 bg-white rounded-md shadow-lg z-10 ">
               <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                 <button
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                  className="block px-4 py-2 text-sm text-gray-700 bg-gray-100 w-full text-center rounded-2xl hover:bg-light-blue-200 m-1"
                   role="menuitem"
                   onClick={updatePost}
                 >
                   Update Post
                 </button>
                 <button
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                  className="block px-4 py-2 text-sm  bg-gray-100 w-full text-center rounded-2xl hover:bg-red-400 text-gray-700 m-1"
                   role="menuitem"
                   onClick={deletePost}
                 >

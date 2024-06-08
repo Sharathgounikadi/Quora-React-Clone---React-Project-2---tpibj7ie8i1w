@@ -6,6 +6,7 @@ import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import { Notification } from './Notification';
 import CreatePost from './CreatePost';
+import CreateSpaceComponent from './CreateSpace';
 import { Icons, Post, Home, Spaces } from './Icons';
 import { useUser } from './UserProvider';
 import quora from '../assets/Quora.jpg';
@@ -204,6 +205,12 @@ const NavbarDefault = ({ setQuery, searchResults }) => {
                                         <CreatePost />
                                     </h1>
                                 </Typography>
+                                {/* <Typography className="block px-1 py-2 text-gray-900 cursor-pointer">
+                                    <h1 className="bg-red-800 rounded-full text-md text-white w-36 pl-6 h-8">
+                                      <CreateSpaceComponent/>  
+                                        
+                                    </h1>
+                                </Typography> */}
                             </div>
                         )}
                     </div>

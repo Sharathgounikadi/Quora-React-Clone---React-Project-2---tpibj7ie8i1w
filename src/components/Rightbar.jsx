@@ -72,7 +72,7 @@ const Rightbar = () => {
                 style={inputStyle}
               />
             </div>
-            <div className='flex items-center p-2 xs:gap-5 lg:gap-5'>
+            <div className='flex items-center p-2 xs:gap-5 lg:gap-10'>
               <div className='flex items-center ml-4'>
                 <Ask />
                 <h1 className='flex items-center'><CreatePost /></h1>
