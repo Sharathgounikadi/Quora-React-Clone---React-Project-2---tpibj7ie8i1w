@@ -137,7 +137,7 @@ const NavbarDefault = () => {
                             <LanguageMenu />
                         </Typography>
                         <Typography className="cursor-pointer font-medium">
-                            <h1 className="bg-red-800 rounded-full text-md text-white w-36 pl-2 ml-5 pt-2 h-9 text-center">
+                            <h1 className="bg-red-800 rounded-full text-md text-white w-36 pl-2 pt-1 ml-5 h-9 text-center">
                                 <CreatePost />
                             </h1>
                         </Typography>

@@ -4,24 +4,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { useUser } from './UserProvider';
 import { useNavigate } from 'react-router-dom';
-import {
-  Dialog, DialogHeader, DialogBody, Input, Textarea
-} from "@material-tailwind/react";
-// import { FaEllipsisV } from "react-icons/fa";
-
+import { Dialog, DialogHeader, DialogBody, Input, Textarea } from "@material-tailwind/react";
 
 const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }) => {
-  // console.log(first)
   const navigate = useNavigate();
   const { theme } = useUser();
   const [toggleComments, setToggleComments] = useState(false);
   const [postComment, setPostComment] = useState("");
   const [count, setCount] = useState(likeCount);
   const [data, setData] = useState([]);
-  const [comment, SetComment] = useState(commentCount)
+  const [comment, setComment] = useState(commentCount);
   const [colorBlue, setColorBlue] = useState('');
-  const [colorRed, setColorRed] = useState('')
-  const [open, setOpen] = React.useState(false);
+  const [colorRed, setColorRed] = useState('');
+  const [open, setOpen] = useState(false);
   const [title, setTitle] = useState(postTitle || "");
   const [content, setContent] = useState(postContent || "");
   const [image, setImage] = useState(null);
@@ -42,7 +37,6 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
     try {
       const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${postId}/comments`, { headers });
       setData(response.data.data);
-      // console.log(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -54,19 +48,17 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
     }
   }, [postId]);
 
-
-
   const handleUpvote = async () => {
     try {
       await axios.post(`https://academics.newtonschool.co/api/v1/quora/like/${postId}`, {}, { headers });
       setCount(likeCount => likeCount + 1);
       setColorBlue('blue');
-      setColorRed('')
-      toast('You liked the post'), { autoClose: 2000 };
+      setColorRed('');
+      toast('You liked the post', { autoClose: 2000 });
     } catch (error) {
       console.error('Error upvoting the post:', error);
       toast.error('You already liked the post');
-      setColorBlue('')
+      setColorBlue('');
     }
   };
 
@@ -74,15 +66,13 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
     try {
       await axios.delete(`https://academics.newtonschool.co/api/v1/quora/like/${postId}`, { headers });
       setCount(likeCount => likeCount - 1);
-      setColorRed('red')
-      setColorBlue('')
+      setColorRed('red');
+      setColorBlue('');
       toast('You disliked the post');
-
     } catch (error) {
       console.error('Error downvoting the post:', error);
-      setColorRed('')
+      setColorRed('');
       toast.error('You already disliked the post');
-
     }
   };
 
@@ -95,7 +85,9 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       const response = await axios.post(`https://academics.newtonschool.co/api/v1/quora/comment/${postId}`, body, { headers });
       setData(prevData => [...prevData, response.data.data]);
       setPostComment(''); // Clear the input field
+      setComment(comment => comment + 1); // Increment comment count
       toast.success('Comment added successfully');
+      
     } catch (error) {
       console.error('Error adding comment:', error);
       toast.error('Error adding comment');
@@ -106,8 +98,8 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
     try {
       await axios.delete(`https://academics.newtonschool.co/api/v1/quora/comment/${id}`, { headers });
       setData(prevData => prevData.filter(comment => comment._id !== id));
+      setComment(comment => comment - 1); // Decrement comment count
       toast.success('Comment deleted successfully');
-
     } catch (error) {
       console.error('Error deleting comment:', error);
       toast.error('Error deleting comment');
@@ -119,11 +111,10 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
   const handleDropdownToggle = () => setShowDropdown(!showDropdown);
 
   const handleEditPost = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const token = localStorage.getItem("token");
 
     const formData = new FormData();
-    // formData.append("image", image);
     formData.append("title", title);
     formData.append("content", content);
 
@@ -140,9 +131,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
         }
       );
       toast.success('Post updated successfully');
-      console.log(response);
       window.location.href = "/home";
-      // navigate('/UpdatedPage'); // Navigate to a different page or perform another action
     } catch (error) {
       console.error('There was an error updating the post!', error);
       toast.error('There was an error updating the post!');
@@ -153,7 +142,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
     const token = localStorage.getItem("token");
 
     try {
-      const response = await axios.delete(
+      await axios.delete(
         `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
         {
           headers: {
@@ -164,8 +153,6 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       );
       toast.success('Post deleted successfully');
       window.location.href = "/home";
-      // console.log(response);
-      // navigate('/DeletedPage'); // Navigate to a different page or perform another action
     } catch (error) {
       console.error('There was an error deleting the post!', error);
       toast.error('There was an error deleting the post!');
@@ -229,87 +216,80 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
           </button>
         </div>
         <div className="relative">
-          <button
-            aria-expanded={showDropdown}
-            aria-haspopup="menu"
-            className="relative align-middle select-none font-sans 
+      <button
+        aria-expanded={showDropdown}
+        aria-haspopup="menu"
+        className="relative align-middle select-none font-sans 
         font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none
         w-10 max-w-[40px] max-h-[40px] rounded-lg text-xs border hover:opacity-75 focus:ring focus:ring-gray-300 
         active:opacity-[0.85] h-6 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 py-4"
-            type="button"
-            onClick={handleDropdownToggle}
+        type="button"
+        onClick={handleDropdownToggle}
+      >
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" className="h-6 w-6">
+            <path fillRule="evenodd" d="M4.5 12a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" clipRule="evenodd"></path>
+          </svg>
+        </span>
+      </button>
+      {showDropdown && (
+        <div className="absolute top-full -left-20 bg-white shadow-md rounded-lg mt-2 z-10">
+          <button
+            className="block px-4 py-2 text-sm text-gray-700 bg-gray-100 w-full text-center rounded-2xl hover:bg-light-blue-200 m-1"
+            role="menuitem"
+            onClick={handleOpen}
           >
-            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
-              <button aria-expanded="false" aria-haspopup="menu" id=":r2bk:" className="relative align-middle select-none font-sans 
-          font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none
-          w-10 max-w-[40px] max-h-[40px] rounded-lg text-xs border hover:opacity-75 focus:ring focus:ring-gray-300 
-          active:opacity-[0.85] h-6 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 py-4" type="button" >
-                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" className="h-6 w-6">
-                    <path fillRule="evenodd" d="M4.5 12a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" clipRule="evenodd"></path>
-                  </svg>
-                </span>
-              </button>
-            </span>
+            Update Post
           </button>
-          {showDropdown && (
-            <div>
-              <Dialog open={open} handler={handleOpen} size="sm">
-                <DialogBody>
-                  <form onSubmit={handleEditPost}>
-                    <div className="relative w-full min-w-[200px]">
-                      <textarea
-                        rows="2"
-                        placeholder="Give a title..."
-                        className="peer w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none disabled:cursor-not-allowed transition-all border-b placeholder-shown:border-blue-gray-200 text-sm pt-4 pb-1.5 mt-1.5 border-blue-gray-200 focus:border-gray-900"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                      />
-                      <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] after:content-[' '] after:block after:w-full after:absolute after:-bottom-0 left-0 after:border-b-2 after:scale-x-0 peer-focus:after:scale-x-100 after:transition-transform after:duration-300 peer-placeholder-shown:leading-[4.25] text-gray-500 peer-focus:text-gray-900 after:border-gray-500 peer-focus:after:!border-gray-900">
-                        {' '}
-                      </label>
-                    </div>
-                    <div className="relative w-full min-w-[200px]">
-                      <textarea
-                        rows="8"
-                        placeholder="Say something..."
-                        className="peer w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none disabled:cursor-not-allowed transition-all border-b placeholder-shown:border-blue-gray-200 text-sm pt-4 pb-1.5 mt-1.5 border-blue-gray-200 focus:border-gray-900"
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                      />
-                      <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] after:content-[' '] after:block after:w-full after:absolute after:-bottom-0 left-0 after:border-b-2 after:scale-x-0 peer-focus:after:scale-x-100 after:transition-transform after:duration-300 peer-placeholder-shown:leading-[4.25] text-gray-500 peer-focus:text-gray-900 after:border-gray-500 peer-focus:after:!border-gray-900">
-                        {' '}
-                      </label>
-                    </div>
-                    <div className="flex gap-2 justify-between flex-col sm:flex-row">
-                      <button
-                        type="submit"
-                        className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-blue-500 capitalize rounded-full"
-                      >
-                        Post
-                      </button>
-                    </div>
-                  </form>
-                </DialogBody>
-              </Dialog>
+          <button
+            className="block px-4 py-2 text-sm bg-gray-100 w-full text-center rounded-2xl hover:bg-red-400 text-gray-700 m-1"
+            role="menuitem"
+            onClick={deletePost}
+          >
+            Delete Post
+          </button>
+        </div>
+      )}
+      <Dialog open={open} handler={handleOpen} size="sm">
+        <DialogBody>
+          <form onSubmit={handleEditPost}>
+            <div className="relative w-full min-w-[200px]">
+              <textarea
+                rows="2"
+                placeholder="Give a title..."
+                className="peer w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none disabled:cursor-not-allowed transition-all border-b placeholder-shown:border-blue-gray-200 text-sm pt-4 pb-1.5 mt-1.5 border-blue-gray-200 focus:border-gray-900"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] after:content-[' '] after:block after:w-full after:absolute after:-bottom-0 left-0 after:border-b-2 after:scale-x-0 peer-focus:after:scale-x-100 after:transition-transform after:duration-300 peer-placeholder-shown:leading-[4.25] text-gray-500 peer-focus:text-gray-900 after:border-gray-500 peer-focus:after:!border-gray-900">
+                {' '}
+              </label>
+            </div>
+            <div className="relative w-full min-w-[200px]">
+              <textarea
+                rows="8"
+                placeholder="Say something..."
+                className="peer w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none disabled:cursor-not-allowed transition-all border-b placeholder-shown:border-blue-gray-200 text-sm pt-4 pb-1.5 mt-1.5 border-blue-gray-200 focus:border-gray-900"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+              />
+              <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] after:content-[' '] after:block after:w-full after:absolute after:-bottom-0 left-0 after:border-b-2 after:scale-x-0 peer-focus:after:scale-x-100 after:transition-transform after:duration-300 peer-placeholder-shown:leading-[4.25] text-gray-500 peer-focus:text-gray-900 after:border-gray-500 peer-focus:after:!border-gray-900">
+                {' '}
+              </label>
+            </div>
+            <div className="flex gap-2 justify-between flex-col sm:flex-row">
               <button
-                className="block px-4 py-2 text-sm text-gray-700 bg-gray-100 w-full text-center rounded-2xl hover:bg-light-blue-200 m-1"
-                role="menuitem"
-                onClick={handleOpen}
+                type="submit"
+                className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-blue-500 capitalize rounded-full"
               >
-                Update Post
-              </button>
-              
-              <button
-                className="block px-4 py-2 text-sm  bg-gray-100 w-full text-center rounded-2xl hover:bg-red-400 text-gray-700 m-1"
-                role="menuitem"
-                onClick={deletePost}
-              >
-                Delete Post
+                Post
               </button>
             </div>
-          )}
-        </div>
+          </form>
+        </DialogBody>
+      </Dialog>
+    </div>
+
       </div >
       {toggleComments &&
         <div className='flex flex-col'>
