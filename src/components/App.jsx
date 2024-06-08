@@ -1,6 +1,6 @@
 import "../styles/App.css";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import SignUp from "./SignUp";
+import Login from "./Login";
 import PostDetails from "./PostDetails";
 import Home from "./Home";
 import { Notification } from "./Notification";
@@ -23,7 +23,7 @@ function App() {
       <Router>
       {/* <NavbarDefault /> */}
         <Routes>
-          <Route path="/" element={<SignUp />} />
+          <Route path="/" element={<Login/> } />
           <Route
             path="/home"
             element={

@@ -1,128 +1,129 @@
-import React from 'react'
+import React, { useState } from "react";
+import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import SignUpBgm from '../assets/SignUpBgm.jpg';
-import google from "../assets/google.jpeg"
-import facebook from "../assets/facebook.jpeg";
-import SignUpDialogue from './SignUpDialogue';
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+
+import {useNavigate} from 'react-router-dom';
+import {
+    p,
+    Dialog,
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    Typography,
+    Input,
+    Checkbox,
+} from "@material-tailwind/react";
 
 
-export default function SignUp() {
+const SignUp = () => {
+    const navigate=useNavigate();
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen((cur) => !cur);
 
-    const [getData, setData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        appType: 'quora'
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: "",
     });
 
-    const [getError, setError] = useState(null);
-
-    const navigate = useNavigate();
-
-    const onChangeHandler = (event) => {
-        setData({ ...getData, [event.target.name]: event.target.value })
-    }
-
-    const onSubmitHandler = async (event) => {
-        event.preventDefault();
-        setError(null);
-        if (!getData.email) {
-            // setError('email is mandatory');
-            toast.error('Email is mandatory');
-            return;
-        }
-        else if (!getData.password) {
-            // setError('password cannot be empty');
-            toast.error('Password cannot be empty');
-            return;
-        }
-        await axios.post('https://academics.newtonschool.co/api/v1/user/login', getData, {
-            headers: {
-                projectID: 'tpibj7ie8i1w',
-                "Content-Type": "application/json",
-            }
-        }).then((result) => {
-            console.log(result);
-            localStorage.setItem("userInfo", JSON.stringify(result.data.data.user));
-            localStorage.setItem("token", (result.data.token));
-            if (result.data.status === 'success') {
-                localStorage.setItem('status', 'success')
-                toast("Login Successful")
-                setInterval(() => {
-                    navigate('/home');
-                }, 2000)
-
-                // console.log("Login Successful")
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+    // console.log(formData)
+    const handleSubmit = async () => {
+        try {
+            const body = {
+                name: formData.name,
+                email: formData.email,
+                password: formData.password,
+                appType: "quora",
+            };
+    
+            const response = await axios.post(
+                'https://academics.newtonschool.co/api/v1/user/signup',
+                JSON.stringify(body),
+                {
+                    headers: {
+                        projectID: "tpibj7ie8i1w",
+                        "Content-Type": "application/json",
+                    }
+                }
+            );
+    
+            if (response.status === 201) {
+                // Use response.data to access the data returned by the API
+                const data = response.data;
+    
+                // Store user information and token in local storage
+                if (data.status === "success") {
+                    localStorage.setItem("userInfo", JSON.stringify(data.data.user));
+                    localStorage.setItem("token",data.token);
+                    // console.log(data)
+                    console.log("User information and token stored successfully.");
+                    // navigate('/')
+                    setOpen(false)
+                    toast('Your acount created successfully')
+                } else {
+                    console.log("API response status is not 'success'");
+                    setOpen(false)
+                    toast("API response status is not 'success'")
+                }
             } else {
-                localStorage.setItem('status', 'failure')
+                console.log("API response status is not 200");
+                setOpen(false)
+                toast("API response status is not 200")
             }
-        }).catch((error) => {
-            // setError("internal server error please try after sometime", error);
-            toast.error("Email or Password is incorrect")
-        })
-    }
+        } catch (err) {
+            console.error("Error occurred during sign-up:", err);
+            setOpen(false)
+            toast("Error occurred during sign-up:")
+        }
+    };
 
-    return (
-        <>       
-            <div style={{ backgroundImage: `url(${SignUpBgm})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", height: "100vh" }} className='flex items-center justify-center'>
-                <div className='bg-white h-11/12 w-11/12 md:w-8/12 lg:w-7/12 rounded-sm p-4 md:p-8'>
-                    <h1 className='text-red-700 text-4xl md:text-6xl font-bold font-serif text-center'>Quora</h1>
-                    <h1 className='text-center font-bold text-gray-500 mt-3 '>A place to share knowledge and better understand the world</h1>
-                    <div className='flex flex-col lg:flex-row'>
-                        <div className='flex flex-col items-center lg:items-start'>
-                            <h1 className='text-zinc-400 text-xs md:text-sm lg:w-72 text-center lg:text-left'>
-                                By continuing you indicate that you agree to Quora’s
-                                <span className='text-cyan-700'> Terms of Service</span> and <span className='text-cyan-700'> Privacy Policy.</span>
-                            </h1>
-                            <div className='flex p-4 border border-spacing-1 items-center w-full md:w-80 rounded-sm mt-5'>
-                                <img src={google} className='w-5 h-5 ml-2' />
-                                <h1 className='ml-7 cursor-not-allowed'>Continue with Google</h1>
-                            </div>
-                            <div className='flex p-4 border border-spacing-1 items-center w-full md:w-80 rounded-sm mt-5'>
-                                <img src={facebook} className='w-6 h-5 ml-2 rounded-full' />
-                                <h1 className='ml-7 cursor-not-allowed'>Continue with Facebook</h1>
-                            </div>
-                            <h1 className='text-center text-sm font-semibold text-zinc-600 mt-3 hover:bg-gray-100 rounded-full cursor-pointer'>
-                                <SignUpDialogue />
-                            </h1>
-                        </div>
-                        <div className='mt-8 lg:mt-0 lg:ml-16'>
-                            <h1 className='text-lg text-center font-bold'>Login</h1>
-                            <hr className='w-full lg:w-72 mt-3' />
-                            <h1 className='mt-4 font-bold text-sm' >Email</h1>
-                            <input
-                                name="email"
-                                value={getData.email}
-                                onChange={onChangeHandler}
-                                placeholder='Your Email'
-                                className='border border-spacing-1 p-2 w-full lg:w-72 mt-2'
-                                type="email"
-                            />
-                            <h1 className='mt-4 font-bold text-sm'>Password</h1>
-                            <input
-                                name="password"
-                                type="password"
-                                value={getData.password}
-                                onChange={onChangeHandler}
-                                placeholder='Your Password'
-                                className='border border-spacing-1 p-2 w-full lg:w-72 mt-2'
-                            />
-                            <div className='flex justify-center lg:justify-start mt-4'>
-                                <button className='bg-blue-500 text-white py-2 px-3 rounded-full' onClick={onSubmitHandler}>Login</button>
-                            </div>
-                        </div>
-                    </div>
-                    <hr className='mt-3' />
-                    <h1 className='text-xs md:text-sm text-center mt-3 text-zinc-600'>
-                        About . Careers . Privacy . Terms . Contact . Languages . Your Ad ChoicesPress© Quora, Inc. 2024
-                    </h1>
-                </div>
-            </div>
-
-        </>
-    )
+return (
+    <>
+   
+        <p onClick={handleOpen} className="p-2 bg-gray-300 text-center rounded-xl">Sign Up with email</p>
+        <Dialog
+            size="xs"
+            open={open}
+            handler={handleOpen}
+            className="bg-transparent shadow-none"
+        >
+            <Card className="mx-auto w-full max-w-[24rem]">
+                <CardBody className="flex flex-col gap-4">
+                    <Typography variant="h5" color="black" >
+                        Sign Up
+                    </Typography>
+                    <Typography className="-mb-2" variant="h6">
+                        Name
+                    </Typography >
+                    <Input label="Name" name="name" value={formData.name} onChange={handleChange} size="lg" />
+                    <Typography className="-mb-2" variant="h6">
+                        Email
+                    </Typography>
+                    <Input label="Email" name="email" value={formData.email} onChange={handleChange} size="lg" />
+                    <Typography className="-mb-2" variant="h6">
+                        Password
+                    </Typography>
+                    <Input label="Password" name="password" type="password" value={formData.password} onChange={handleChange} size="lg" />
+                </CardBody>
+                <CardFooter className="pt-0 flex justify-end ">
+                    <p className="bg-[#2e69ff] p-2 rounded-3xl text-white cursor-pointer" variant="gradient" onClick={handleSubmit} fullWidth>
+                        Sign Up
+                    </p>
+                </CardFooter>
+            </Card>
+        </Dialog>
+    </>
+);
 }
+
+export default SignUp;
+
