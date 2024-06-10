@@ -70,7 +70,7 @@ const Rightbar = () => {
                 placeholder='What do you want to ask or share?'
                 className='p-1 ml-6 border border-spacing-1 rounded-full w-full mr-4'
                 style={inputStyle}
-                
+                // onChange={<Answer/>}
               />
             </div>
             <div className='flex justify-around p-2 xs:gap-5'>
