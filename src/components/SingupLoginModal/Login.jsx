@@ -9,7 +9,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-    const [getData, setData] = useState({
+    const [loginData, setLoginData] = useState({
         email: '',
         password: '',
         appType: 'quora'
@@ -18,40 +18,27 @@ export default function Login() {
     const navigate = useNavigate();
 
     const onChangeHandler = (event) => {
-        setData({ ...getData, [event.target.name]: event.target.value });
+        setLoginData({ ...loginData, [event.target.name]: event.target.value });
     }
-
-    const validateEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
 
     const onSubmitHandler = async (event) => {
         event.preventDefault();
-        if (!getData.email) {
-            toast.error('Email is mandatory');
-            return;
-        } else if (!validateEmail(getData.email)) {
-            toast.error('Invalid email format');
-            return;
-        } else if (!getData.password) {
-            toast.error('Password cannot be empty');
-            return;
-        } else if (getData.password.length < 6) {
-            toast.error('Password must be at least 6 characters');
+        if (!loginData.email || !loginData.password) {
+            toast.error('Please fill in both email and password fields');
             return;
         }
 
-        await axios.post('https://academics.newtonschool.co/api/v1/user/login', getData, {
-            headers: {
-                projectID: 'tpibj7ie8i1w',
-                "Content-Type": "application/json",
-            }
-        }).then((result) => {
-            console.log(result);
-            localStorage.setItem("userInfo", JSON.stringify(result.data.data.user));
-            localStorage.setItem("token", result.data.token);
-            if (result.data.status === 'success') {
+        try {
+            const response = await axios.post('https://academics.newtonschool.co/api/v1/user/login', loginData, {
+                headers: {
+                    projectID: 'tpibj7ie8i1w',
+                    "Content-Type": "application/json",
+                }
+            });
+
+            if (response.status === 200 && response.data.status === 'success') {
+                localStorage.setItem("userInfo", JSON.stringify(response.data.data.user));
+                localStorage.setItem("token", response.data.token);
                 localStorage.setItem('status', 'success');
                 toast.success("Login Successful");
                 setTimeout(() => {
@@ -59,12 +46,13 @@ export default function Login() {
                 }, 2000);
             } else {
                 localStorage.setItem('status', 'failure');
-                toast.error("Login failed");
+                toast.error("Login failed. Please check your credentials.");
             }
-        }).catch((error) => {
-            toast.error("Email or Password is incorrect");
-        });
+        } catch (error) {
+            toast.error("An error occurred. Please try again later.");
+        }
     }
+
 
     return (
         <>
@@ -96,7 +84,7 @@ export default function Login() {
                             <h1 className='mt-4 font-bold text-sm'>Email</h1>
                             <input
                                 name="email"
-                                value={getData.email}
+                                value={loginData.email}
                                 onChange={onChangeHandler}
                                 placeholder='Your Email'
                                 className='border border-spacing-1 p-2 w-full lg:w-72 mt-2'
@@ -106,7 +94,7 @@ export default function Login() {
                             <input
                                 name="password"
                                 type="password"
-                                value={getData.password}
+                                value={loginData.password}
                                 onChange={onChangeHandler}
                                 placeholder='Your Password'
                                 className='border border-spacing-1 p-2 w-full lg:w-72 mt-2'

@@ -19,7 +19,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState(postTitle || "");
   const [content, setContent] = useState(postContent || "");
-  const [image, setImage] = useState(null);
+  // const [image, setImage] = useState(null);
   const handleOpen = () => setOpen(!open);
 
   const colour = {
@@ -54,7 +54,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       setCount(likeCount => likeCount + 1);
       setColorBlue('blue');
       setColorRed('');
-      toast('You liked the post', { autoClose: 2000 });
+      toast('You liked the post');
     } catch (error) {
       console.error('Error upvoting the post:', error);
       toast.error('You already liked the post');
@@ -102,7 +102,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       toast.success('Comment deleted successfully');
     } catch (error) {
       console.error('Error deleting comment:', error);
-      toast.error('Error deleting comment');
+      toast.error('Error deleting comment'+ error.message);
     }
   };
 
@@ -289,12 +289,11 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
         </DialogBody>
       </Dialog>
     </div>
-
       </div >
       {toggleComments &&
         <div className='flex flex-col'>
           <div className='flex justify-between p-3'>
-            <input type="text" value={postComment} className='border border-gray-500 rounded-2xl text-black ' onChange={(e) => { setPostComment(e.target.value) }} />
+            <input type="text" value={postComment} className='border border-gray-500 rounded-2xl text-black ' onChange={(e) => { setPostComment(e.target.value)}} />
             <button onClick={handleAddComment} className='bg-blue-300 rounded-2xl p-2 ml-5'>Add Comment</button>
           </div>
           <div>
