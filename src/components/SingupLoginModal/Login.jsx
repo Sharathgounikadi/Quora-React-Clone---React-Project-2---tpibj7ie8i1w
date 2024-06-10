@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import SignUpBgm from '../assets/SignUpBgm.jpg';
-import google from "../assets/google.jpeg";
-import facebook from "../assets/facebook.jpeg";
-import SignUp from './SignUp';
+import signUpBg from '../../assets/SignUpBg.jpg';
+import googleLogo from '../../assets/google.jpeg';
+import facebookLogo from '../../assets/facebook.jpeg';
+import SignUp from "./SignUp";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -68,8 +68,7 @@ export default function Login() {
 
     return (
         <>
-            <ToastContainer />
-            <div style={{ backgroundImage: `url(${SignUpBgm})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", height: "100vh" }} className='flex items-center justify-center'>
+            <div style={{ backgroundImage: `url(${signUpBg})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", height: "100vh" }} className='flex items-center justify-center'>
                 <div className='bg-white h-11/12 w-11/12 md:w-8/12 lg:w-7/12 rounded-sm p-4 md:p-8'>
                     <h1 className='text-red-700 text-4xl md:text-6xl font-bold font-serif text-center'>Quora</h1>
                     <h1 className='text-center font-bold text-gray-500 mt-3'>A place to share knowledge and better understand the world</h1>
@@ -80,15 +79,15 @@ export default function Login() {
                                 <span className='text-cyan-700'> Terms of Service</span> and <span className='text-cyan-700'> Privacy Policy.</span>
                             </h1>
                             <div className='flex p-4 border border-spacing-1 items-center w-full md:w-80 rounded-sm mt-5'>
-                                <img src={google} className='w-5 h-5 ml-2' />
+                                <img src={googleLogo} className='w-5 h-5 ml-2' />
                                 <h1 className='ml-7 cursor-not-allowed'>Continue with Google</h1>
                             </div>
                             <div className='flex p-4 border border-spacing-1 items-center w-full md:w-80 rounded-sm mt-5'>
-                                <img src={facebook} className='w-6 h-5 ml-2 rounded-full' />
+                                <img src={facebookLogo} className='w-6 h-5 ml-2 rounded-full' />
                                 <h1 className='ml-7 cursor-not-allowed'>Continue with Facebook</h1>
                             </div>
                             <h1 className='text-center text-sm font-semibold text-zinc-600 mt-3 hover:bg-gray-100 rounded-full cursor-pointer'>
-                                <SignUp />
+                                <SignUp/>
                             </h1>
                         </div>
                         <div className='mt-8 lg:mt-0 lg:ml-16'>
