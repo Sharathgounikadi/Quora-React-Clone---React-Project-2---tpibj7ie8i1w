@@ -61,7 +61,7 @@ const Rightbar = () => {
 
   return (
     <>
-      <div className='mx-auto '>
+      <div className='mx-auto'>
         <div className='mt-2.5 rounded-sm md:left-96'>
           <div className='border border-spacing-1 mt-20 pt-2 xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[18rem] w-full' style={colour}>
             <div className="relative flex text-gray-700 bg-clip-border rounded-sm " >
@@ -101,7 +101,7 @@ const Rightbar = () => {
                     ) : (
                       <Avatar round size="25" className="mt-0.5 ml-2" name={authorInitial} />
                     )}
-                    <h1 className='ml-5 font-semibold'>{post.author?.name}</h1>
+                    <h1 className='ml-5 mt-2 font-semibold'>{post.author?.name}</h1>
                   </div>
                   <div className="p-6">
                     <h5 className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-black" onClick={handlePostOpen}>
