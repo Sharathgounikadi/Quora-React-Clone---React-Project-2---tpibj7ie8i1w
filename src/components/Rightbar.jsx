@@ -16,8 +16,6 @@ const Rightbar = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [following, setFollowing] = useState({});
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
   
 
   const colour = {
@@ -38,39 +36,23 @@ const Rightbar = () => {
   const fetchPosts = async () => {
     const dataUser = localStorage.getItem("token");
     try {
-      const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post?limit=10&page=${page}`, {
+      const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=100', {
         headers: {
           'projectID': 'tpibj7ie8i1w',
           'Authorization': `Bearer ${dataUser}`
         }
       });
-      if (response.data.data.length > 0) {
-        setPosts(prevPosts => [...prevPosts, ...response.data.data]);
-        setPage(prevPage => prevPage + 1);
-      } else {
-        setHasMore(false);
-      }
+      setPosts(response.data.data);
+      console.log(response.data.data)
     } catch (error) {
       console.error('Failed to fetch posts:', error);
     }
   };
 
+
   useEffect(() => {
     fetchPosts();
   }, []);
-
-  const handleScroll = () => {
-    if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-      if (hasMore) {
-        fetchPosts();
-      }
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasMore]);
 
   const handlePostOpen = (postId) => {
     // navigate(`/question/${postId}`);
