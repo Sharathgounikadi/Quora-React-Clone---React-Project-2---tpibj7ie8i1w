@@ -51,7 +51,7 @@ const NavbarDefault = () => {
         const searchTerm = e.target.value;
         setQuery(searchTerm);
 
-        if (searchTerm.length > 1) {
+        if (searchTerm.length > 0) {
             try {
                 const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post?search={"content":"${searchTerm}"}`, {
                     headers: {
@@ -71,11 +71,14 @@ const NavbarDefault = () => {
     const nav = () => {
         navigate('/ComingSoon');
     };
+    const handlePostClick = (postId) => {
+        navigate(`/post/${postId}`);
+    };
 
     return (
         <>
             <Navbar className="max-w-screen-xl lg:max-w-full fixed top-0 left-0 right-0 z-20 h-16 xs:flex" style={postCardStyle}>
-                <div className="lg:mx-auto flex-wrap justify-center text-gray-900 mb-4 lg:ml-64 lg:gap-2 items-center hidden lg:block">
+                <div className="lg:mx-auto flex-wrap justify-center text-gray-900 mb-4 lg:ml-64 lg:gap-2 items-center">
                     <div className="relative flex w-full md:w-max xs:flex-wrap justify-between">
                         <Typography as="a" href="#" className="mr-4 cursor-pointer py-1.5 font-medium">
                             <img src={quora} className="w-40 h-8 cursor-pointer xs:w-20" onClick={() => navigate('/home')} alt="Quora" />
@@ -142,14 +145,20 @@ const NavbarDefault = () => {
                             </h1>
                         </Typography>
                     </div>
-                    {query && searchResults.length > 0 && (
+                    {query && (
                         <div className="top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll z-20">
-                            {searchResults.map((result, index) => (
-                                <div key={index} className="p-2 border-b last:border-b-0">
-                                    <h2 className='font-bold'>{result?.title}</h2>
-                                    <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
+                            {searchResults.length > 0 ? (
+                                searchResults.map((result, index) => (
+                                    <div key={index} className="p-2 border-b last:border-b-0" onClick={handlePostClick}>
+                                        <h2 className='font-bold'>{result?.title}</h2>
+                                        <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="p-2 text-center text-black font-bold">
+                                    No results found
                                 </div>
-                            ))}
+                            )}
                         </div>
                     )}
                 </div>
@@ -222,7 +231,7 @@ const NavbarDefault = () => {
                     {query && searchResults.length > 0 && (
                         <div className="absolute top-12 left-32 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll">
                             {searchResults.map((result, index) => (
-                                <div key={index} className="p-2 border-b last:border-b-0">
+                                <div key={index} className="p-2 border-b last:border-b-0" onClick={handlePostClick}>
                                     <h2 className='font-bold'>{result?.title}</h2>
                                     <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
                                 </div>
