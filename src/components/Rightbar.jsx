@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Avatar from 'react-avatar';
 import axios from 'axios';
-import { div, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
 import CreatePost from './CreatePost';
 import { useUser } from './UserProvider';
@@ -9,14 +9,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Ask, Answer, PostImage } from './Icons';
 import AddPost from './AddPost';
 
-
-
 const Rightbar = () => {
   const { theme } = useUser();
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
-  const [following, setFollowing] = useState({});
-  
+  const [page, setPage] = useState(1);
+  const [isFetching, setIsFetching] = useState(false);
+  const [error, setError] = useState(null);
+  const [initialApiCallMade, setInitialApiCallMade] = useState(false);
 
   const colour = {
     backgroundColor: theme === 'light' ? 'white' : 'black',
@@ -34,30 +34,66 @@ const Rightbar = () => {
   };
 
   const fetchPosts = async () => {
+    if (isFetching || (initialApiCallMade && page > 1)) {
+      return;
+    }
+
     const dataUser = localStorage.getItem("token");
     try {
-      const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=100', {
+      setIsFetching(true);
+      const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post?limit=10&page=${page}`, {
         headers: {
           'projectID': 'tpibj7ie8i1w',
           'Authorization': `Bearer ${dataUser}`
         }
       });
-      setPosts(response.data.data);
-      console.log(response.data.data)
+      setPosts((prevPosts) => [...prevPosts, ...response.data.data]);
+      setPage((prevPage) => prevPage + 1);
+
+      if (!initialApiCallMade) {
+        setInitialApiCallMade(true);
+      }
     } catch (error) {
       console.error('Failed to fetch posts:', error);
+      setError("Failed to fetch posts. Please try again.");
+    } finally {
+      setIsFetching(false);
     }
   };
 
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func(...args);
+      }, delay);
+    };
+  };
+
+  const debouncedFetchPosts = debounce(fetchPosts, 500);
+
+  const handleScroll = () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
+      debouncedFetchPosts();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Empty dependency array to ensure the effect runs only once
 
   useEffect(() => {
     fetchPosts();
-  }, []);
-
-  const handlePostOpen = (postId) => {
-    // navigate(`/question/${postId}`);
-  };
-
+  }, []); // Empty dependency array to ensure the effect runs only once
 
   return (
     <>
@@ -66,11 +102,12 @@ const Rightbar = () => {
           <div className='border border-spacing-1 mt-20 pt-2 xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[18rem] w-full' style={colour}>
             <div className="relative flex text-gray-700 bg-clip-border rounded-sm " >
               <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
+              
               <input
                 placeholder='What do you want to ask or share?'
                 className='p-1 ml-6 border border-spacing-1 rounded-full w-full mr-4'
                 style={inputStyle}
-                // onChange={<Answer/>}
+                onClick={()=>(<AddPost/>)}
               />
             </div>
             <div className='flex justify-around p-2 xs:gap-5'>
@@ -78,12 +115,12 @@ const Rightbar = () => {
                 <Ask />
                 <h1 className='flex items-center'><CreatePost /></h1>
               </div>
-              <h1 className=''>|</h1>
+
               <div className='flex items-center'>
                 <Answer />
                 <h1 className='' onClick={() => navigate('/Answers')}>Answer</h1>
               </div>
-              <h1 className=''>|</h1>
+
               <div className='flex items-center mr-6'>
                 <PostImage />
                 <div className='' ><AddPost /></div>
@@ -104,14 +141,14 @@ const Rightbar = () => {
                     <h1 className='ml-5 mt-2 font-semibold'>{post.author?.name}</h1>
                   </div>
                   <div className="p-6">
-                    <h5 className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-black" onClick={handlePostOpen}>
+                    <h5 className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-black" onClick={() => handlePostOpen(post._id)}>
                       {post?.title}
                     </h5>
                     <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
                       {post?.content}
                     </p>
                   </div>
-                  {post.images.length > 0 ? (
+                  {post.images.length > 0 && (
                     <div className="relative h-80 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-sm bg-blue-gray-500 shadow-blue-gray-500/40">
                       <img
                         src={post.images[0]}
@@ -119,13 +156,13 @@ const Rightbar = () => {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                  ) : (
-                    ""
                   )}
-                  <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount}  postTitle={post?.title} postContent={post?.content} postImage={post.images[0]} />
+                  <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} postTitle={post?.title} postContent={post?.content} postImage={post.images[0]} />
                 </div>
-              )
+              );
             })}
+            {isFetching && <p>Loading...</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
           </div>
         </div>
       </div>

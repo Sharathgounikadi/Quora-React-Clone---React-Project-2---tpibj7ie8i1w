@@ -31,8 +31,10 @@ const NavbarDefault = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    
+
     const postCardStyle = {
-        backgroundColor: theme === 'light' ? 'white' : 'gray',
+        backgroundColor: theme === 'light' ? 'white' : 'lightgray',
         color: theme === 'light' ? 'black' : 'white',
     };
 
@@ -79,7 +81,7 @@ const NavbarDefault = () => {
         <>
             <Navbar className="max-w-screen-xl lg:max-w-full fixed top-0 left-0 right-0 z-20 h-16 xs:flex" style={postCardStyle}>
                 <div className="lg:mx-auto flex-wrap justify-center text-gray-900 mb-4 lg:ml-64 lg:gap-2 items-center">
-                    <div className="relative flex w-full md:w-max xs:flex-wrap justify-between">
+                    <div className="relative flex w-full md:w-max xs:flex-wrap justify-between" >
                         <Typography as="a" href="#" className="mr-4 cursor-pointer py-1.5 font-medium">
                             <img src={quora} className="w-40 h-8 cursor-pointer xs:w-20" onClick={() => navigate('/home')} alt="Quora" />
                         </Typography>

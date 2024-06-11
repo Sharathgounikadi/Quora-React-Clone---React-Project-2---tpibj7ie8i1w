@@ -56,11 +56,13 @@ const Answers = () => {
       <>
       <NavbarDefault/>
         <div className='' style={colour}>
+          
             <div className='flex items-center flex-col mt-20'>
+            <h1 className='font-bold text-black text-left'>Questions for you</h1>
               {posts.map((post, index) => {
                 const authorInitial = post.author?.name ? post.author?.name.charAt(0).toUpperCase() : '';
                 return (
-                  <div className="relative flex flex-col iem mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl xl:w-[40rem] lg:w-[40rem] md:w-[26rem] w-full" key={index} style={postCardStyle}>
+                  <div className="relative flex flex-col iem mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl xl:w-[40rem] lg:w-[50rem] md:w-[26rem] w-full" key={index} style={postCardStyle}>
                     <div className='flex items-center p-2'>
                       {post.channel?.image ? (
                         <img className="w-8 h-8 rounded-full" src={post.channel?.image} />
