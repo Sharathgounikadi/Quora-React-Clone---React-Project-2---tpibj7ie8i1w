@@ -111,59 +111,96 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
 
   const handleDropdownToggle = () => setShowDropdown(!showDropdown);
 
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"))?._id;
+
   const handleEditPost = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
+    // const userInfo = JSON.parse(localStorage.getItem("userInfo"))?._id;
 
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
 
     try {
-      const response = await axios.patch(
-        `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
-        formData,
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'projectID': 'tpibj7ie8i1w',
-            'Content-Type': 'multipart/form-data'
-          }
+        // Fetch the post to check its author
+        const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${postId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'projectID': 'tpibj7ie8i1w'
+            }
+        });
+        const postAuthor = response.data?.data?.author?._id;
+
+        // Check if the current user is the author of the post
+        if (userInfo !== postAuthor) {
+          setOpen(false)
+            toast.error('You are not authorized to edit this post.');
+            return;
         }
-      );
-      setOpen(false)
-      toast.success('Post updated successfully');
-      window.location.href = "/home";
+
+        // If the current user is the author, proceed with the edit
+        await axios.patch(
+            `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
+            formData,
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'projectID': 'tpibj7ie8i1w',
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+        );
+        setOpen(false);
+        toast.success('Post updated successfully');
+        window.location.href = "/home";
     } catch (error) {
-      console.error('There was an error updating the post!', error);
-      setOpen(false)
-      toast.error(error.response.data.message || error.message);
+        console.error('There was an error updating the post!', error);
+        setOpen(false);
+        toast.error(error.response?.data?.message || error.message);
     }
-  };
+};
+
 
   const deletePost = async () => {
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
+    // const userInfo = JSON.parse(localStorage.getItem("userInfo"))?._id;
 
     try {
-      await axios.delete(
-        `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'projectID': 'tpibj7ie8i1w'
-          }
+        // Fetch the post to check its author
+        const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${postId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'projectID': 'tpibj7ie8i1w'
+            }
+        });
+        const postAuthor = response.data?.data?.author?._id;
+        // console.log(response.data)
+        // console.log(postAuthor)
+        // Check if the current user is the author of the post
+        if (userInfo !== postAuthor) {
+            toast.error('You are not authorized to delete this post.');
+            return;
         }
-      );
-      setOpen(false)
-      toast.success('Post deleted successfully');    
-      window.location.href = "/home";
-    } catch (error) {
-      console.error('There was an error deleting the post!', error);
-      toast.error(error.response.data.message || error.message);
-    }
-  };
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))?._id;
+        // If the current user is the author, proceed with deletion
+        await axios.delete(
+            `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'projectID': 'tpibj7ie8i1w'
+                }
+            }
+        );
+        setOpen(false);
+        toast.success('Post deleted successfully');
+        window.location.href = "/home";
+    } catch (error) {
+        console.error('There was an error deleting the post!', error);
+        toast.error(error.response?.data?.message || error.message);
+    }
+};
 
   return (
     <>
