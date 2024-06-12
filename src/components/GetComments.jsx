@@ -88,7 +88,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       setPostComment(''); // Clear the input field
       setComment(comment => comment + 1); // Increment comment count
       toast.success('Comment added successfully');
-
+      fetchData();
     } catch (error) {
       console.error('Error adding comment:', error);
       toast.error('Error adding comment');
@@ -101,6 +101,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       setData(prevData => prevData.filter(comment => comment._id !== id));
       setComment(comment => comment - 1); // Decrement comment count
       toast.success('Comment deleted successfully');
+      fetchData();
     } catch (error) {
       console.error('Error deleting comment:', error);
       toast.error('Error deleting comment' + error.message);
@@ -153,7 +154,8 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
         );
         setOpen(false);
         toast.success('Post updated successfully');
-        window.location.href = "/home";
+        window.location.reload();
+        
     } catch (error) {
         console.error('There was an error updating the post!', error);
         setOpen(false);
@@ -195,12 +197,14 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
         );
         setOpen(false);
         toast.success('Post deleted successfully');
-        window.location.href = "/home";
+        window.location.reload();
     } catch (error) {
         console.error('There was an error deleting the post!', error);
         toast.error(error.response?.data?.message || error.message);
     }
 };
+
+
 
   return (
     <>
@@ -263,9 +267,9 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
             aria-expanded={showDropdown}
             aria-haspopup="menu"
             className="relative align-middle select-none font-sans 
-    font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none
-    w-10 max-w-[40px] max-h-[40px] rounded-lg text-xs border hover:opacity-75 focus:ring focus:ring-gray-300 
-    active:opacity-[0.85] h-6 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 py-4"
+                      font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none
+                      w-10 max-w-[40px] max-h-[40px] rounded-lg text-xs border hover:opacity-75 focus:ring focus:ring-gray-300 
+                      active:opacity-[0.85] h-6 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 py-4"
             type="button"
             onClick={handleDropdownToggle}
           >

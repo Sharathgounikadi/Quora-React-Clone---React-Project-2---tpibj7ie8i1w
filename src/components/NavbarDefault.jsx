@@ -31,7 +31,9 @@ const NavbarDefault = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    
+    const iconColor={
+        backgroundColor:theme==='light'?'black':"white"
+    }
 
     const postCardStyle = {
         backgroundColor: theme === 'light' ? 'white' : 'lightgray',
@@ -87,7 +89,7 @@ const NavbarDefault = () => {
                         </Typography>
                         <Typography as="a" href="#" className="mr-5 cursor-pointer py-1.5 font-medium">
                             <Link to="/home">
-                                <Tooltip title="Home">
+                                <Tooltip title="Home" style={iconColor}>
                                     <Home className="w-8 h-8 md:w-6 md:h-6" />
                                 </Tooltip>
                             </Link>
@@ -231,7 +233,7 @@ const NavbarDefault = () => {
                         )}
                     </div>
                     {query && searchResults.length > 0 && (
-                        <div className="absolute top-12 left-32 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll">
+                        <div className="absolute top-12 left-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll">
                             {searchResults.map((result, index) => (
                                 <div key={index} className="p-2 border-b last:border-b-0" onClick={handlePostClick}>
                                     <h2 className='font-bold'>{result?.title}</h2>
