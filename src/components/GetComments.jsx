@@ -154,7 +154,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
         );
         setOpen(false);
         toast.success('Post updated successfully');
-        window.location.reload();
+        fetchData();
         
     } catch (error) {
         console.error('There was an error updating the post!', error);
@@ -197,7 +197,8 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
         );
         setOpen(false);
         toast.success('Post deleted successfully');
-        window.location.reload();
+        // window.location.reload();
+        fetchData();
     } catch (error) {
         console.error('There was an error deleting the post!', error);
         toast.error(error.response?.data?.message || error.message);
