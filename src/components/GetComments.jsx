@@ -101,7 +101,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       setData(prevData => prevData.filter(comment => comment._id !== id));
       setComment(comment => comment - 1); // Decrement comment count
       toast.success('Comment deleted successfully');
-      fetchData();
+      // fetchData();
     } catch (error) {
       console.error('Error deleting comment:', error);
       toast.error('Error deleting comment' + error.message);
