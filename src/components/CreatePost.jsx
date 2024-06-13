@@ -42,10 +42,10 @@ export default function CreatePost() {
         }
       );
       toast.success('Post created successfully');
-      console.log(response);
-      window.location.reload();
-      
+      // console.log(response);
       setShow(false);
+      window.location.reload();      
+      
     } catch (error) {
       console.error('There was an error creating the post!', error);
       toast.error('There was an error creating the post!');
