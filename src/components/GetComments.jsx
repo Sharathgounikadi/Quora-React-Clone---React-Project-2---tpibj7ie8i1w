@@ -20,6 +20,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
   const [title, setTitle] = useState(postTitle || "");
   const [content, setContent] = useState(postContent || "");
   // const [image, setImage] = useState(null);
+  const [posts, setPosts] = useState([]);
   const handleOpen = () => setOpen(!open);
 
   const colour = {
@@ -33,7 +34,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
     'projectID': 'tpibj7ie8i1w'
   };
 
-  const fetchData = async () => {
+  const fetchComments = async () => {
     try {
       const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${postId}/comments`, { headers });
       setData(response.data.data);
@@ -42,11 +43,21 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
     }
   };
 
-  useEffect(() => {
-    if (postId) {
-      fetchData();
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post', { headers });
+      setPosts(response.data.data);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      toast.error('Failed to fetch posts. Please try again.');
     }
+  };
+
+  useEffect(() => {    
+      fetchComments();
+      fetchPosts();
   }, [postId]);
+
 
   const handleUpvote = async () => {
 
@@ -88,7 +99,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       setPostComment(''); // Clear the input field
       setComment(comment => comment + 1); // Increment comment count
       toast.success('Comment added successfully');
-      fetchData();
+      fetchComments();
     } catch (error) {
       console.error('Error adding comment:', error);
       toast.error('Error adding comment');
@@ -101,7 +112,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       setData(prevData => prevData.filter(comment => comment._id !== id));
       setComment(comment => comment - 1); // Decrement comment count
       toast.success('Comment deleted successfully');
-      // fetchData();
+      // fetchComments();
     } catch (error) {
       console.error('Error deleting comment:', error);
       toast.error('Error deleting comment' + error.message);
@@ -154,8 +165,8 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
         );
         setOpen(false);
         toast.success('Post updated successfully');
-        fetchData();
-        
+        window.location.reload();
+        // fetchPosts()
     } catch (error) {
         console.error('There was an error updating the post!', error);
         setOpen(false);
@@ -197,8 +208,8 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
         );
         setOpen(false);
         toast.success('Post deleted successfully');
-        // window.location.reload();
-        fetchData();
+        window.location.reload();
+        // fetchPosts();
     } catch (error) {
         console.error('There was an error deleting the post!', error);
         toast.error(error.response?.data?.message || error.message);
