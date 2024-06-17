@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import {
@@ -15,6 +15,7 @@ export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
+  const [posts, setPosts] = useState([]);
   
 
   const openModal = () => setShow(true);
@@ -24,10 +25,30 @@ export default function CreatePost() {
   const createPost = async () => {
     const token = localStorage.getItem("token");
 
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'projectID': 'tpibj7ie8i1w'
+    };
+
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
     formData.append("content", content);
+
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post', { headers });
+        // setPosts(response.data.data);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        toast.error('Failed to fetch posts. Please try again.');
+      }
+    };
+  
+    // useEffect(() => {    
+    //     fetchPosts();
+    // }, []);
+  
 
     try {
       const response = await axios.post(
@@ -44,8 +65,8 @@ export default function CreatePost() {
       toast.success('Post created successfully');
       // console.log(response);
       setShow(false);
-      window.location.reload();      
-      
+      window.location.reload();   
+      // fetchPosts();      
     } catch (error) {
       console.error('There was an error creating the post!', error);
       toast.error('There was an error creating the post!');

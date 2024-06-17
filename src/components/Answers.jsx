@@ -56,7 +56,7 @@ const Answers = () => {
         <div className='' style={colour}>
           
             <div className='flex items-center flex-col mt-20'>
-            <h1 className='font-bold text-black text-left'>Questions for you</h1>
+            <h1 className='font-bold text-black text-left'>Answers for you</h1>
               {posts.map((post, index) => {
                 const authorInitial = post.author?.name ? post.author?.name.charAt(0).toUpperCase() : '';
                 return (
