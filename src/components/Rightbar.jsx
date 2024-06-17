@@ -101,8 +101,7 @@ const Rightbar = () => {
         <div className='mt-2.5 rounded-sm md:left-96'>
           <div className='border border-spacing-1 mt-20 pt-2 xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[18rem] w-full' style={colour}>
             <div className="relative flex text-gray-700 bg-clip-border rounded-sm " >
-              <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
-              
+              <Avatar round size="25" className="mt-0.5 ml-2" name="w" />             
               <input
                 placeholder='What do you want to ask or share?'
                 className='p-1 ml-6 border border-spacing-1 rounded-full w-full mr-4'
