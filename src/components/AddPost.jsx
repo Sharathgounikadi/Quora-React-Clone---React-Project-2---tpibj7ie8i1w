@@ -20,9 +20,9 @@ export default function AddPost() {
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false);
 
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
+  // const handleImageChange = (e) => {
+  //   setImage(e.target.files[0]);
+  // };
 
   const createPost = async () => {
     const token = localStorage.getItem("token");
