@@ -22,7 +22,7 @@ const NavbarDefault = () => {
     const { theme } = useUser();
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    
+
     const [openNav, setOpenNav] = useState(false);
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -31,8 +31,8 @@ const NavbarDefault = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    const iconColor={
-        backgroundColor:theme==='light'?'black':"white"
+    const iconColor = {
+        backgroundColor: theme === 'light' ? 'black' : "white"
     }
 
     const postCardStyle = {
@@ -75,9 +75,15 @@ const NavbarDefault = () => {
     const nav = () => {
         navigate('/ComingSoon');
     };
-    const handlePostClick = (postId) => {
-        navigate(`/post/${postId}`);
+
+    // const handlePostClick = (postId) => {
+    //     navigate(`/post/${postId}`);
+    // };
+
+    const handlePostClick = () => {
+        navigate(`/ComingSoon`);
     };
+
 
     return (
         <>
@@ -149,23 +155,24 @@ const NavbarDefault = () => {
                             </h1>
                         </Typography>
                     </div>
-                    {query && (
-                        <div className="top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll z-20">
-                            {searchResults.length > 0 ? (
-                                searchResults.map((result, index) => (
-                                    <div key={index} className="p-2 border-b last:border-b-0" onClick={handlePostClick}>
-                                        <h2 className='font-bold'>{result?.title}</h2>
-                                        <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
-                                    </div>
-                                ))
-                            ) : (
-                                <div className="p-2 text-center text-black font-bold">
-                                    No results found
-                                </div>
-                            )}
-                        </div>
-                    )}
+
                 </div>
+                {query && (
+                    <div className=" bg-white shadow-lg rounded-lg p-4 h-[200px] overflow-y-scroll z-20 -ml-[60%] mt-[5%] hidden lg:flex lg:flex-col md:flex">
+                        {searchResults.length > 0 ? (
+                            searchResults.map((result, index) => (
+                                <div key={index} className="p-2 border-b last:border-b-0" onClick={handlePostClick}>
+                                    <h2 className='font-bold'>{result?.title}</h2>
+                                    <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="p-2 text-center text-black font-bold">
+                                No results found
+                            </div>
+                        )}
+                    </div>
+                )}
                 {/* for small screens */}
                 <div className="container lg:mx-auto flex flex-wrap justify-center text-gray-900 mb-4 lg:ml-32 lg:gap-2 lg:hidden md:hidden">
                     <div className="relative flex w-full md:w-max xs:flex-wrap justify-between">
@@ -233,11 +240,11 @@ const NavbarDefault = () => {
                         )}
                     </div>
                     {query && (
-                        <div className="top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll z-20">
+                        <div className="bg-white shadow-lg rounded-lg p-4 overflow-scroll z-20 ">
                             {searchResults.length > 0 ? (
                                 searchResults.map((result, index) => (
                                     <div key={index} className="p-2 border-b last:border-b-0" onClick={handlePostClick}>
-                                        <h2 className='font-bold'>{result?.title}</h2>
+                                        <h2 className="font-bold">{result?.title}</h2>
                                         <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
                                     </div>
                                 ))
@@ -248,8 +255,10 @@ const NavbarDefault = () => {
                             )}
                         </div>
                     )}
+
                 </div>
             </Navbar>
+
         </>
     );
 };
