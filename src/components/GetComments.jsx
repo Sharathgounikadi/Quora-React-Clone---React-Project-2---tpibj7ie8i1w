@@ -28,6 +28,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
     colorBlue: theme === 'light' ? 'gray' : 'white'
   };
 
+  // const userInfo = JSON.parse(localStorage.getItem("userInfo"))?._id;
   const token = localStorage.getItem('token');
   const headers = {
     'Authorization': `Bearer ${token}`,
@@ -177,7 +178,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
 
   const deletePost = async () => {
     // const token = localStorage.getItem("token");
-    // const userInfo = JSON.parse(localStorage.getItem("userInfo"))?._id;
+    
 
     try {
         // Fetch the post to check its author

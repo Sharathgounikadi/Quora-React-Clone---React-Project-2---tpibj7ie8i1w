@@ -6,7 +6,7 @@ import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import { Notification } from './Notification';
 import CreatePost from './CreatePost';
-import CreateSpaceComponent from './CreateSpace';
+// import CreateSpaceComponent from './CreateSpace';
 import { Icons, Post, Home, Spaces } from './Icons';
 import { useUser } from './UserProvider';
 import quora from '../assets/Quora.jpg';
@@ -36,7 +36,7 @@ const NavbarDefault = () => {
     }
 
     const postCardStyle = {
-        backgroundColor: theme === 'light' ? 'white' : 'lightgray',
+        backgroundColor: theme === 'light' ? 'white' : 'black',
         color: theme === 'light' ? 'black' : 'white',
     };
 
@@ -81,7 +81,7 @@ const NavbarDefault = () => {
 
     return (
         <>
-            <Navbar className="max-w-screen-xl lg:max-w-full fixed top-0 left-0 right-0 z-20 h-16 xs:flex " style={postCardStyle}>
+            <Navbar className="clr-gray max-w-screen-xl lg:max-w-full fixed top-0 left-0 right-0 z-20 h-16 xs:flex " style={postCardStyle}>
                 <div className="flex-wrap justify-center text-gray-900  lg:ml-64 lg:gap-2 items-center hidden lg:flex md:flex">
                     <div className="relative flex w-full md:w-max xs:flex-wrap justify-between" >
                         <Typography as="a" href="#" className="mr-4 cursor-pointer py-1.5 font-medium">

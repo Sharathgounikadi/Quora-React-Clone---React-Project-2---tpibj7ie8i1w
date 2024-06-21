@@ -11,9 +11,10 @@ export const UserProvider = ({ children }) => {
     // const isAuthenticated = !!localStorage.getItem('token'); // check if the token exists
     // return isAuthenticated ? children : <Navigate to="/" />;
 
-    
+    const [show, setShow] = useState(false);
 
     const [theme, setTheme] = useState('light');
+
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
@@ -28,9 +29,9 @@ export const UserProvider = ({ children }) => {
     };
 
 
-    const onTokenHandler = (data) => {
-        setToken(data);
-    }
+    // const onTokenHandler = (data) => {
+    //     setToken(data);
+    // }
 
     // // const onNameHandler = (data) => {
     // //     setName(data);
@@ -41,7 +42,7 @@ export const UserProvider = ({ children }) => {
         // getName,
         // onTokenHandler,
         // onNameHandler
-        theme,toggleTheme
+        theme,toggleTheme,show,setShow
     }
 
 

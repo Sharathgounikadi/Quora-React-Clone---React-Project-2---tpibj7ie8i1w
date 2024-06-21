@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import { Dialog, DialogHeader, DialogBody, DialogFooter, h1, Input, Textarea } from "@material-tailwind/react";
+import { useUser } from "./UserProvider";
 import {
   Tabs,
   TabsHeader,
@@ -11,7 +12,8 @@ import {
 } from "@material-tailwind/react";
 
 export default function AddPost() {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
+  const {show,setShow}=useUser();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);

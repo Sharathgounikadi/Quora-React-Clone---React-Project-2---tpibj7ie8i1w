@@ -1,5 +1,8 @@
 .clr-gray{
-  background-color: rgb(240, 240, 240) !important;
+  /* background-color: rgb(240, 240, 240) !important;
+   */
+   border: none;
+   border-radius: 0px;
 }
 
 .clr-white{

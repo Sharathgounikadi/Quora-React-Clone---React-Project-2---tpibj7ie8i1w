@@ -1,6 +1,7 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, useContext } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
+import { useUser } from './UserProvider';
 import {
   Tabs,
   TabsHeader,
@@ -11,7 +12,7 @@ import {
 } from "@material-tailwind/react";
 
 export default function CreatePost() {
-  const [show, setShow] = useState(false);
+  const {show,setShow}= useUser();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
@@ -35,15 +36,15 @@ export default function CreatePost() {
     formData.append("title", title);
     formData.append("content", content);
 
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post', { headers });
-        // setPosts(response.data.data);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-        toast.error('Failed to fetch posts. Please try again.');
-      }
-    };
+    // const fetchPosts = async () => {
+    //   try {
+    //     const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post', { headers });
+    //     // setPosts(response.data.data);
+    //   } catch (error) {
+    //     console.error('Error fetching posts:', error);
+    //     toast.error('Failed to fetch posts. Please try again.');
+    //   }
+    // };
   
     // useEffect(() => {    
     //     fetchPosts();
@@ -204,7 +205,7 @@ export default function CreatePost() {
   return (
     <div>
       <h1 onClick={openModal}>Add Question</h1>
-      <Dialog open={show} handler={closeModal} size="sm">
+      <Dialog open={show}  size="sm">
         <DialogHeader> 
           <Tabs value="Add Question" >
             <TabsHeader className="bg-blue-500">
