@@ -49,56 +49,64 @@ export default function Login() {
                 toast.error("Login failed. Please check your credentials.");
             }
         } catch (error) {
-            toast.error("An error occurred. Please try again later.");
+            if (error.response && error.response.status === 401) {
+                toast.error("Login failed. It seems you haven't signed up yet.");
+            } else {
+                toast.error("An error occurred. Please try again later.");
+            }
         }
     }
 
-
     return (
         <>
-            <div style={{ backgroundImage: `url(${signUpBg})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", height: "100vh" }} className='flex items-center justify-center'>
-                <div className='bg-white h-11/12 w-11/12 md:w-8/12 lg:w-7/12 rounded-sm p-4 md:p-8'>
+            <ToastContainer />
+            <div style={{ backgroundImage: `url(${signUpBg})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", minHeight: "100vh" }} className='flex items-center justify-center'>
+                <div className='bg-white w-full md:max-w-3xl lg:max-w-4xl xl:max-w-5xl rounded-sm p-4 md:p-8'>
                     <h1 className='text-red-700 text-4xl md:text-6xl font-bold font-serif text-center'>Quora</h1>
                     <h1 className='text-center font-bold text-gray-500 mt-3'>A place to share knowledge and better understand the world</h1>
                     <div className='flex flex-col lg:flex-row'>
-                        <div className='flex flex-col items-center lg:items-start'>
-                            <h1 className='text-zinc-400 text-xs md:text-sm lg:w-72 text-center lg:text-left'>
+                        <div className='flex flex-col items-center lg:items-start lg:w-1/2'>
+                            <h1 className='text-zinc-400 text-xs md:text-sm lg:w-full text-center lg:text-left'>
                                 By continuing you indicate that you agree to Quora’s
                                 <span className='text-cyan-700'> Terms of Service</span> and <span className='text-cyan-700'> Privacy Policy.</span>
                             </h1>
-                            <div className='flex p-4 border border-spacing-1 items-center w-full md:w-80 rounded-sm mt-5'>
-                                <img src={googleLogo} className='w-5 h-5 ml-2' />
+                            <div className='flex p-4 border border-spacing-1 items-center w-full lg:w-80 rounded-sm mt-5'>
+                                <img src={googleLogo} className='w-5 h-5 ml-2' alt='Google logo' />
                                 <h1 className='ml-7 cursor-not-allowed'>Continue with Google</h1>
                             </div>
-                            <div className='flex p-4 border border-spacing-1 items-center w-full md:w-80 rounded-sm mt-5'>
-                                <img src={facebookLogo} className='w-6 h-5 ml-2 rounded-full' />
+                            <div className='flex p-4 border border-spacing-1 items-center w-full lg:w-80 rounded-sm mt-5'>
+                                <img src={facebookLogo} className='w-6 h-5 ml-2 rounded-full' alt='Facebook logo' />
                                 <h1 className='ml-7 cursor-not-allowed'>Continue with Facebook</h1>
                             </div>
-                            <h1 className='text-center text-sm font-semibold text-zinc-600 mt-3 hover:bg-gray-100 rounded-full cursor-pointer'>
-                                <SignUp/>
-                            </h1>
+                            <div className='text-center text-sm font-semibold text-zinc-600 mt-3 hover:bg-gray-100 rounded-full cursor-pointer'>
+                                <SignUp />
+                            </div>
                         </div>
-                        <div className='mt-8 lg:mt-0 lg:ml-16'>
+                        <div className='mt-8 lg:mt-0 lg:ml-16 lg:w-1/2'>
                             <h1 className='text-lg text-center font-bold'>Login</h1>
-                            <hr className='w-full lg:w-72 mt-3' />
-                            <h1 className='mt-4 font-bold text-sm'>Email</h1>
-                            <input
-                                name="email"
-                                value={loginData.email}
-                                onChange={onChangeHandler}
-                                placeholder='Your Email'
-                                className='border border-spacing-1 p-2 w-full lg:w-72 mt-2'
-                                type="email"
-                            />
-                            <h1 className='mt-4 font-bold text-sm'>Password</h1>
-                            <input
-                                name="password"
-                                type="password"
-                                value={loginData.password}
-                                onChange={onChangeHandler}
-                                placeholder='Your Password'
-                                className='border border-spacing-1 p-2 w-full lg:w-72 mt-2'
-                            />
+                            <hr className='w-full lg:w-72 mt-3 mx-auto lg:mx-0' />
+                            <div className='mt-4'>
+                                <h1 className='font-bold text-sm'>Email</h1>
+                                <input
+                                    name="email"
+                                    value={loginData.email}
+                                    onChange={onChangeHandler}
+                                    placeholder='Your Email'
+                                    className='border border-spacing-1 p-2 w-full lg:w-72 mt-2'
+                                    type="email"
+                                />
+                            </div>
+                            <div className='mt-4'>
+                                <h1 className='font-bold text-sm'>Password</h1>
+                                <input
+                                    name="password"
+                                    type="password"
+                                    value={loginData.password}
+                                    onChange={onChangeHandler}
+                                    placeholder='Your Password'
+                                    className='border border-spacing-1 p-2 w-full lg:w-72 mt-2'
+                                />
+                            </div>
                             <div className='flex justify-center lg:justify-start mt-4'>
                                 <button className='bg-blue-500 text-white py-2 px-3 rounded-full' onClick={onSubmitHandler}>Login</button>
                             </div>

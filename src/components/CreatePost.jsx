@@ -117,13 +117,13 @@ export default function CreatePost() {
               <h1
                 onClick={closeModal}
                 variant="text"
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300"
+                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 cursor-pointer"
                 
               >
                 Close
               </h1>
               <h1
-                className="hidden sm:block bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-medium py-2 px-4 rounded-full transition duration-300"
+                className="hidden sm:block bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-medium py-2 px-4 rounded-full transition duration-300 cursor-pointer"
                 onClick={createPost}
               >
                 Add Post
@@ -191,7 +191,7 @@ export default function CreatePost() {
 						<button
 							type="submit"
 							// disabled
-							className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-blue-500 capitalize rounded-full"
+							className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-blue-500 capitalize rounded-full cursor-pointer"
 						>
 							Post
 						</button>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { useNavigate } from 'react-router-dom';
 import {
     Dialog,
@@ -11,7 +10,6 @@ import {
     CardFooter,
     Typography,
     Input,
-    Checkbox,
 } from "@material-tailwind/react";
 
 const SignUp = () => {
@@ -48,6 +46,13 @@ const SignUp = () => {
     };
 
     const handleSubmit = async () => {
+        // Check for empty fields
+        if (!formData.name || !formData.email || !formData.password) {
+            setOpen(false);
+            toast.error("Please fill in all the required fields.");
+            return;
+        }
+
         try {
             setLoading(true); // Show loading spinner
             const body = {
@@ -82,7 +87,9 @@ const SignUp = () => {
         } catch (err) {
             // console.error("Error occurred during sign-up:", err);
             setOpen(false);
-            toast(err.response.data.message || err.message);
+            toast.error(err.response.data.message || err.message);
+        } finally {
+            setLoading(false); // Hide loading spinner
         }
     };
 
@@ -97,12 +104,12 @@ const SignUp = () => {
             >
                 <Card className="mx-auto w-full max-w-[24rem]">
                     <CardBody className="flex flex-col gap-4">
-                        <Typography variant="h5" color="black" >
+                        <Typography variant="h5" color="black">
                             Sign Up
                         </Typography>
                         <Typography className="-mb-2" variant="h6">
                             Name
-                        </Typography >
+                        </Typography>
                         <Input label="Name" name="name" value={formData.name} onChange={handleChange} size="lg" />
                         <Typography className="-mb-2" variant="h6">
                             Email
@@ -116,7 +123,7 @@ const SignUp = () => {
                             <Typography variant="caption">{`Password Strength: ${passwordStrength}`}</Typography>
                         )}
                     </CardBody>
-                    <CardFooter className="pt-0 flex justify-end ">
+                    <CardFooter className="pt-0 flex justify-end">
                         <p className={`bg-[#2e69ff] p-2 rounded-3xl text-white cursor-pointer ${loading ? 'opacity-50' : ''}`} onClick={handleSubmit} fullWidth>
                             Sign Up
                         </p>
