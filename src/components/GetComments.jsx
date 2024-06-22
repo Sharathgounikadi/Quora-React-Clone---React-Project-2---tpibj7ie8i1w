@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { useUser } from './UserProvider';
 import { useNavigate } from 'react-router-dom';
+import Avatar from 'react-avatar';
 import { Dialog, DialogBody } from "@material-tailwind/react";
 
 const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }) => {
@@ -54,9 +55,9 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
     }
   };
 
-  useEffect(() => {    
-      fetchComments();
-      fetchPosts();
+  useEffect(() => {
+    fetchComments();
+    // fetchPosts();
   }, [postId]);
 
 
@@ -136,86 +137,86 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
     formData.append("content", content);
 
     try {
-        // Fetch the post to check its author
-        const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${postId}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'projectID': 'tpibj7ie8i1w'
-            }
-        });
-        const postAuthor = response.data?.data?.author?._id;
-
-        // Check if the current user is the author of the post
-        if (userInfo !== postAuthor) {
-          setOpen(false)
-            toast.error('You are not authorized to edit this post.');
-            return;
+      // Fetch the post to check its author
+      const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${postId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'projectID': 'tpibj7ie8i1w'
         }
+      });
+      const postAuthor = response.data?.data?.author?._id;
 
-        // If the current user is the author, proceed with the edit
-        await axios.patch(
-            `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
-            formData,
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'projectID': 'tpibj7ie8i1w',
-                    'Content-Type': 'multipart/form-data'
-                }
-            }
-        );
-        setOpen(false);
-        toast.success('Post updated successfully');
-        window.location.reload();
-        // fetchPosts()
+      // Check if the current user is the author of the post
+      if (userInfo !== postAuthor) {
+        setOpen(false)
+        toast.error('You are not authorized to edit this post.');
+        return;
+      }
+
+      // If the current user is the author, proceed with the edit
+      await axios.patch(
+        `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
+        formData,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'projectID': 'tpibj7ie8i1w',
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+      setOpen(false);
+      toast.success('Post updated successfully');
+      window.location.reload();
+      // fetchPosts()
     } catch (error) {
-        console.error('There was an error updating the post!', error);
-        setOpen(false);
-        toast.error(error.response?.data?.message || error.message);
+      console.error('There was an error updating the post!', error);
+      setOpen(false);
+      toast.error(error.response?.data?.message || error.message);
     }
-};
+  };
 
 
   const deletePost = async () => {
     // const token = localStorage.getItem("token");
-    
+
 
     try {
-        // Fetch the post to check its author
-        const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${postId}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'projectID': 'tpibj7ie8i1w'
-            }
-        });
-        const postAuthor = response.data?.data?.author?._id;
-        // console.log(response.data)
-        // console.log(postAuthor)
-        // Check if the current user is the author of the post
-        if (userInfo !== postAuthor) {
-            toast.error('You are not authorized to delete this post.');
-            return;
+      // Fetch the post to check its author
+      const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${postId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'projectID': 'tpibj7ie8i1w'
         }
+      });
+      const postAuthor = response.data?.data?.author?._id;
+      // console.log(response.data)
+      // console.log(postAuthor)
+      // Check if the current user is the author of the post
+      if (userInfo !== postAuthor) {
+        toast.error('You are not authorized to delete this post.');
+        return;
+      }
 
-        // If the current user is the author, proceed with deletion
-        await axios.delete(
-            `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'projectID': 'tpibj7ie8i1w'
-                }
-            }
-        );
-        setOpen(false);
-        toast.success('Post deleted successfully');
-        window.location.reload();
-        // fetchPosts();
+      // If the current user is the author, proceed with deletion
+      await axios.delete(
+        `https://academics.newtonschool.co/api/v1/quora/post/${postId}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'projectID': 'tpibj7ie8i1w'
+          }
+        }
+      );
+      setOpen(false);
+      toast.success('Post deleted successfully');
+      window.location.reload();
+      // fetchPosts();
     } catch (error) {
-        console.error('There was an error deleting the post!', error);
-        toast.error(error.response?.data?.message || error.message);
+      console.error('There was an error deleting the post!', error);
+      toast.error(error.response?.data?.message || error.message);
     }
-};
+  };
 
 
 
@@ -364,19 +365,33 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       {toggleComments &&
         <div className='flex flex-col'>
           <div className='flex justify-between p-3'>
-            <input type="text" value={postComment} className='border border-gray-500 rounded-2xl text-black ' onChange={(e) => { setPostComment(e.target.value) }} />
-            <button onClick={handleAddComment} className='bg-blue-300 rounded-2xl p-2 ml-5'>Add Comment</button>
+            <input type="text" value={postComment} className='border border-gray-500 rounded-lg text-black pl-3' onChange={(e) => { setPostComment(e.target.value) }} />
+            <button onClick={handleAddComment} className='bg-blue-300 rounded-full p-2 ml-5'>Add Comment</button>
           </div>
           <div>
             {data?.map((comment, idx) => (
-              <div key={idx} className='flex justify-between'>
-                <div className='flex-row gap-1'>
-                  <h1 className='text-lg pl-5'>{comment?.author_details?.name}</h1>
-                  <h1 className='pl-5 text-gray-800'>{comment?.content}</h1></div>
-                {(userInfo === comment?.author_details?._id) && <div className=' cursor-pointer p-2 m-2 bg-red-500 text-white rounded-full text-center' onClick={() => handleDeleteComment(comment?._id)}>DELETE</div>}
+              <div key={idx} className='bg-white shadow-md p-2 border border-gray-200 rounded-lg'>
+                <div className='flex justify-between items-start'>
+                  <div className='flex flex-col gap-1'>
+                    <div className='flex gap-2'>
+                      <Avatar round size="25" className="text-white font-semibold" name={comment?.author_details?.name.charAt(0).toUpperCase()} textSizeRatio={3} />
+                      <h1 className='text-lg font-semibold '>{comment?.author_details?.name}</h1>
+                    </div>
+                    <p className='bg-gray-100 p-1 rounded-lg text-gray-800'>{comment?.content}</p>
+                  </div>
+                  {userInfo === comment?.author_details?._id && (
+                    <div
+                      className='cursor-pointer p-1 bg-red-500 text-white rounded-lg text-center mt-7'
+                      onClick={() => handleDeleteComment(comment?._id)}
+                    >
+                      Delete
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>
+
         </div>
       }
     </>

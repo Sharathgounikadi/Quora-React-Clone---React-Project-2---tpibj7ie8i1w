@@ -7,7 +7,7 @@ import ComingSoon from "./ComingSoon";
 import CreatePost from "./CreatePost";
 import Answers from "./Answers";
 import Login from "./SingupLoginModal/Login";
-
+import { Navigate } from 'react-router-dom';
 // import NavbarDefault from "./NavbarDefault";
 
 
