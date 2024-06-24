@@ -13,16 +13,16 @@ const Home = () => {
 
     // const [query, setQuery] = useState("");
     // const [searchResults, setSearchResults] = useState([]);
-  
+
     return (
-        <div style={colour}>
-            <NavbarDefault  />
-            <div className='flex'> 
-                <Leftbar />
-                <Rightbar/>      
-            </div>
+        <>
+            <NavbarDefault />
+            <div className='flex-row'>
+            <Leftbar />
+            <Rightbar />
             <Adds />
-        </div>
+            </div>
+        </>
     );
 };
 

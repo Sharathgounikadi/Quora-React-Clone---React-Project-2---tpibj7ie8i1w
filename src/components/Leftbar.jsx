@@ -53,30 +53,32 @@ const Leftbar = () => {
         fetchCommunities(); // Refresh the list of communities
     };
 
-    if (windowWidth < 1024) { // Adjust this value based on the Tailwind CSS breakpoint you want to use
+    // Hide the Leftbar on screens smaller than 'lg' (1024px)
+    if (windowWidth < 1024) {
         return null;
     }
 
     return (
         <>
-            <div className="h-[calc(100vh-10rem)] max-w-[10rem] fixed top-20 ml-72" style={postCardStyle}>
-                <Typography variant="h5" p-1 className='text-black'>  
+            <div className="fixed py-4 pl-4 ml-[15%] h-[80%] sm:w-[] 
+            md:w-[]  " style={postCardStyle}>
+                <Typography variant="h5" className="text-black mb-4">
                     <CreateSpace onNewCommunity={handleNewCommunity} />
                 </Typography>
                 <List>
                     {communities.map((comm, idx) => (
-                        <Link to="/ComingSoon" key={idx} className='text-sm hover:bg-gray-300 hover:rounded-md p-2 flex gap-2 w-32' style={postCardStyle} >
+                        <Link to="/ComingSoon" key={idx} className="text-sm hover:bg-gray-300 hover:rounded-md p-2 flex gap-2" style={postCardStyle}>
                             <img src={cooking} className="h-4 w-4" />
-                            <div className='break-words mr-2'>{comm.name}</div> 
+                            <div className="break-words">{comm.name}</div>
                         </Link>
                     ))}
                 </List>
-                <div>
-                    <hr className='h-0.2 bg-blue-gray-400'/>
-                    <h1 className='mt-3 ml-5 text-gray-500 text-sm'>About . Careers .</h1>
-                    <h1 className='ml-5 text-gray-500 text-sm'>Terms . Privacy .</h1>
-                    <h1 className='ml-5 text-gray-500 text-sm'>Acceptable Use</h1>
-                    <h1 className='ml-5 text-gray-500 text-sm'>Terms . Privacy .</h1>
+                <div className="mt-4">
+                    <hr className="bg-blue-gray-400" />
+                    <h1 className="mt-3 text-gray-500 text-sm">About . Careers .</h1>
+                    <h1 className="text-gray-500 text-sm">Terms . Privacy .</h1>
+                    <h1 className="text-gray-500 text-sm">Acceptable Use</h1>
+                    <h1 className="text-gray-500 text-sm">Terms . Privacy .</h1>
                 </div>
             </div>
         </>

@@ -39,7 +39,7 @@ const CreateSpace = ({ onNewCommunity }) => {
 
     return (
         <>
-            <div className='p-2 flex items-center hover:bg-gray-400 bg-gray-300 rounded-lg text-sm' onClick={handleOpen}>+ Create Space</div>
+            <div className='p-2 flex items-center hover:bg-gray-400 bg-gray-300 rounded-lg text-sm w-[60%]' onClick={handleOpen}>+ Create Space</div>
             <Dialog
                 size="xs"
                 open={open}

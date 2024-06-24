@@ -10,7 +10,7 @@ import { Ask, Answer, PostImage } from './Icons';
 import AddPost from './AddPost';
 
 const Rightbar = () => {
-  const { theme,show,setShow } = useUser();
+  const { theme, show, setShow } = useUser();
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
@@ -97,74 +97,112 @@ const Rightbar = () => {
 
   return (
     <>
-      <div className='mx-auto'>
-        <div className='mt-2.5 rounded-sm md:left-96'>
-          <div className='border border-spacing-1 mt-20 pt-2 xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[18rem] w-full' style={colour}>
-            <div className="relative flex text-gray-700 bg-clip-border rounded-sm " onClick={()=>(setShow(true))}>
-              <Avatar round size="25" className="mt-0.5 ml-2" name="w" />             
-              <input
-                placeholder='What do you want to ask or share?'
-                className='p-1 ml-6 border border-spacing-1 rounded-full w-full mr-4'
-                style={inputStyle}               
-              />
+      <div className="items-center ml-[30%]">
+        <div
+          className="relative flex flex-col mt-[8%] pt-3 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm 
+          w-full xl:w-[60%] lg:w-[50%] md:w-[40%] sm:w-[30%]"
+          style={colour}
+        >
+          <div
+            className="relative flex text-gray-700 bg-clip-border rounded-sm"
+            onClick={() => setShow(true)}
+          >
+            <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
+            <input
+              placeholder="What do you want to ask or share?"
+              className="p-1 ml-6 border border-spacing-1 rounded-full w-full mr-4"
+              style={inputStyle}
+            />
+          </div>
+          <div className="flex justify-around p-2 gap-2 xs:gap-5">
+            <div className="flex items-center ml-4">
+              <Ask />
+              <h1 className="flex items-center">
+                <CreatePost />
+              </h1>
             </div>
-            <div className='flex justify-around p-2 xs:gap-5'>
-              <div className='flex items-center ml-4'>
-                <Ask />
-                <h1 className='flex items-center'><CreatePost /></h1>
-              </div>
 
-              <div className='flex items-center'>
-                <Answer />
-                <h1 className='' onClick={() => navigate('/Answers')}>Answer</h1>
-              </div>
+            <div className="flex items-center">
+              <Answer />
+              <h1 className="" onClick={() => navigate("/Answers")}>
+                Answer
+              </h1>
+            </div>
 
-              <div className='flex items-center mr-6'>
-                <PostImage />
-                <div className='' ><AddPost /></div>
+            <div className="flex items-center mr-6">
+              <PostImage />
+              <div className="">
+                <AddPost />
               </div>
             </div>
           </div>
-          <div>
-            {posts.map((post, index) => {
-              const authorInitial = post.author?.name ? post.author?.name.charAt(0).toUpperCase() : '?';
-              return (
-                <div className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[22rem] w-full" key={index} style={postCardStyle}>
-                  <div className='flex items-center p-2'>
-                    {post.channel?.image ? (
-                      <img className="w-8 h-8 rounded-full" src={post.channel?.image} />
-                    ) : (
-                      <Avatar round size="25" className="mt-0.5 ml-2" name={authorInitial} />
-                    )}
-                    <h1 className='ml-5 mt-2 font-semibold'>{post.author?.name}</h1>
-                  </div>
-                  <div className="p-6">
-                    <h5 className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-black" onClick={() => handlePostOpen(post._id)}>
-                      {post?.title}
-                    </h5>
-                    <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                      {post?.content}
-                    </p>
-                  </div>
-                  {post.images.length > 0 && (
-                    <div className="relative h-80 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-sm bg-blue-gray-500 shadow-blue-gray-500/40">
-                      <img
-                        src={post.images[0]}
-                        alt="card-image"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+        </div>
+        <div>
+          {posts.map((post, index) => {
+            const authorInitial = post.author?.name
+              ? post.author?.name.charAt(0).toUpperCase()
+              : "?";
+            return (
+              <div
+                className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm 
+                w-full xl:w-[60%] lg:w-[50%] md:w-[40%] sm:w-[30%]"
+                key={index}
+                style={postCardStyle}
+              >
+                <div className="flex items-center p-2">
+                  {post.channel?.image ? (
+                    <img
+                      className="w-8 h-8 rounded-full"
+                      src={post.channel?.image}
+                    />
+                  ) : (
+                    <Avatar
+                      round
+                      size="25"
+                      className="mt-0.5 ml-2"
+                      name={authorInitial}
+                    />
                   )}
-                  <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} postTitle={post?.title} postContent={post?.content} postImage={post.images[0]} fetchPosts={fetchPosts} />
+                  <h1 className="ml-5 mt-2 font-semibold">{post.author?.name}</h1>
                 </div>
-              );
-            })}
-            {isFetching && <p>Loading...</p>}
-            {error && <p style={{ color: "red" }}>{error}</p>}
-          </div>
+                <div className="p-6">
+                  <h5
+                    className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-black"
+                    onClick={() => handlePostOpen(post._id)}
+                  >
+                    {post?.title}
+                  </h5>
+                  <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                    {post?.content}
+                  </p>
+                </div>
+                {post.images.length > 0 && (
+                  <div className="relative h-80 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-sm bg-blue-gray-500 shadow-blue-gray-500/40">
+                    <img
+                      src={post.images[0]}
+                      alt="card-image"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+                <GetComments
+                  postId={post?._id}
+                  likeCount={post?.likeCount}
+                  commentCount={post?.commentCount}
+                  postTitle={post?.title}
+                  postContent={post?.content}
+                  postImage={post.images[0]}
+                  fetchPosts={fetchPosts}
+                />
+              </div>
+            );
+          })}
+          {isFetching && <p>Loading...</p>}
+          {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
       </div>
     </>
+
   );
 };
 

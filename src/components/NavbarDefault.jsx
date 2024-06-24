@@ -87,7 +87,7 @@ const NavbarDefault = () => {
 
     return (
         <>
-            <Navbar className="clr-gray max-w-screen-xl lg:max-w-full fixed top-0 left-0 right-0 z-20 h-16 xs:flex " style={postCardStyle}>
+            <Navbar className="clr-gray fixed top-0 left-0 lg:w-full xl:w-full z-20 h-[10%] " style={postCardStyle}>
                 <div className="flex-wrap justify-center text-gray-900  lg:ml-64 lg:gap-2 items-center hidden lg:flex md:flex">
                     <div className="relative flex w-full md:w-max xs:flex-wrap justify-between" >
                         <Typography as="a" href="#" className="mr-4 cursor-pointer py-1.5 font-medium">

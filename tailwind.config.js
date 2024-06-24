@@ -10,7 +10,13 @@ module.exports = withMT({
   theme: {
     extend: {
       screens: {
-        "xs": "420px",
+        "xs" : "320px",
+        "sm" : "375px",
+        "md" : "425px",
+        "lg" : "768px",
+        "xl" : "1024px",
+        "2xl": "1440px",
+        "3xl": "2560px"
       },
     },
   },
