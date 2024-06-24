@@ -2,13 +2,13 @@ import "../styles/App.css";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom"
 import PostDetails from "./PostDetails";
 import Home from "./Home";
-import { Notification } from "./Notification";
 import ComingSoon from "./ComingSoon";
 import CreatePost from "./CreatePost";
 import Answers from "./Answers";
 import Login from "./SingupLoginModal/Login";
 import { Navigate } from 'react-router-dom';
-// import NavbarDefault from "./NavbarDefault";
+import Notification from "./Notification";
+
 
 
 const PrivateRoute = ({ children }) => {
@@ -73,6 +73,7 @@ function App() {
               </PrivateRoute>} />
 
         </Routes>
+        
       </Router>
     </>
 

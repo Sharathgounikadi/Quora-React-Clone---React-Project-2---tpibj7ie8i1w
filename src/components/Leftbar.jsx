@@ -4,7 +4,6 @@ import cooking from "../assets/Cooking.jpg";
 import CreateSpace from './CreateSpace';
 import { Link } from 'react-router-dom';
 import { useUser } from './UserProvider';
-import { Typography, List } from "@material-tailwind/react";
 
 const Leftbar = () => {
     const { theme } = useUser();
@@ -12,7 +11,7 @@ const Leftbar = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const postCardStyle = {
-        backgroundColor: theme === 'light' ? 'rgb(240, 240, 240)' : 'black',
+        backgroundColor: theme === 'light' ? 'white' : 'black',
         color: theme === 'light' ? 'black' : 'white',
     };
 
@@ -20,7 +19,7 @@ const Leftbar = () => {
 
     const fetchCommunities = async () => {
         try {
-            const res = await axios.get('https://academics.newtonschool.co/api/v1/quora/channel/?limit=5', {
+            const res = await axios.get('https://academics.newtonschool.co/api/v1/quora/channel/?limit=8', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'projectID': 'tpibj7ie8i1w',
@@ -58,21 +57,19 @@ const Leftbar = () => {
         return null;
     }
 
-    return (
-        <>
-            <div className="fixed py-4 pl-4 ml-[15%] h-[80%] sm:w-[] 
-            md:w-[]  " style={postCardStyle}>
-                <Typography variant="h5" className="text-black mb-4">
+    return (      
+            <div className="fixed py-4 pl-4 mt-[5%] ml-[17%] w-[12%] lg:w-[10%] lg:ml-[16%]" style={postCardStyle}>
+                <div variant="h5" className="text-black mb-4">
                     <CreateSpace onNewCommunity={handleNewCommunity} />
-                </Typography>
-                <List>
+                </div>
+                <div className='' >
                     {communities.map((comm, idx) => (
-                        <Link to="/ComingSoon" key={idx} className="text-sm hover:bg-gray-300 hover:rounded-md p-2 flex gap-2" style={postCardStyle}>
+                        <Link to="/ComingSoon" key={idx} className="text-sm hover:bg-gray-300 hover:rounded-md p-2 flex gap-2 bg-gray-300 " style={postCardStyle}>
                             <img src={cooking} className="h-4 w-4" />
                             <div className="break-words">{comm.name}</div>
                         </Link>
                     ))}
-                </List>
+                </div>
                 <div className="mt-4">
                     <hr className="bg-blue-gray-400" />
                     <h1 className="mt-3 text-gray-500 text-sm">About . Careers .</h1>
@@ -81,7 +78,6 @@ const Leftbar = () => {
                     <h1 className="text-gray-500 text-sm">Terms . Privacy .</h1>
                 </div>
             </div>
-        </>
     );
 };
 

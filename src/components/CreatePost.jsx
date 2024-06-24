@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import { Tabs, TabsHeader, TabsBody, Tab, TabPanel, Dialog, DialogHeader, Input, Textarea } from "@material-tailwind/react";
+import { useUser } from "./UserProvider";
 
 export default function CreatePost() {
-  const [show, setShow] = useState(false);
+  const { show, setShow } = useUser();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
+  const [activeTab, setActiveTab] = useState("add-question");
 
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false);
@@ -20,7 +22,7 @@ export default function CreatePost() {
     e.preventDefault();
     const token = localStorage.getItem("token");
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("images", image);
     formData.append("title", title);
     formData.append("content", content);
 
@@ -40,9 +42,10 @@ export default function CreatePost() {
       setShow(false);
       window.location.reload();
     } catch (error) {
-      setShow(false)
+      setShow(false);
       console.error('There was an error creating the post!', error);
-      toast.error('There was an error creating the post!');
+      const errorMessage = error.response?.data?.message || error.message || 'There was an error creating the post!';
+      toast.error(errorMessage);
     }
   };
 
@@ -146,7 +149,7 @@ export default function CreatePost() {
       <h1 onClick={openModal} className="cursor-pointer">Ask Question</h1>
       <Dialog open={show} handler={closeModal} size="sm">
         <DialogHeader>
-          <Tabs value="add-question">
+          <Tabs value={activeTab} onChange={(value) => setActiveTab(value)}>
             <TabsHeader className="bg-blue-500">
               {tabsData.map(({ label, value }) => (
                 <Tab key={value} value={value}>

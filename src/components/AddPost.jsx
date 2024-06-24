@@ -12,7 +12,8 @@ import {
 } from "@material-tailwind/react";
 
 export default function AddPost() {
-  const [show, setShow] = useState(false);
+  // const {show,setShow} =useUser();
+  const [show,setShow]= useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [images, setImage] = useState(null);

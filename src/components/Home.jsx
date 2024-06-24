@@ -17,7 +17,7 @@ const Home = () => {
     return (
         <>
             <NavbarDefault />
-            <div className='flex-row'>
+            <div className='flex' style={colour}>
             <Leftbar />
             <Rightbar />
             <Adds />

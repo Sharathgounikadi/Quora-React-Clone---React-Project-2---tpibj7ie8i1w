@@ -32,14 +32,15 @@ const CreateSpace = ({ onNewCommunity }) => {
             onNewCommunity(); // Call the callback to refresh the community list
         } catch (error) {
             console.error('There was an error creating the space!', error);
-            setOpen(false)
-            toast.error('There was an error creating the space!');
+            setOpen(false);
+            const errorMessage = error.response?.data?.message || error.message || 'An error occurred';
+            toast.error(errorMessage);
         }
     };
 
     return (
         <>
-            <div className='p-2 flex items-center hover:bg-gray-400 bg-gray-300 rounded-lg text-sm w-[60%]' onClick={handleOpen}>+ Create Space</div>
+            <div className='p-2 flex items-center hover:bg-gray-400 bg-gray-300 rounded-lg text-sm w-[90%]' onClick={handleOpen}>+ Create Space</div>
             <Dialog
                 size="xs"
                 open={open}

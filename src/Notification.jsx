@@ -1,5 +1,5 @@
 import React from 'react';
-import NavbarDefault from './NavbarDefault';
+import Navbar from './Navbar';
 
 const NotificationItem = () => {
   return (
@@ -25,7 +25,7 @@ const NotificationItem = () => {
 const Notification = () => {
   return (
     <div>
-      <NavbarDefault />
+      <Navbar />
       <div className="max-w-2xl mx-auto pt-16">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold">Notification</h2>
