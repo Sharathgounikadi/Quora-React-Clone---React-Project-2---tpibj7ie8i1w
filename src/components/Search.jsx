@@ -29,7 +29,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
 
     const searchBoxStyle = {
         backgroundColor: theme === 'light' ? 'white' : 'transparent',
-        color: theme === 'light' ? 'black' : 'white',
+        color: theme === 'light' ? 'black' : 'black',
     };
 
     const goToPost=(id)=>{

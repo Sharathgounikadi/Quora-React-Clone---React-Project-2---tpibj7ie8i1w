@@ -33,7 +33,7 @@ function App() {
               </PrivateRoute>
             }
           />
-
+{/* 
           <Route
             path="/notification"
             element={
@@ -41,7 +41,7 @@ function App() {
                 <Notification />
               </PrivateRoute>
             }
-          />
+          /> */}
           <Route
             path="/question/:id"
             element={

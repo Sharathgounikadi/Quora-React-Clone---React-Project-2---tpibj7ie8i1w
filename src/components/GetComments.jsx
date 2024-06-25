@@ -274,8 +274,6 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
             </span>
           </button>
         </div>
-
-
         <div className="relative">
           <button
             aria-expanded={showDropdown}
@@ -294,23 +292,23 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
             </span>
           </button>
           {showDropdown && (
-            <div className="absolute top-full -left-20 bg-white shadow-md rounded-lg mt-2 z-10">
+            <div className="absolute top-full -left-20  shadow-md rounded-lg mt-2 z-10 p-2" style={colour}>
               {userInfo ? (
                 <button
-                  className="block px-4 py-2 text-sm text-gray-700 bg-gray-100 w-full text-center rounded-2xl hover:bg-light-blue-200 m-1"
+                  className="block px-4 py-2 text-sm text-gray-700 bg-gray-100 w-full text-center rounded-2xl hover:bg-light-blue-200"
                   role="menuitem"
                   onClick={handleOpen}
                 >
-                  Update Post
+                  Edit Post
                 </button>
               ) : (
-                <div className="block px-4 py-2 text-sm text-gray-700 bg-gray-100 w-full text-center rounded-2xl m-1">
+                <div className="block p-1 text-sm text-gray-700 bg-gray-100 w-full text-center rounded-2xl">
                   Not a user
                 </div>
               )}
               {userInfo && (
                 <button
-                  className="block px-4 py-2 text-sm bg-gray-100 w-full text-center rounded-2xl hover:bg-red-400 text-gray-700 m-1"
+                  className="block p-1 text-sm bg-gray-100 w-full text-center rounded-2xl hover:bg-red-400 text-gray-700 mt-1 "
                   role="menuitem"
                   onClick={deletePost}
                 >
@@ -320,7 +318,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
             </div>
           )}
           {userInfo && (
-            <Dialog open={open} handler={handleOpen} size="sm">
+            <Dialog open={open} handler={handleOpen} size="sm" >
               <DialogBody>
                 <form onSubmit={handleEditPost}>
                   <div className="relative w-full min-w-[200px]">
@@ -363,14 +361,14 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
 
       </div >
       {toggleComments &&
-        <div className='flex flex-col'>
+        <div className='flex flex-col' style={colour}>
           <div className='flex justify-between p-3'>
             <input type="text" value={postComment} className='border border-gray-500 rounded-lg text-black pl-3' onChange={(e) => { setPostComment(e.target.value) }} />
             <button onClick={handleAddComment} className='bg-blue-300 rounded-full p-2 ml-5'>Add Comment</button>
           </div>
           <div>
             {data?.map((comment, idx) => (
-              <div key={idx} className='bg-white shadow-md p-2 border border-gray-200 rounded-lg'>
+              <div key={idx} className=' shadow-md p-2 border border-gray-200 rounded-lg' style={colour}>
                 <div className='flex justify-between items-start'>
                   <div className='flex flex-col gap-1'>
                     <div className='flex gap-2'>

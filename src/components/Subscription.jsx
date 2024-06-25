@@ -27,7 +27,7 @@ const Subscription = () => {
   return (
     <>
       <div onClick={handleOpen} className="ml-2 border-black" style={colour}>Try Quora+</div>
-      <Dialog size="sm" open={open} handler={handleOpen} > 
+      <Dialog size="sm" open={open} handler={handleOpen} style={colour} > 
         <DialogHeader className="">
           <div>
             <Typography variant="h5" color="blue-gray">
@@ -42,6 +42,7 @@ const Subscription = () => {
             size="sm"
             variant="text"
             onClick={handleOpen}
+            className="ml-[30%]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

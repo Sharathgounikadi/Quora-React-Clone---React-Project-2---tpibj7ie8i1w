@@ -111,9 +111,9 @@ const NavbarDefault = () => {
                                 <Spaces className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
                         </NavLink>
-                        <NavLink to="/notification" activeClassName="text-red-800" className="cursor-pointer font-medium">
-                            <h1 className="lg:pr-2"><Notify /></h1>
-                        </NavLink>
+                        <div activeClassName="text-red-800" className="cursor-pointer font-medium">
+                            <h1 className="lg:pr-2"><Notification /></h1>
+                        </div>
                     </div>
                     <div className="flex">
                         <Search theme={theme} searchResults={searchResults} setSearchResults={setSearchResults} />
