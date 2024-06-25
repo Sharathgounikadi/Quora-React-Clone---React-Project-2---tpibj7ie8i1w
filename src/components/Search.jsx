@@ -49,7 +49,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
                 <div className="absolute top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 mr-[20%] overflow-scroll z-20">
                     {searchResults.map((result, index) => (
                         <div key={index} className="p-2 border-b last:border-b-0">
-                            <h2 className='font-bold'>{result?.title}</h2>
+                            <h2 className='font-bold '>{result?.title}</h2>
                             <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
                         </div>
                     ))}
@@ -57,7 +57,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
             ) : (
                 searchQuery && (
                     <div className="absolute top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll z-20">
-                        <p className="text-gray-600">No results found.</p>
+                        <p className="text-black font-bold">No results found.</p>
                     </div>
                 )
             )}

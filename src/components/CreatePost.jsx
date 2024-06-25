@@ -5,7 +5,8 @@ import { Tabs, TabsHeader, TabsBody, Tab, TabPanel, Dialog, DialogHeader, Input,
 import { useUser } from "./UserProvider";
 
 export default function CreatePost() {
-  const { show, setShow } = useUser();
+  // const { show, setShow } = useUser();
+  const [show,setShow]= useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
