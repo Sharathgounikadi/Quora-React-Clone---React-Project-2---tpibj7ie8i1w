@@ -6,7 +6,7 @@ import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import Notification from './Notification';
 import CreatePost from './CreatePost';
-import { Answers, Following, Home, Notify, Spaces, Post, Answer, Quora, DarkQuora } from './Icons';
+import { Answers, Following, Home, Notify, Spaces, Post, Answer } from './Icons';
 import { useUser } from './UserProvider';
 import quora from '../assets/QuoraNew.png';
 import {
@@ -78,9 +78,9 @@ const NavbarDefault = () => {
     //     navigate(`/post/${postId}`);
     // };
 
-    const handlePostClick = () => {
-        navigate(`/ComingSoon`);
-    };
+    // const handlePostClick = () => {
+    //     navigate(`/ComingSoon`);
+    // };
 
 
     return (
@@ -88,7 +88,7 @@ const NavbarDefault = () => {
             <div className="w-full justify-center text-gray-900 items-center hidden lg:flex shadow-md ">
                 <div className="flex w-full md:w-max xs:flex-wrap justify-between">
                     <NavLink to="/home" activeClassName="text-red-800" className="mr-5 cursor-pointer font-medium ">
-                        <img src={quora} className="w-40 h-6 cursor-pointer xs:w-20" onClick={() => navigate('/home')} alt="Quora" />
+                        <img src={quora} className="w-40 h-6 cursor-pointer xs:w-20" onClick={() => navigate('/home')}/>
                     </NavLink>
                     <div className='flex gap-5'>
                         <NavLink to="/home" activeClassName="text" className="cursor-pointer font-medium">

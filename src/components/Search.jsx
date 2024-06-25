@@ -4,7 +4,7 @@ import { IoIosSearch } from "react-icons/io";
 import { useUser } from './UserProvider';
 
 const Search = ({ theme, searchResults, setSearchResults }) => {
-    const {setPostId}=useUser();
+    const { setPostId } = useUser();
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearch = async (e) => {
@@ -27,36 +27,49 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
         }
     };
 
+    const handleCancel = () => {
+        setSearchQuery('');
+        setSearchResults([]);
+    };
+
     const searchBoxStyle = {
         backgroundColor: theme === 'light' ? 'white' : 'transparent',
         color: theme === 'light' ? 'black' : 'black',
     };
 
-    const goToPost=(id)=>{
+    const goToPost = (id) => {
         setPostId(id);
-        console.log(id)
-    }
+        console.log(id);
+    };
 
     return (
         <div style={searchBoxStyle}>
-            <div className='flex items-center border border-[#DEE0E1] h-6 lg:h-8  w-50 lg:w-80 rounded-md'>
-                <div className='flex gap-1 ml-2 items-center'>
+            <div className='flex items-center border border-[#DEE0E1] h-6 lg:h-8 w-50 lg:w-80 rounded-md relative'>
+                <div className='flex gap-1 ml-2 items-center flex-grow'>
                     <IoIosSearch className='text-gray-600 h-5 w-5 cursor-pointer' />
                     <input
                         type='search'
                         id='searchInput'
                         placeholder='Search'
-                        className='bg-transparent focus:outline-none lg:w-[250px] text-gray-600 font-light text-base lg:text-base'
+                        className='bg-transparent focus:outline-none lg:w-[250px] text-gray-600 font-light text-base lg:text-base flex-grow'
                         value={searchQuery}
                         onChange={handleSearch}
                     />
                 </div>
+                {searchQuery && (
+                    <button
+                        onClick={handleCancel}
+                        className='text-gray-600 h-5 w-5 cursor-pointer absolute right-2 lg:hidden md:hidden'
+                    >
+                        ✕
+                    </button>
+                )}
             </div>
             {searchQuery && searchResults.length > 0 ? (
                 <div className="absolute top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 mr-[20%] overflow-scroll z-20">
                     {searchResults.map((result, index) => (
-                        <div key={index} className="p-2 border-b last:border-b-0" onClick={()=>{goToPost(result._id)}}>
-                            <h2 className='font-bold '>{result?.title}</h2>
+                        <div key={index} className="p-2 border-b last:border-b-0" onClick={() => { goToPost(result._id) }}>
+                            <h2 className='font-bold'>{result?.title}</h2>
                             <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
                         </div>
                     ))}
