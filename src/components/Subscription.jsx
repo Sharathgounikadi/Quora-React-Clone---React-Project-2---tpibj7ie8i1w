@@ -1,5 +1,5 @@
 import React from "react";
-import quora from  '../assets/Quora.jpg';
+// import quora from  '../assets/Quora.jpg';
 
 import {
   div,
@@ -11,17 +11,23 @@ import {
   Typography,
   MenuItem,
 } from "@material-tailwind/react";
+import { useUser } from "./UserProvider";
 
 const Subscription = () => {
+  const { theme } = useUser();
+  const colour = {
+    backgroundColor: theme === 'light' ? 'white' : 'black',
+    color: theme === 'light' ? 'black' : 'white'
+  };
+
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen((cur) => !cur);
 
   return (
     <>
-    
-      <div onClick={handleOpen} className="p-2">Try Quora+</div>
-    <Dialog size="xs" open={open} handler={handleOpen} > 
+      <div onClick={handleOpen} className="ml-2 border-black" style={colour}>Try Quora+</div>
+      <Dialog size="sm" open={open} handler={handleOpen} > 
         <DialogHeader className="">
           <div>
             <Typography variant="h5" color="blue-gray">
