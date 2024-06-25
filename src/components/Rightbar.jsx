@@ -115,7 +115,7 @@ const Rightbar = () => {
 
 
   return (
-    <div className="lg:ml-[27%] lg:w-[45%] md:w-full md:mx-[2%] mt-[4%] md:mt-[5%]">
+    <div className="lg:ml-[27%] lg:w-[45%] md:w-full md:mx-[2%] lg:mt-[5%] mt-[8%]">
       <div
         className="relative flex flex-col pt-3 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm"
         style={colour}

@@ -84,7 +84,7 @@ const NavbarDefault = () => {
 
 
     return (
-        <div className="w-full fixed z-10 h-[8%] flex" style={postCardStyle}>
+        <div className="w-full fixed z-10 lg:h-[8%] md:h-[5%] sm:h-[5%] flex" style={postCardStyle}>
             <div className="w-full justify-center text-gray-900 items-center hidden lg:flex shadow-md ">
                 <div className="flex w-full md:w-max xs:flex-wrap justify-between">
                     <NavLink to="/home" activeClassName="text-red-800" className="mr-5 cursor-pointer font-medium ">
@@ -143,7 +143,7 @@ const NavbarDefault = () => {
                 </div>
             </div>
             {/* for small screens */}
-            <div className="fixed z-20 lg:mx-auto flex xs:flex-col-2 text-gray-900 mb-4 lg:ml-32 lg:gap-2 lg:hidden w-full">
+            <div className="fixed z-20 lg:mx-auto flex xs:flex-col-2 text-gray-900 mb-4 lg:ml-32 lg:gap-2  lg:hidden w-full">
                 <div className="flex w-full xs:flex-wrap ">
                     <NavLink to="/home" activeClassName="text-red-800" className="mx-4 cursor-pointer py-1.5 font-medium">
                         <img src={quora} className="w-36 h-6 cursor-pointer xs:w-20" onClick={() => navigate('/home')} alt="Quora" />
