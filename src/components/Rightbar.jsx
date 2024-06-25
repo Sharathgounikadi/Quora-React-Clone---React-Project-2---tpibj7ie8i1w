@@ -10,7 +10,7 @@ import { Ask, Answer, Post } from './Icons';
 import AddPost from './AddPost';
 
 const Rightbar = () => {
-  const { theme, show, setShow } = useUser();
+  const { theme, show, setShow, postId } = useUser();
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
@@ -34,21 +34,30 @@ const Rightbar = () => {
   };
 
   const fetchPosts = async () => {
-    if (isFetching || (initialApiCallMade && page > 1)) {
+    if (isFetching || (initialApiCallMade && !postId)) {
       return;
     }
 
     const dataUser = localStorage.getItem("token");
     try {
       setIsFetching(true);
-      const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post?limit=10&page=${page}`, {
+      let url = `https://academics.newtonschool.co/api/v1/quora/post?limit=10&page=${page}`;
+      if (postId) {
+        url = `https://academics.newtonschool.co/api/v1/quora/post/${postId}`;
+      }
+      const response = await axios.get(url, {
         headers: {
           'projectID': 'tpibj7ie8i1w',
           'Authorization': `Bearer ${dataUser}`
         }
       });
-      setPosts((prevPosts) => [...prevPosts, ...response.data.data]);
-      setPage((prevPage) => prevPage + 1);
+
+      if (postId) {
+        setPosts([response.data.data]);
+      } else {
+        setPosts((prevPosts) => [...prevPosts, ...response.data.data]);
+        setPage((prevPage) => prevPage + 1);
+      }
 
       if (!initialApiCallMade) {
         setInitialApiCallMade(true);
@@ -85,7 +94,6 @@ const Rightbar = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -94,6 +102,17 @@ const Rightbar = () => {
   useEffect(() => {
     fetchPosts();
   }, []); // Empty dependency array to ensure the effect runs only once
+
+  useEffect(() => {
+    if (postId) {
+      setPosts([]);
+      setPage(1);
+      setInitialApiCallMade(false);
+    }
+    fetchPosts();
+  }, [postId]);
+
+
 
   return (
     <div className="lg:ml-[27%] lg:w-[45%] md:w-full md:mx-[2%] mt-[4%] md:mt-[5%]">
@@ -108,7 +127,7 @@ const Rightbar = () => {
           <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
           <input
             placeholder="What do you want to ask or share?"
-            className="p-1 ml-6 border border-spacing-1 rounded-full w-full mr-4"
+            className="p-1 ml-6 border border-spacing-1 rounded-lg w-full mr-4"
             style={inputStyle}
           />
         </div>

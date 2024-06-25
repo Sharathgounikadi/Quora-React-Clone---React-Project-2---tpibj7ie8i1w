@@ -5,6 +5,7 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [show, setShow] = useState(false);
   const [theme, setTheme] = useState('light');
+  const [postId,setPostId]=useState();
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -23,7 +24,9 @@ export const UserProvider = ({ children }) => {
     theme,
     toggleTheme,
     show,
-    setShow
+    setShow,
+    postId,
+    setPostId
   };
 
   return (
