@@ -39,7 +39,9 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
 
     const goToPost = (id) => {
         setPostId(id);
-        console.log(id);
+        // console.log(id);
+        setSearchQuery('');
+        setSearchResults([]);
     };
 
     return (
@@ -68,7 +70,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
             {searchQuery && searchResults.length > 0 ? (
                 <div className="absolute top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 mr-[20%] overflow-scroll z-20">
                     {searchResults.map((result, index) => (
-                        <div key={index} className="p-2 border-b last:border-b-0" onClick={() => { goToPost(result._id) }}>
+                        <div key={index} className="p-2 border-b last:border-b-0" onClick={() => { goToPost(result._id)}}>
                             <h2 className='font-bold'>{result?.title}</h2>
                             <p>{result?.content.length > 90 ? `${result.content.slice(0, 90)}...` : result.content}</p>
                         </div>

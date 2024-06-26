@@ -17,7 +17,7 @@ import { RxDividerVertical } from "react-icons/rx";
 
 
 const NavbarDefault = () => {
-    const { theme, show, setShow } = useUser();
+    const { theme} = useUser();
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
