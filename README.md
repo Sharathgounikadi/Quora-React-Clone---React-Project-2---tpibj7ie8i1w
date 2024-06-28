@@ -14,7 +14,6 @@ Tech Stack
 The project is built using the following technologies:
 
 React: A JavaScript library for building user interfaces.
-Redux: A state management library for JavaScript applications.
 styled-components: A library for styling React components.
 axios: A promise-based HTTP client for the browser and Node.js.
 @mui/material and @mui/icons-material: Material-UI components for faster and easier web development.
