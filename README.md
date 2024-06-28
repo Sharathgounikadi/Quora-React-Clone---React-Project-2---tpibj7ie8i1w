@@ -3,7 +3,7 @@ Project Overview
 This project is a clone of the popular Q&A platform, Quora. It's a significant project aimed at replicating the core functionalities of Quora, providing a platform for users to ask questions, share answers, and engage in discussions. This project has been an excellent learning experience in building large-scale applications.
 
 Live View
-The live project can be accessed here.
+The live project can be accessed [here](https://quora-clone-by-sharath.vercel.app).
 
 Features
 User Authentication 🔐
