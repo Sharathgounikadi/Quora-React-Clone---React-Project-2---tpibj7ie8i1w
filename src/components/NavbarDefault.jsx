@@ -148,8 +148,8 @@ const NavbarDefault = () => {
                     <NavLink to="/home" activeClassName="text-red-800" className="mx-4 cursor-pointer py-1.5 font-medium">
                         <img src={quora} className="w-36 h-6 cursor-pointer xs:w-20" onClick={() => navigate('/home')} alt="Quora" />
                     </NavLink>
-                    <div className="w-[40%] my-[3%] xs:my-auto md:w-[80%]">
-                        <Search theme={theme} searchResults={searchResults} setSearchResults={setSearchResults} />
+                    <div className="w-[40%] my-[3%] xs:my-auto md:w-[80%]" >
+                        <Search theme={theme} searchResults={searchResults} setSearchResults={setSearchResults}  />
                     </div>
                     <div className="xs:block lg:hidden md:hidden">
                         <button onClick={toggleMenu} className="p-2 focus:outline-none">
@@ -177,7 +177,7 @@ const NavbarDefault = () => {
                                 <Answer className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
                         </NavLink>
-                        <NavLink to="/ComingSoon" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
+                        <NavLink to="/SpaceList" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
                             <Tooltip title="Spaces">
                                 <Spaces className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>

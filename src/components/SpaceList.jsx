@@ -99,9 +99,9 @@ const SpaceList = () => {
     <>
       <NavbarDefault />
       <div className="" style={cardStyle}>
-        <div className="flex items-center">
+        <div className="">
           <div className='font-bold'>Discover Spaces</div>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {communities.map((comm, idx) => (
               <div key={idx} className="community-card bg-gray-200 mt-20" >
                 <Link to="/ComingSoon">
