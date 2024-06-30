@@ -41,19 +41,19 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post/${postId}/comments`, { headers });
       setData(response.data.data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error( error.response.data.message);
     }
   };
 
-  const fetchPosts = async () => {
-    try {
-      const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post', { headers });
-      setPosts(response.data.data);
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-      toast.error('Failed to fetch posts. Please try again.');
-    }
-  };
+  // const fetchPosts = async () => {
+  //   try {
+  //     const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post', { headers });
+  //     setPosts(response.data.data);
+  //   } catch (error) {
+  //     console.error('Error fetching posts:', error);
+  //     toast.error('Failed to fetch posts. Please try again.');
+  //   }
+  // };
 
   useEffect(() => {
     fetchComments();
@@ -71,7 +71,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       toast('You liked the post');
     } catch (error) {
       console.error('Error upvoting the post:', error);
-      toast.error('You already liked the post');
+      toast.error(error.response.data.message);
       // setColorBlue('');
     }
   };
@@ -86,7 +86,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
     } catch (error) {
       console.error('Error downvoting the post:', error);
       setColorRed('');
-      toast.error('You already disliked the post');
+      toast.error(error.response.data.message);
     }
   };
 

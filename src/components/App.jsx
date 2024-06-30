@@ -8,6 +8,7 @@ import Answers from "./Answers";
 import Login from "./SingupLoginModal/Login";
 import { Navigate } from 'react-router-dom';
 import Notification from "./Notification";
+import SpaceList from "./SpaceList";
 
 
 
@@ -33,15 +34,16 @@ function App() {
               </PrivateRoute>
             }
           />
-{/* 
+
           <Route
-            path="/notification"
+            path="/spaceList"
             element={
               <PrivateRoute>
-                <Notification />
+                <SpaceList />
               </PrivateRoute>
             }
-          /> */}
+          />
+          
           <Route
             path="/question/:id"
             element={

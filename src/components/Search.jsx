@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { IoIosSearch } from "react-icons/io";   
 import { useUser } from './UserProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Search = ({ theme, searchResults, setSearchResults }) => {
     const { setPostId } = useUser();
     const [searchQuery, setSearchQuery] = useState('');
+    const navigate=useNavigate();
 
     const handleSearch = async (e) => {
         const searchTerm = e.target.value;
@@ -42,6 +44,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
         // console.log(id);
         setSearchQuery('');
         setSearchResults([]);
+        navigate('/home');
     };
 
     return (
@@ -53,7 +56,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
                         type='search'
                         id='searchInput'
                         placeholder='Search'
-                        className='bg-transparent focus:outline-none lg:w-[250px] text-gray-600 font-light text-base lg:text-base flex-grow'
+                        className='bg-transparent focus:outline-none lg:w-[250px] text-gray-600 font-light text-base lg:text-base flex-grow xs:w-[100px]'
                         value={searchQuery}
                         onChange={handleSearch}
                     />

@@ -106,7 +106,7 @@ const NavbarDefault = () => {
                                 <Answers className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
                         </NavLink>
-                        <NavLink to="/ComingSoon" activeClassName="text-red-800" className="cursor-pointer font-medium">
+                        <NavLink to="/SpaceList" activeClassName="text-red-800" className="cursor-pointer font-medium">
                             <Tooltip title="Spaces">
                                 <Spaces className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>

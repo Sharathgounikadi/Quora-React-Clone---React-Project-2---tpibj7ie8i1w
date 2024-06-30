@@ -49,8 +49,7 @@ const Notification = () => {
             You should read this!
           </Typography>
           <Typography className="text-center font-normal">
-            A small river named Duden flows by their place and supplies it with
-            the necessary regelialia.
+            No Notifications till now
           </Typography>
         </DialogBody>
         <DialogFooter className="space-x-2">
