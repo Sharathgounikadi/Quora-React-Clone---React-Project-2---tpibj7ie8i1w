@@ -9,6 +9,7 @@ import Login from "./SingupLoginModal/Login";
 import { Navigate } from 'react-router-dom';
 import Notification from "./Notification";
 import SpaceList from "./SpaceList";
+import Following from "./Following";
 
 
 
@@ -40,6 +41,14 @@ function App() {
             element={
               <PrivateRoute>
                 <SpaceList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/following"
+            element={
+              <PrivateRoute>
+                <Following/>
               </PrivateRoute>
             }
           />

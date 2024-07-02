@@ -96,7 +96,7 @@ const NavbarDefault = () => {
                                 <Home className="w-8 h-8 md:w-6 md:h-6" style={postCardStyle}/>
                             </Tooltip>
                         </NavLink>
-                        <NavLink to="/ComingSoon" activeClassName="text-red-800" className="cursor-pointer font-medium">
+                        <NavLink to="/following" activeClassName="text-red-800" className="cursor-pointer font-medium">
                             <Tooltip title="Post">
                                 <Following className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
@@ -167,7 +167,7 @@ const NavbarDefault = () => {
                                 <Home className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
                         </NavLink>
-                        <NavLink to="/ComingSoon" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
+                        <NavLink to="/following" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
                             <Tooltip title="Post">
                                 <Post className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
