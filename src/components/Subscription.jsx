@@ -28,6 +28,7 @@ const Subscription = () => {
     <>
       <div onClick={handleOpen} className="ml-2 border-black" style={colour}>Try Quora+</div>
       <Dialog size="sm" open={open} handler={handleOpen} style={colour} > 
+        
         <DialogHeader className="">
           <div>
             <Typography variant="h5" color="blue-gray">
@@ -38,7 +39,7 @@ const Subscription = () => {
             </Typography>
           </div>
           <IconButton
-            color="blue-gray"
+            color="blue-gray"   
             size="sm"
             variant="text"
             onClick={handleOpen}

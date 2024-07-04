@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link} from 'react-router-dom';
 import globe from  '../assets/Globe.jpg';
 import {
     Menu,
@@ -6,10 +6,7 @@ import {
     MenuList,
     MenuItem,
     Avatar,
-    div,
   } from "@material-tailwind/react";
-import { Globe } from './Icons';
-  
 
 const LanguageMenu = () => {
   const navigate=useNavigate();
@@ -17,8 +14,6 @@ const LanguageMenu = () => {
         <Menu>
           <MenuHandler>
             <img
-              // variant="circular"
-              // alt="tania andrew"
               className="cursor-pointer w-7 h-7 rounded-full ml-4 mt-1"
               src={globe}
             />
@@ -26,19 +21,19 @@ const LanguageMenu = () => {
           </MenuHandler>
           <MenuList>
             <MenuItem className="flex items-center gap-2">
-              <div variant="small" className="font-medium" onClick={()=>navigate('/ComingSoon')}>
-                Languages
-              </div>
+              <Link to="/ComingSoon" variant="small" className="font-medium">
+                English Language     
+              </Link>
             </MenuItem>
             <MenuItem className="flex items-center gap-2">
-              <div variant="small" className="font-medium" onClick={()=>navigate('/ComingSoon')}>
-                Add Language
-              </div>
+              <Link to="/ComingSoon" variant="small" className="font-medium">
+                Telugu Language  
+              </Link>
             </MenuItem>
             <MenuItem className="flex items-center gap-2">
-              <div variant="small" className="font-medium" onClick={()=>navigate('/ComingSoon')}>
+              <Link to="/ComingSoon" variant="small" className="font-medium">
                 See all languages
-              </div>
+              </Link>
             </MenuItem>
           </MenuList>
         </Menu>
