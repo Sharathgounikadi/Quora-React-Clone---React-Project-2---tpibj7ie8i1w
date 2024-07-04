@@ -147,7 +147,7 @@ export default function CreatePost() {
 
   return (
     <div>
-      <h1 onClick={openModal} className="cursor-pointer">Ask Question</h1>
+      <h1 onClick={openModal} className="cursor-pointer">Ask</h1>
       <Dialog open={show} handler={closeModal} size="sm">
         <DialogHeader>
           <Tabs value={activeTab} onChange={(value) => setActiveTab(value)}>

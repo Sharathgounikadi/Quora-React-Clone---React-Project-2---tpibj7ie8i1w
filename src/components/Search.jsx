@@ -61,14 +61,14 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
                         onChange={handleSearch}
                     />
                 </div>
-                {searchQuery && (
+                {/* {searchQuery && (
                     <button
                         onClick={handleCancel}
                         className='text-gray-600 h-5 w-5 cursor-pointer absolute right-2 lg:hidden md:hidden'
                     >
-                        ✕
+                        
                     </button>
-                )}
+                )} */}
             </div>
             {searchQuery && searchResults.length > 0 ? (
                 <div className="absolute top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 mr-[20%] overflow-scroll z-20">

@@ -17,7 +17,7 @@ import { RxDividerVertical } from "react-icons/rx";
 
 
 const NavbarDefault = () => {
-    const { theme} = useUser();
+    const { theme } = useUser();
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -88,12 +88,12 @@ const NavbarDefault = () => {
             <div className="w-full justify-center text-gray-900 items-center hidden lg:flex shadow-md ">
                 <div className="flex w-full md:w-max xs:flex-wrap justify-between">
                     <NavLink to="/home" activeClassName="text-red-800" className="mr-5 cursor-pointer font-medium ">
-                        <img src={quora} className="w-40 h-6 cursor-pointer xs:w-20" onClick={() => navigate('/home')}/>
+                        <img src={quora} className="w-40 h-6 cursor-pointer xs:w-20" onClick={() => navigate('/home')} />
                     </NavLink>
-                    <div className='flex gap-5'>
+                    <div className='flex gap-4'>
                         <NavLink to="/home" activeClassName="text" className="cursor-pointer font-medium">
                             <Tooltip title="Home">
-                                <Home className="w-8 h-8 md:w-6 md:h-6" style={postCardStyle}/>
+                                <Home className="w-8 h-8 md:w-6 md:h-6" style={postCardStyle} />
                             </Tooltip>
                         </NavLink>
                         <NavLink to="/following" activeClassName="text-red-800" className="cursor-pointer font-medium">
@@ -131,8 +131,10 @@ const NavbarDefault = () => {
                     </div>
                     <div class="flex items-center rounded-full bg-red-800">
                         <button class="relative flex items-center justify-center h-7 text-white rounded-l-full pl-3 cursor-pointer">
-                            <span class="text-sm"><CreatePost /></span>
+                            <span class="text-sm"><CreatePost /></span> {/* Render CreatePost component */}
+                            <span class="ml-1 text-sm">Question</span> {/* Add space with ml-2 class */}
                         </button>
+
                         <RxDividerVertical className='text-gray-300 h-3 lg:h-5 w-3 lg:w-5 hidden lg:flex' />
                         <button class="relative flex items-center justify-center h-7 text-white rounded-r-full pr-2 cursor-pointer">
                             <svg class="w-4 h-4 stroke-current text-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -143,16 +145,16 @@ const NavbarDefault = () => {
                 </div>
             </div>
             {/* for small screens */}
-            <div className="fixed z-20 lg:mx-auto flex xs:flex-col-2 text-gray-900 mb-4 lg:ml-32 lg:gap-2  lg:hidden w-full">
-                <div className="flex w-full xs:flex-wrap ">
-                    <NavLink to="/home" activeClassName="text-red-800" className="mx-4 cursor-pointer py-1.5 font-medium">
+            <div className="fixed z-20 lg:mx-auto flex xs:flex-col-2 text-gray-900 mb-4 lg:ml-32 lg:gap-2 lg:hidden bg-gray-200 w-[100%] !important">
+                <div className="flex w-[100%]important">
+                    <div activeClassName="text-red-800" className="mx-4 cursor-pointer py-1.5 font-medium w-[30%]!important">
                         <img src={quora} className="w-36 h-6 cursor-pointer xs:w-20" onClick={() => navigate('/home')} alt="Quora" />
-                    </NavLink>
-                    <div className="w-[40%] my-[3%] xs:my-auto md:w-[80%]" >
-                        <Search theme={theme} searchResults={searchResults} setSearchResults={setSearchResults}  />
                     </div>
-                    <div className="xs:block lg:hidden md:hidden">
-                        <button onClick={toggleMenu} className="p-2 focus:outline-none">
+                    <div className="w-[40%]!important my-[3%] xs:my-auto md:w-[80%]" >
+                        <Search theme={theme} searchResults={searchResults} setSearchResults={setSearchResults} />
+                    </div>
+                    <div className="xs:block lg:hidden md:hidden w-[30%]!important">
+                        <button onClick={toggleMenu} className="p-2 pl-6 focus:outline-none">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                             </svg>
@@ -161,7 +163,7 @@ const NavbarDefault = () => {
                 </div>
 
                 {isMenuOpen && (
-                    <div className="absolute top-12 left-0 w-full bg-white shadow-lg rounded-lg flex">
+                    <div className="absolute top-10 left-0 w-full bg-gray-200 shadow-lg rounded-lg flex">
                         <NavLink to="/home" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
                             <Tooltip title="Home">
                                 <Home className="w-7 h-7 md:w-6 md:h-6" />
@@ -185,11 +187,13 @@ const NavbarDefault = () => {
                         <div className="block px-1 py-2 text-gray-900 cursor-pointer">
                             <ProfileMenu />
                         </div>
-                        <div className="block px-1 py-2 text-gray-900 cursor-pointer">
-                            <h1 className="bg-red-800 rounded-full text-md text-white w-36 pl-6 h-8 lg:hidden">
-                                <CreatePost />
+                        <div className="flex px-1 py-2 text-gray-900 cursor-pointer flex-wrap">
+                            <h1 className="bg-red-800 rounded-full text-md text-white w-36 pl-6 h-8 lg:hidden flex items-center justify-center">
+                                <span style={{ marginLeft: "-22px" }}><CreatePost /></span> {/* Adjust margin here */}
+                                <span>&nbsp;</span>Question {/* Add space or adjust as needed */}
                             </h1>
                         </div>
+
                     </div>
                 )}
             </div>
