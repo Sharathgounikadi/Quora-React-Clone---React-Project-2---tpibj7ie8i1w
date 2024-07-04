@@ -71,7 +71,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
                 )} */}
             </div>
             {searchQuery && searchResults.length > 0 ? (
-                <div className="absolute top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 mr-[20%] overflow-scroll z-20">
+                <div className="absolute top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 mr-[15%] w-[500px] overflow-auto z-20 text-ellipsis">
                     {searchResults.map((result, index) => (
                         <div key={index} className="p-2 border-b last:border-b-0" onClick={() => { goToPost(result._id)}}>
                             <h2 className='font-bold'>{result?.title}</h2>
@@ -81,7 +81,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
                 </div>
             ) : (
                 searchQuery && (
-                    <div className="absolute top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll z-20">
+                    <div className="absolute top-12 text-justify bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll w-[500px] z-20">
                         <p className="text-black font-bold">No results found.</p>
                     </div>
                 )

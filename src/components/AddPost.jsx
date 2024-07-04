@@ -118,8 +118,8 @@ export default function AddPost() {
       label: "Create Post",
       value: "Create Post",
       desc: (
-        <form onSubmit={createPost} className="w-full h-max text-gray-700 p-4 antialiased font-sans text-base font-light leading-relaxed">
-          <div className="text-lg font-semibold mx-auto text-center">
+        <form onSubmit={createPost} className="w-full max-w-[600px] bg-white dark:bg-gray-900 rounded-lg py-6 px-3 sm:px-6 flex flex-col items-start gap-2">
+          <div className="text-lg font-semibold mx-auto text-center w-full">
             Create Post
           </div>
           <div className="relative w-full min-w-[200px]">
@@ -161,9 +161,9 @@ export default function AddPost() {
   return (
     <div>
       <h1 onClick={openModal} className="cursor-pointer">Post</h1>
-      <Dialog open={show} handler={closeModal} size="xs">
+      <Dialog open={show} handler={closeModal} size="md">
         <DialogHeader>
-          <Tabs value="Create Post">
+          <Tabs className="w-[100%]" value="Create Post">
             <TabsHeader className="bg-blue-500">
               {data.map(({ label, value }) => (
                 <Tab key={value} value={value}>

@@ -14,6 +14,7 @@ import {
 } from "@material-tailwind/react";
 import Search from './Search';
 import { RxDividerVertical } from "react-icons/rx";
+import { toast } from 'react-toastify';
 
 
 const NavbarDefault = () => {
@@ -74,6 +75,9 @@ const NavbarDefault = () => {
         navigate('/ComingSoon');
     };
 
+    const notify=()=>{
+        toast("Feature under development",{autoClose:1000})
+      }
     // const handlePostClick = (postId) => {
     //     navigate(`/post/${postId}`);
     // };
@@ -118,10 +122,8 @@ const NavbarDefault = () => {
                     <div className="flex">
                         <Search theme={theme} searchResults={searchResults} setSearchResults={setSearchResults} />
                     </div>
-                    <div className="h-7 w-24 ml-2 cursor-pointer font-medium text-sm border border-[#575757] rounded-full flex items-center">
-                        <Tooltip title="Try Quora">
-                            <Subscription />
-                        </Tooltip>
+                    <div className="h-7 w-20 p-2 ml-2 mt-1 cursor-pointer font-medium text-sm border border-[#575757] rounded-full flex items-center" onClick={notify}>
+                        TryQuora+
                     </div>
                     <div className="cursor-pointer font-medium rounded-full">
                         <ProfileMenu />
@@ -131,8 +133,7 @@ const NavbarDefault = () => {
                     </div>
                     <div class="flex items-center rounded-full bg-red-800">
                         <button class="relative flex items-center justify-center h-7 text-white rounded-l-full pl-3 cursor-pointer">
-                            <span class="text-sm"><CreatePost /></span> {/* Render CreatePost component */}
-                            <span class="ml-1 text-sm">Question</span> {/* Add space with ml-2 class */}
+                            <CreatePost text={"Add Question"} />
                         </button>
 
                         <RxDividerVertical className='text-gray-300 h-3 lg:h-5 w-3 lg:w-5 hidden lg:flex' />
@@ -188,9 +189,8 @@ const NavbarDefault = () => {
                             <ProfileMenu />
                         </div>
                         <div className="flex px-1 py-2 text-gray-900 cursor-pointer flex-wrap">
-                            <h1 className="bg-red-800 rounded-full text-md text-white w-36 pl-6 h-8 lg:hidden flex items-center justify-center">
-                                <span style={{ marginLeft: "-22px" }}><CreatePost /></span> {/* Adjust margin here */}
-                                <span>&nbsp;</span>Question {/* Add space or adjust as needed */}
+                            <h1 className="bg-red-800 rounded-full text-md text-white w-32  h-8 lg:hidden flex items-center justify-center">
+                                <CreatePost text={"Add Question"} />
                             </h1>
                         </div>
 

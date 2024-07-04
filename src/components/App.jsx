@@ -10,6 +10,7 @@ import { Navigate } from 'react-router-dom';
 import Notification from "./Notification";
 import SpaceList from "./SpaceList";
 import Following from "./Following";
+import Profile from "./Profile";
 
 
 
@@ -22,11 +23,11 @@ function App() {
 
 
   return (
-    <> 
+    <>
       <Router>
-      {/* <NavbarDefault /> */}
+        {/* <NavbarDefault /> */}
         <Routes>
-          <Route path="/" element={<Login/> } />
+          <Route path="/" element={<Login />} />
           <Route
             path="/home"
             element={
@@ -48,11 +49,11 @@ function App() {
             path="/following"
             element={
               <PrivateRoute>
-                <Following/>
+                <Following />
               </PrivateRoute>
             }
           />
-          
+
           <Route
             path="/question/:id"
             element={
@@ -82,9 +83,17 @@ function App() {
               <PrivateRoute>
                 <Answers />
               </PrivateRoute>} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile/>
+              </PrivateRoute>
+            }
+          />
 
         </Routes>
-        
+
       </Router>
     </>
 

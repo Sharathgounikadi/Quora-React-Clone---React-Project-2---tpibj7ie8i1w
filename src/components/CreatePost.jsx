@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { Tabs, TabsHeader, TabsBody, Tab, TabPanel, Dialog, DialogHeader, Input, Textarea } from "@material-tailwind/react";
 import { useUser } from "./UserProvider";
 
-export default function CreatePost() {
+export default function CreatePost({text}) {
   // const { show, setShow } = useUser();
   const [show,setShow]= useState(false);
   const [title, setTitle] = useState("");
@@ -147,10 +147,10 @@ export default function CreatePost() {
 
   return (
     <div>
-      <h1 onClick={openModal} className="cursor-pointer">Ask</h1>
+      <h1 onClick={openModal} className="cursor-pointer" >{text}</h1>
       <Dialog open={show} handler={closeModal} size="sm">
         <DialogHeader>
-          <Tabs value={activeTab} onChange={(value) => setActiveTab(value)}>
+          <Tabs className="w-[100%]" value={activeTab} onChange={(value) => setActiveTab(value)}>
             <TabsHeader className="bg-blue-500">
               {tabsData.map(({ label, value }) => (
                 <Tab key={value} value={value}>

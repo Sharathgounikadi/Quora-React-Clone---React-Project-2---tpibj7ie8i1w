@@ -115,9 +115,9 @@ const Rightbar = () => {
 
 
   return (
-    <div className="lg:ml-[27%] lg:w-[45%] md:w-full md:mx-[2%] lg:mt-[5%] mt-[8%]">
+    <div className="lg:ml-[27%] lg:w-[45%] md:w-full md:mx-[2%] lg:mt-[5%] mt-[8%] rounded-2xl">
       <div
-        className="relative flex flex-col pt-3 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm"
+        className="relative flex flex-col pt-3 text-gray-700 bg-white shadow-md bg-clip-border rounded-2xl"
         style={colour}
       >
         <div
@@ -135,7 +135,7 @@ const Rightbar = () => {
           <div className="flex items-center ml-4">
             <Ask />
             <h1 className="flex items-center">
-              <CreatePost />
+              <CreatePost text={"Ask"} />
             </h1>
           </div>
 
@@ -160,8 +160,9 @@ const Rightbar = () => {
             ? post.author?.name.charAt(0).toUpperCase()
             : "?";
           return (
+            
             <div
-              className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm 
+              className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-2xl
                 "
               key={index}
               style={postCardStyle}
@@ -214,9 +215,11 @@ const Rightbar = () => {
             </div>
           );
         })}
+        
         {isFetching && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
+      
     </div>
   );
 };

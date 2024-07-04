@@ -82,7 +82,7 @@ const CreateSpace = ({ onNewCommunity }) => {
                         />
                     </CardBody>
                     <CardFooter className="pt-0">
-                        <div className="bg-blue-500 p-2 rounded-2xl ml-40 text-black w-20 text-center" onClick={createSpace}>
+                        <div className="bg-blue-500 p-2 rounded-2xl ml-[37%] text-white w-20 text-center" onClick={createSpace}>
                             Create
                         </div>
                     </CardFooter>
