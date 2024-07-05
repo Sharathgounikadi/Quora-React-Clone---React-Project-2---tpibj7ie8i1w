@@ -147,11 +147,11 @@ const NavbarDefault = () => {
             </div>
             {/* for small screens */}
             <div className="fixed z-20 lg:mx-auto flex xs:flex-col-2 text-gray-900 mb-4 lg:ml-32 lg:gap-2 lg:hidden bg-gray-200 w-[100%] !important">
-                <div className="flex w-[100%]important">
+                <div className="flex w-[100%]important md:w-[90%]">
                     <div activeClassName="text-red-800" className="mx-4 cursor-pointer py-1.5 font-medium w-[30%]!important">
                         <img src={quora} className="w-36 h-6 cursor-pointer xs:w-20" onClick={() => navigate('/home')} alt="Quora" />
                     </div>
-                    <div className="w-[40%]!important my-[3%] xs:my-auto md:w-[80%]" >
+                    <div className="w-[40%]!important my-[3%] xs:my-auto md:w-[100%]" >
                         <Search theme={theme} searchResults={searchResults} setSearchResults={setSearchResults} />
                     </div>
                     <div className="xs:block lg:hidden md:hidden w-[30%]!important">

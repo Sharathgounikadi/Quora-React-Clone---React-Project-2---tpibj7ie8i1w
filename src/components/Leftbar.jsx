@@ -69,7 +69,7 @@ const Leftbar = () => {
                 </div>
                 <div className='' >
                     {communities.map((comm, idx) => (
-                        <Link to="/ComingSoon" key={idx} className="text-[15px] hover:bg-gray-300 hover:rounded-md p-2 flex gap-2 bg-gray-300 " style={postCardStyle}>
+                        <Link to="/ComingSoon" key={idx} className="text-[15px] hover:bg-gray-300 hover:rounded-md p-2 flex gap-2 bg-gray-300" style={postCardStyle}>
                             <img src={cooking} className="h-4 w-4" />
                             <div className="break-words">{comm.name}</div>
                         </Link>

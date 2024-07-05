@@ -12,7 +12,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
     const handleSearch = async (e) => {
         const searchTerm = e.target.value;
         setSearchQuery(searchTerm);
-        // setPostId(null);
+        setPostId(null);
         if (searchTerm.length > 0) {
             try {
                 const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post?search={"content":"${searchTerm}"}`, {
@@ -29,10 +29,10 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
         }
     };
 
-    const handleCancel = () => {
-        setSearchQuery('');
-        setSearchResults([]);
-    };
+    // const handleCancel = () => {
+    //     setSearchQuery('');
+    //     setSearchResults([]);
+    // };
 
     const searchBoxStyle = {
         backgroundColor: theme === 'light' ? 'white' : 'transparent',
@@ -45,6 +45,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
         setSearchQuery('');
         setSearchResults([]);
         navigate('/home');
+        // window.location.reload();
     };
 
     return (
