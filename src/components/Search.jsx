@@ -12,7 +12,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
     const handleSearch = async (e) => {
         const searchTerm = e.target.value;
         setSearchQuery(searchTerm);
-        setPostId(null);
+        // setPostId(null);
         if (searchTerm.length > 0) {
             try {
                 const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post?search={"content":"${searchTerm}"}`, {
@@ -81,7 +81,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
                 </div>
             ) : (
                 searchQuery && (
-                    <div className="absolute top-12 text-justify bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll w-[500px] z-20">
+                    <div className="absolute top-12 text-justify bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll w-[500px] text-ellipsis z-20">
                         <p className="text-black font-bold">No results found.</p>
                     </div>
                 )

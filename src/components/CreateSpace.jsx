@@ -7,7 +7,7 @@ const CreateSpace = ({ onNewCommunity }) => {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    // const [image, setImage] = useState(null);
+    const [image, setImage] = useState(null);
 
     const handleOpen = () => setOpen(!open);
     const createSpace = async () => {
@@ -15,7 +15,7 @@ const CreateSpace = ({ onNewCommunity }) => {
         const data = {
             name: name,
             description: description,
-            // images: image,
+            images: image,
         };
 
         try {

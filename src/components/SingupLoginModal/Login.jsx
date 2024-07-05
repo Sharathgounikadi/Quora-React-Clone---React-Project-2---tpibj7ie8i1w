@@ -7,6 +7,7 @@ import facebookLogo from '../../assets/facebook.jpeg';
 import SignUp from "./SignUp";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 export default function Login() {
     const [loginData, setLoginData] = useState({
@@ -15,11 +16,16 @@ export default function Login() {
         appType: 'quora'
     });
 
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
     const onChangeHandler = (event) => {
         setLoginData({ ...loginData, [event.target.name]: event.target.value });
     }
+
+    const togglePasswordVisibility = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
 
     const onSubmitHandler = async (event) => {
         event.preventDefault();
@@ -96,23 +102,30 @@ export default function Login() {
                                     type="email"
                                 />
                             </div>
-                            <div className='mt-4'>
+                            <div className='mt-4 relative'>
                                 <h1 className='font-bold text-sm'>Password</h1>
                                 <input
                                     name="password"
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     value={loginData.password}
                                     onChange={onChangeHandler}
                                     placeholder='Your Password'
-                                    className='border border-spacing-1 p-2 w-full lg:w-72 mt-2'
+                                    className='border border-spacing-1 p-2 w-full lg:w-72 mt-2 pr-10'
                                 />
+                                <button
+                                    type="button"
+                                    onClick={togglePasswordVisibility}
+                                    className="absolute top-[60%] left-[55%] text-gray-500"
+                                >
+                                    {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                                </button>
                             </div>
                             <div className='flex justify-center lg:justify-start mt-4'>
                                 <button className='bg-blue-500 text-white py-2 px-3 rounded-full' onClick={onSubmitHandler}>Login</button>
                             </div>
                         </div>
                     </div>
-                    <hr className='mt-3' />
+                    <hr className='mt-3'/>
                     <h1 className='text-xs md:text-sm text-center mt-3 text-zinc-600'>
                         About . Careers . Privacy . Terms . Contact . Languages . Your Ad Choices . Press © Quora, Inc. 2024
                     </h1>

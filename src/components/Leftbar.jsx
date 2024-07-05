@@ -4,6 +4,7 @@ import cooking from "../assets/Cooking.jpg";
 import CreateSpace from './CreateSpace';
 import { Link } from 'react-router-dom';
 import { useUser } from './UserProvider';
+import { toast } from 'react-toastify';
 
 const Leftbar = () => {
     const { theme } = useUser();
@@ -14,6 +15,10 @@ const Leftbar = () => {
         backgroundColor: theme === 'light' ? 'white' : 'black',
         color: theme === 'light' ? 'black' : 'white',
     };
+
+    const notify=()=>{
+        toast("Feature under Development",{autoClose:500})
+    }
 
     const token = localStorage.getItem("token");
 
@@ -70,9 +75,9 @@ const Leftbar = () => {
                         </Link>
                     ))}
                 </div>
-                <div className="mt-4">
+                <div className="mt-4" onClick={notify}>
                     <hr className="bg-blue-gray-400" />
-                    <h1 className="mt-3 text-gray-500 text-sm">About . Careers .</h1>
+                    <h1 className="mt-3 text-gray-500 text-sm" >About . Careers .</h1>
                     <h1 className="text-gray-500 text-sm">Terms . Privacy .</h1>
                     <h1 className="text-gray-500 text-sm">Acceptable Use</h1>
                     <h1 className="text-gray-500 text-sm">Terms . Privacy .</h1>

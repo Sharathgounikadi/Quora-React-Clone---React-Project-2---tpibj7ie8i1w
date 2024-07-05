@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineClose, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import {
     Dialog,
     Card,
@@ -12,14 +13,14 @@ import {
     Input,
     IconButton,
 } from "@material-tailwind/react";
-import { XIcon } from "@heroicons/react/solid";
 
 const SignUp = () => {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-    const [loading, setLoading] = useState(false); // Add loading state
-    const [errorMessage, setErrorMessage] = useState(""); // Add error message state
-    const [passwordStrength, setPasswordStrength] = useState(""); // Add password strength indicator
+    const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [passwordStrength, setPasswordStrength] = useState("");
 
     const handleOpen = () => setOpen((cur) => !cur);
 
@@ -33,11 +34,10 @@ const SignUp = () => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
-            [name]: value.trim(), // Trim spaces from all inputs
+            [name]: value.trim(),
         }));
 
         if (name === "password") {
-            // Simple password strength indicator
             if (value.length < 6) {
                 setPasswordStrength("Weak");
             } else if (value.length < 10) {
@@ -48,22 +48,31 @@ const SignUp = () => {
         }
     };
 
+    const togglePasswordVisibility = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
+
     const handleSubmit = async () => {
-        // Check for empty fields
         if (!formData.name || !formData.email || !formData.password) {
             setErrorMessage("Please fill in all the required fields.");
             return;
         }
 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            setErrorMessage("Please enter a valid email address.");
+            return;
+        }
+
         try {
-            setLoading(true); // Show loading spinner
+            setLoading(true);
             const body = {
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,
                 appType: "quora",
             };
-                console.log(body)
+
             const response = await axios.post(
                 'https://academics.newtonschool.co/api/v1/user/signup',
                 JSON.stringify(body),
@@ -83,14 +92,13 @@ const SignUp = () => {
                     localStorage.setItem("token", data.token);
                     setOpen(false);
                     toast('Your account created successfully');
-                    setFormData({ name: "", email: "", password: "" }); // Clear form fields                
+                    setFormData({ name: "", email: "", password: "" });
                 }
             }
         } catch (err) {
-            // console.error("Error occurred during sign-up:", err);
             setErrorMessage(err.response.data.message || err.message);
         } finally {
-            setLoading(false); // Hide loading spinner
+            setLoading(false);
         }
     };
 
@@ -102,13 +110,13 @@ const SignUp = () => {
                 open={open}
                 handler={handleOpen}
                 className="bg-transparent shadow-none"
-                dismiss={{ enabled: false }} // Prevent dialog from closing on outside click or ESC
+                dismiss={{ enabled: false }}
             >
                 <Card className="mx-auto w-full max-w-[24rem]">
                     <CardBody className="flex flex-col gap-4">
                         <div className="flex justify-end">
                             <IconButton variant="text" onClick={handleOpen}>
-                                <XIcon className="h-5 w-5" />
+                                <AiOutlineClose className="h-5 w-5 " />
                             </IconButton>
                         </div>
                         <Typography variant="h5" color="black">
@@ -125,7 +133,19 @@ const SignUp = () => {
                         <Typography className="-mb-2" variant="h6">
                             Password
                         </Typography>
-                        <Input label="Password" name="password" type="password" value={formData.password} onChange={handleChange} size="lg" />
+                        <div className="relative">
+                            <Input
+                                type={showPassword ? 'text' : 'password'}
+                                label="Password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                size="lg"
+                            />
+                            <div onClick={togglePasswordVisibility} className="absolute right-3 top-3">
+                                {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                                </div>
+                        </div>
                         {passwordStrength && (
                             <Typography variant="caption">{`Password Strength: ${passwordStrength}`}</Typography>
                         )}
@@ -134,7 +154,7 @@ const SignUp = () => {
                         )}
                     </CardBody>
                     <CardFooter className="pt-0 flex justify-end">
-                        <p className={`bg-[#2e69ff] p-2 rounded-3xl text-white cursor-pointer ${loading ? 'opacity-50' : ''}`} onClick={handleSubmit} fullWidth>
+                        <p className={`bg-[#2e69ff] p-2 rounded-3xl text-white cursor-pointer ${loading ? 'opacity-50' : ''}`} onClick={handleSubmit}>
                             Sign Up
                         </p>
                     </CardFooter>

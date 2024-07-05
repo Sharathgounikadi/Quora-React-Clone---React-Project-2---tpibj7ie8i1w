@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link, NavLink } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
 import { ProfileMenu } from './ProfileMenu';
 import LanguageMenu from './LanguageMenu';
-import Subscription from './Subscription';
+// import Subscription from './Subscription';
 import Notification from './Notification';
 import CreatePost from './CreatePost';
 import { Answers, Following, Home, Notify, Spaces, Post, Answer } from './Icons';
@@ -91,30 +91,30 @@ const NavbarDefault = () => {
         <div className="w-full fixed z-10 lg:h-[8%] md:h-[5%] sm:h-[5%] flex" style={postCardStyle}>
             <div className="w-full justify-center text-gray-900 items-center hidden lg:flex shadow-md ">
                 <div className="flex w-full md:w-max xs:flex-wrap justify-between">
-                    <NavLink to="/home" activeClassName="text-red-800" className="mr-5 cursor-pointer font-medium ">
+                    <Link to="/home" activeClassName="text-red-800" className="mr-5 cursor-pointer font-medium ">
                         <img src={quora} className="w-40 h-6 cursor-pointer xs:w-20" onClick={() => navigate('/home')} />
-                    </NavLink>
+                    </Link>
                     <div className='flex gap-4'>
-                        <NavLink to="/home" activeClassName="text" className="cursor-pointer font-medium">
+                        <Link to="/home" activeClassName="text" className="cursor-pointer font-medium">
                             <Tooltip title="Home">
                                 <Home className="w-8 h-8 md:w-6 md:h-6" style={postCardStyle} />
                             </Tooltip>
-                        </NavLink>
-                        <NavLink to="/following" activeClassName="text-red-800" className="cursor-pointer font-medium">
+                        </Link>
+                        <Link to="/following" activeClassName="text-red-800" className="cursor-pointer font-medium">
                             <Tooltip title="Post">
                                 <Following className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
-                        </NavLink>
-                        <NavLink to="/Answers" activeClassName="text-red-800" className="cursor-pointer font-medium">
+                        </Link>
+                        <Link to="/Answers" activeClassName="text-red-800" className="cursor-pointer font-medium">
                             <Tooltip title="Answers">
                                 <Answers className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
-                        </NavLink>
-                        <NavLink to="/SpaceList" activeClassName="text-red-800" className="cursor-pointer font-medium">
+                        </Link>
+                        <Link to="/SpaceList" activeClassName="text-red-800" className="cursor-pointer font-medium">
                             <Tooltip title="Spaces">
                                 <Spaces className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
-                        </NavLink>
+                        </Link>
                         <div activeClassName="text-red-800" className="cursor-pointer font-medium">
                             <h1 className="lg:pr-2"><Notification /></h1>
                         </div>
@@ -165,26 +165,26 @@ const NavbarDefault = () => {
 
                 {isMenuOpen && (
                     <div className="absolute top-10 left-0 w-full bg-gray-200 shadow-lg rounded-lg flex">
-                        <NavLink to="/home" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
+                        <Link to="/home" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
                             <Tooltip title="Home">
                                 <Home className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
-                        </NavLink>
-                        <NavLink to="/following" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
+                        </Link>
+                        <Link to="/following" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
                             <Tooltip title="Post">
                                 <Post className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
-                        </NavLink>
-                        <NavLink to="/Answers" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
+                        </Link>
+                        <Link to="/Answers" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
                             <Tooltip title="Answers">
                                 <Answer className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
-                        </NavLink>
-                        <NavLink to="/SpaceList" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
+                        </Link>
+                        <Link to="/SpaceList" activeClassName="text-red-800" className="block px-1 py-2 text-gray-900 cursor-pointer">
                             <Tooltip title="Spaces">
                                 <Spaces className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
-                        </NavLink>
+                        </Link>
                         <div className="block px-1 py-2 text-gray-900 cursor-pointer">
                             <ProfileMenu />
                         </div>
