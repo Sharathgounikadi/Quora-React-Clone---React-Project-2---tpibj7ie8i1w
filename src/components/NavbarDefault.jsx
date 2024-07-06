@@ -21,18 +21,18 @@ const NavbarDefault = () => {
     const { theme } = useUser();
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const [openNav, setOpenNav] = useState(false);
-    const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [openNav, setOpenNav] = useState(false);
+    // const [query, setQuery] = useState('');
+    
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    const iconColor = {
-        backgroundColor: theme === 'light' ? 'black' : "white"
-    }
+    // const iconColor = {
+    //     backgroundColor: theme === 'light' ? 'black' : "white"
+    // }
 
     const postCardStyle = {
         backgroundColor: theme === 'light' ? 'white' : 'black',
@@ -50,30 +50,30 @@ const NavbarDefault = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const handleSearch = async (e) => {
-        const searchTerm = e.target.value;
-        setQuery(searchTerm);
+    // const handleSearch = async (e) => {
+    //     const searchTerm = e.target.value;
+    //     setQuery(searchTerm);
 
-        if (searchTerm.length > 0) {
-            try {
-                const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post?search={"content":"${searchTerm}"}`, {
-                    headers: {
-                        'projectID': 'tpibj7ie8i1w'
-                    }
-                });
-                setSearchResults(response.data.data);
-                console.log(response.data.data)
-            } catch (error) {
-                console.error("Error fetching search results:", error);
-            }
-        } else {
-            setSearchResults([]);
-        }
-    };
+    //     if (searchTerm.length > 0) {
+    //         try {
+    //             const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post?search={"content":"${searchTerm}"}`, {
+    //                 headers: {
+    //                     'projectID': 'tpibj7ie8i1w'
+    //                 }
+    //             });
+    //             setSearchResults(response.data.data);
+    //             console.log(response.data.data)
+    //         } catch (error) {
+    //             console.error("Error fetching search results:", error);
+    //         }
+    //     } else {
+    //         setSearchResults([]);
+    //     }
+    // };
 
-    const nav = () => {
-        navigate('/ComingSoon');
-    };
+    // const nav = () => {
+    //     navigate('/ComingSoon');
+    // };
 
     const notify=()=>{
         toast("Feature under development",{autoClose:1000})
@@ -122,7 +122,7 @@ const NavbarDefault = () => {
                     <div className="flex">
                         <Search theme={theme} searchResults={searchResults} setSearchResults={setSearchResults} />
                     </div>
-                    <div className="h-7 w-20 p-2 ml-2 mt-1 cursor-pointer font-medium text-sm border border-[#575757] rounded-full flex items-center" onClick={notify}>
+                    <div className="h-7 w-20 p-2 ml-2 mt-1 cursor-pointer font-medium text-sm border border-[#575757] rounded-full flex items-center" style={postCardStyle} onClick={notify}>
                         TryQuora+
                     </div>
                     <div className="cursor-pointer font-medium rounded-full">

@@ -11,11 +11,20 @@ import { useUser } from './UserProvider';
 
 export function ProfileMenu() {
   const navigate = useNavigate()
+  
   const logouthandler = () => {
-    localStorage.removeItem("userInfo")
-    localStorage.removeItem("token")
-    navigate("/")
-  }
+    // Retrieve the list of post IDs the user has interacted with
+    // const postIds = JSON.parse(localStorage.getItem('postIds')) || [];
+
+    // // Remove upvote information for each post
+    // postIds.forEach(postId => {
+    //   localStorage.removeItem(`upvote_${postId}`);
+    // });
+    // localStorage.removeItem('postIds');
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   const {theme,toggleTheme}=useUser();
 

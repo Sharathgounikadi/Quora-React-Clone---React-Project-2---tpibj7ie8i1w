@@ -50,13 +50,13 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
 
   useEffect(() => {
     // Fetch initial upvote state from local storage if available
-    const upvoteState = localStorage.getItem(`upvote_${postId}`);
-    if (upvoteState) {
-      const { color, count } = JSON.parse(upvoteState);
-      setColorBlue(color === 'lightBlue' ? 'lightBlue' : '');
-      setColorRed(color === '#ff6666' ? '#ff6666' : '');
-      setCount(count);
-    }
+    // const upvoteState = localStorage.getItem(`upvote_${postId}`);
+    // if (upvoteState) {
+    //   const { color, count } = JSON.parse(upvoteState);
+    //   setColorBlue(color === 'lightBlue' ? 'lightBlue' : '');
+    //   setColorRed(color === '#ff6666' ? '#ff6666' : '');
+    //   setCount(count);
+    // }
   
     fetchComments();
   }, [postId]);
@@ -70,7 +70,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       setColorRed('');
   
       // Save color and count to local storage
-      localStorage.setItem(`upvote_${postId}`, JSON.stringify({ color: 'lightBlue', count: likeCount + 1 }));
+      // localStorage.setItem(`upvote_${postId}`, JSON.stringify({ color: 'lightBlue', count: likeCount + 1 }));
   
       toast('You liked the post');
     } catch (error) {
@@ -88,7 +88,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
       setColorBlue('');
   
       // Save color and count to local storage
-      localStorage.setItem(`upvote_${postId}`, JSON.stringify({ color: '#ff6666', count: likeCount - 1 }));
+      // localStorage.setItem(`upvote_${postId}`, JSON.stringify({ color: '#ff6666', count: likeCount - 1 }));
   
       toast('You disliked the post');
     } catch (error) {
