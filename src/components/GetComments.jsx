@@ -3,12 +3,10 @@ import React, { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { useUser } from './UserProvider';
-import { useNavigate } from 'react-router-dom';
 import Avatar from 'react-avatar';
 import { Dialog, DialogBody } from "@material-tailwind/react";
 
 const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }) => {
-  const navigate = useNavigate();
   const { theme } = useUser();
   const [toggleComments, setToggleComments] = useState(false);
   const [postComment, setPostComment] = useState("");
@@ -154,7 +152,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
         }
       });
       const postAuthor = response.data?.data?.author?._id;
-
+      
       // Check if the current user is the author of the post
       if (userInfo !== postAuthor) {
         setOpen(false)

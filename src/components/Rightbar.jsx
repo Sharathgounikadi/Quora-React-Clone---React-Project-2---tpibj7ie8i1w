@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Avatar from 'react-avatar';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import { useUser } from './UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
 import { Ask, Answer, Post } from './Icons';
 import AddPost from './AddPost';
+import { toast } from 'react-toastify';
 
 const Rightbar = () => {
   const { theme, show, setShow, postId } = useUser();
@@ -17,6 +18,7 @@ const Rightbar = () => {
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState(null);
   const [initialApiCallMade, setInitialApiCallMade] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   const colour = {
     backgroundColor: theme === 'light' ? 'white' : 'black',
@@ -33,15 +35,13 @@ const Rightbar = () => {
     color: theme === 'light' ? 'black' : 'white',
   };
 
-  const fetchPosts = async () => {
-    if (isFetching || (initialApiCallMade && !postId)) {
-      return;
-    }
+  const fetchPosts = async (pageToFetch) => {
+    if (isFetching) return;
 
     const dataUser = localStorage.getItem("token");
     try {
       setIsFetching(true);
-      let url = `https://academics.newtonschool.co/api/v1/quora/post?limit=10&page=${page}`;
+      let url = `https://academics.newtonschool.co/api/v1/quora/post?limit=10&page=${pageToFetch}`;
       if (postId) {
         url = `https://academics.newtonschool.co/api/v1/quora/post/${postId}`;
       }
@@ -51,12 +51,22 @@ const Rightbar = () => {
           'Authorization': `Bearer ${dataUser}`
         }
       });
-
+      console.log(response.data.data);
       if (postId) {
         setPosts([response.data.data]);
+        console.log(response.data.data);
       } else {
-        setPosts((prevPosts) => [...prevPosts, ...response.data.data]);
-        setPage((prevPage) => prevPage + 1);
+        if (Array.isArray(response.data.data)) {
+          if (response.data.data.length === 0) {
+            setHasMore(false);
+          } else {
+            setPosts((prevPosts) => [...prevPosts, ...response.data.data]);
+            setError(null);
+          }
+        } else {
+          // console.error("Failed to fetch the posts", response.data.data);
+          toast.error("Failed to fetch the posts", response.data.data)
+        }
       }
 
       if (!initialApiCallMade) {
@@ -80,39 +90,39 @@ const Rightbar = () => {
     };
   };
 
-  const debouncedFetchPosts = debounce(fetchPosts, 500);
-
-  const handleScroll = () => {
-    const scrollTop = document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight;
-    const clientHeight = document.documentElement.clientHeight;
-
-    if (scrollTop + clientHeight >= scrollHeight - 100) {
-      debouncedFetchPosts();
-    }
-  };
+  const handleScroll = useCallback(
+    debounce(() => {
+      const scrollTop = document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
+      if (scrollTop + clientHeight >= scrollHeight - 100 && hasMore) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    }, 200),
+    [hasMore]
+  );
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); // Empty dependency array to ensure the effect runs only once
+  }, [handleScroll]);
 
   useEffect(() => {
-    fetchPosts();
-  }, []); // Empty dependency array to ensure the effect runs only once
+    if (hasMore) {
+      fetchPosts(page);
+    }
+  }, [page, hasMore]);
 
   useEffect(() => {
     if (postId) {
       setPosts([]);
       setPage(1);
       setInitialApiCallMade(false);
+      fetchPosts(1);
     }
-    fetchPosts();
   }, [postId]);
-
-
 
   return (
     <div className="lg:ml-[27%] lg:w-[45%] md:w-full md:mx-[2%] lg:mt-[5%] mt-[8%] rounded-2xl">
@@ -160,10 +170,8 @@ const Rightbar = () => {
             ? post.author?.name.charAt(0).toUpperCase()
             : "?";
           return (
-            
             <div
-              className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-2xl
-                "
+              className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-2xl"
               key={index}
               style={postCardStyle}
             >
@@ -215,11 +223,10 @@ const Rightbar = () => {
             </div>
           );
         })}
-        
+
         {isFetching && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
-      
     </div>
   );
 };
